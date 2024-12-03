@@ -1,4 +1,4 @@
-<div class="border-[0.1rem] border-[#FFEB99] w-1/4 h-fit p-6 rounded mx-auto">
+<div class="border-[0.1rem] bg-[#292929] border-[#FFEB99] sm:w-full md:w-2/4 lg:w-1/3 h-fit p-6 rounded mx-auto">
     <h1 class="text-xl md:text-3xl text-[#FFEB99] text-center mb-3">
         Connexion
     </h1>
@@ -11,7 +11,7 @@
         @csrf
         <div class="mb-4">
             <label for="email" class="block text-sm text-[#FFEB99]">Email</label>
-            <input type="email" name="email" id="email" class="bg-[#292929] text-[#FFEB99] border-2 w-full p-4 rounded-lg" value="{{ old('email') }}">
+            <input type="email" name="email" id="email" class="border-2 bg-transparent rounded w-full py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]" value="{{ old('email') }}">
             @error('email')
                 <div class="text-red-500 mt-2 text-sm">
                     {{ $message }}
@@ -20,7 +20,7 @@
         </div>
         <div class="mb-4">
             <label for="password" class="block text-sm text-[#FFEB99]">Mot de passe</label>
-            <input type="password" name="password" id="password" class="bg-[#292929] text-[#FFEB99] border-2 w-full p-4 rounded-lg">
+            <input type="password" name="password" id="password" class="border-2 bg-transparent rounded w-full py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]">
             @error('password')
                 <div class="text-red-500 mt-2 text-sm">
                     {{ $message }}
