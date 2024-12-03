@@ -18,5 +18,52 @@
         <h1 class="place-self-center underline text-4xl md:text-5xl text-[#FFEB99]">
             Nos sélections
         </h1>
+        <div class="py-6 px-[12rem]">
+            <swiper-container class="mySwiper" slides-per-view="4"
+            space-between="30" free-mode="true" autoplay-delay="2500" autoplay-disable-on-interaction="false" mousewheel="true">
+                <swiper-slide>
+                    <x-card-accueil>
+                        <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
+                        <p class="text-sm text-gray-500 mt-3">La mousse au chocolat du Chef</p>
+                    </x-card-accueil>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-card-accueil>
+                        <x-badge>Édition limitée • 15€</x-badge>
+                        <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
+                        <p class="text-sm text-gray-500 mt-3">Le boeuf Cucurry</p>
+                    </x-card-accueil>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-card-accueil>
+                        <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
+                        <p class="text-sm text-gray-500 mt-3">La mousse au chocolat du Chef</p>
+                    </x-card-accueil>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-card-accueil>
+                        <x-badge>Édition limitée • 15€</x-badge>
+                        <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
+                        <p class="text-sm text-gray-500 mt-3">Le boeuf Cucurry</p>
+                    </x-card-accueil>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-card-accueil>
+                        <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
+                        <p class="text-sm text-gray-500 mt-3">La mousse au chocolat du Chef</p>
+                    </x-card-accueil>
+                </swiper-slide>
+                <swiper-slide>
+                    <x-card-accueil>
+                        <x-badge>Édition limitée • 15€</x-badge>
+                        <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
+                        <p class="text-sm text-gray-500 mt-3">Le boeuf Cucurry</p>
+                    </x-card-accueil>
+                </swiper-slide>
+            </swiper-container>
+        </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     </div>
 </x-header>
