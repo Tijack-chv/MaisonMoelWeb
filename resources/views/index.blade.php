@@ -24,40 +24,40 @@
                 <swiper-slide>
                     <x-card-accueil>
                         <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
-                        <p class="text-sm text-gray-500 mt-3">La mousse au chocolat du Chef</p>
+                        <p class="text-sm text-center text-gray-500 mt-3">La mousse au chocolat du Chef</p>
                     </x-card-accueil>
                 </swiper-slide>
                 <swiper-slide>
                     <x-card-accueil>
                         <x-badge>Édition limitée • 15€</x-badge>
                         <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
-                        <p class="text-sm text-gray-500 mt-3">Le boeuf Cucurry</p>
+                        <p class="text-sm text-center text-gray-500 mt-3">Le boeuf Cucurry</p>
                     </x-card-accueil>
                 </swiper-slide>
                 <swiper-slide>
                     <x-card-accueil>
                         <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
-                        <p class="text-sm text-gray-500 mt-3">La mousse au chocolat du Chef</p>
+                        <p class="text-sm text-center text-gray-500 mt-3">La mousse au chocolat du Chef</p>
                     </x-card-accueil>
                 </swiper-slide>
                 <swiper-slide>
                     <x-card-accueil>
                         <x-badge>Édition limitée • 15€</x-badge>
                         <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
-                        <p class="text-sm text-gray-500 mt-3">Le boeuf Cucurry</p>
+                        <p class="text-sm text-center text-gray-500 mt-3">Le boeuf Cucurry</p>
                     </x-card-accueil>
                 </swiper-slide>
                 <swiper-slide>
                     <x-card-accueil>
                         <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
-                        <p class="text-sm text-gray-500 mt-3">La mousse au chocolat du Chef</p>
+                        <p class="text-sm text-center text-gray-500 mt-3">La mousse au chocolat du Chef</p>
                     </x-card-accueil>
                 </swiper-slide>
                 <swiper-slide>
                     <x-card-accueil>
                         <x-badge>Édition limitée • 15€</x-badge>
                         <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
-                        <p class="text-sm text-gray-500 mt-3">Le boeuf Cucurry</p>
+                        <p class="text-sm text-center text-gray-500 mt-3">Le boeuf Cucurry</p>
                     </x-card-accueil>
                 </swiper-slide>
             </swiper-container>
