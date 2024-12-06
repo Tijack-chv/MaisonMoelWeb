@@ -18,7 +18,7 @@
         <h1 class="place-self-center underline text-4xl md:text-5xl text-[#FFEB99]">
             Nos sélections
         </h1>
-        <div class="py-6 px-[12rem]">
+        <div class="py-6 md:px-[6rem] lg:px-[12rem]">
             <swiper-container class="mySwiper" slides-per-view="4"
             space-between="30" free-mode="true" autoplay-delay="2500" autoplay-disable-on-interaction="false" mousewheel="true">
                 <swiper-slide>

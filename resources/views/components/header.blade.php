@@ -47,7 +47,7 @@
             </style>
         @endif
     </head>
-    <body class="bg-[#292929]">
+    <body class="bg-[#292929]" style="overflow-x:hidden;">
         {{ $slot }}
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     </body>
