@@ -31,9 +31,10 @@ class AuthController extends Controller
 
         );
 
-        $client = Client::where('EMAIL', $validated['email'])->first();
-        if ($client) {
-            if (Hash::check($validated['password'], $client->PASSWORD)) {
+        $client = Personne::where('email', $validated['email'])->first();
+        $clients = Client::all();    
+        if ($client && $clients->contains('idPersonne', $client->idPersonne)) {
+            if (Hash::check($validated['password'], $client->password)) {
                 session(['client' => $client]);
                 return redirect()->route('index');
             } else {
@@ -76,20 +77,16 @@ class AuthController extends Controller
         );
 
         $personne = new Personne();
-        $personne->NOM = $validated['name'];
-        $personne->PRENOM = $validated['prenom'];
-        $personne->EMAIL = $validated['email'];
-        $personne->DATENAISS = $validated['date_naissance'];
-        $personne->PASSWORD = Hash::make($validated['password']);
+        $personne->nom = $validated['name'];
+        $personne->prenom = $validated['prenom'];
+        $personne->email = $validated['email'];
+        $personne->dateNaiss = $validated['date_naissance'];
+        $personne->password = Hash::make($validated['password']);
         $personne->save();
 
         $client = new Client();
-        $client->IDPERSONNE = $personne->IDPERSONNE;
-        $client->NOM = $validated['name'];
-        $client->PRENOM = $validated['prenom'];
-        $client->EMAIL = $validated['email'];
-        $client->DATENAISS = $validated['date_naissance'];
-        $client->PASSWORD = Hash::make($validated['password']);
+        $client->idPersonne = $personne->idPersonne;
+        $client->pointFidelite = 0;
         $client->save();
         $request->session()->put('client', $client);
 

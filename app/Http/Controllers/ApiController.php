@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Personne;
 use App\Models\Serveur;
-use App\Models\Tokenapi;
+use App\Models\TokenApi;
 use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
@@ -18,13 +18,17 @@ class ApiController extends Controller
             return response()->json(['error' => 'Token est requis.']);
         }
         $token = htmlspecialchars($request->token);
-        if (Tokenapi::where('token', $token)->first()) {
+        if (TokenApi::where('token', $token)->first()) {
             $email = htmlspecialchars($request->email);
             $password = htmlspecialchars($request->password);
-            $serveur = Personne::where('EMAIL', $email)->first();
+            $serveurP = Personne::where('email', $email)->first();
+            $serveur = Serveur::where($serveurP->id)->first();
             if ($serveur) {
-                if (Hash::check($password, $serveur->PASSWORD)) {
-                    return response()->json(['serveur' => $serveur]);
+                if (Hash::check($password, $serveurP->password)) {
+                    $serveurP = $serveurP->toArray();
+                    $serveurP += ['appreciations' => $serveur->appreciations];
+                    $serveurP += ['salaires' => $serveur->salaires];
+                    return response()->json(['serveur' => $serveurP]);
                 } else {
                     return response()->json(['error' => 'Email ou mot de passe incorrect.']);
                 }
