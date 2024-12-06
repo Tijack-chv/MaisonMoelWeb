@@ -13,13 +13,13 @@
     <div class="hidden w-full md:block md:w-auto" id="navbar-default">
       <ul class="font-medium flex flex-col p-4 md:p-0 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse">
         <li>
-          <a href="/" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-gray-600 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Accueil</a>
+          <a href="/" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Accueil</a>
         </li>
         <li>
-          <a href="#" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-gray-600 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Carte</a>
+          <a href="#" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Carte</a>
         </li>
         <li>
-          <a href="#about" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-gray-600 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">À propos</a>
+          <a href="#about" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">À propos</a>
         </li>
         <li>
           @if(session('client'))
@@ -42,7 +42,7 @@
                 </div>
             </div>
           @else
-            <a href="/login" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-600 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Connexion</a>
+            <a href="/login" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Connexion</a>
           @endif
         </li>
       </ul>
