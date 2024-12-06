@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class TypeTable
  * 
  * @property int $idTypeTable
- * @property string $libelleTypePlat
+ * @property string $libelleTypeTable
  *
  * @package App\Models
  */
@@ -28,6 +28,6 @@ class TypeTable extends Model
 	];
 
 	protected $fillable = [
-		'libelleTypePlat'
+		'libelleTypeTable'
 	];
 }

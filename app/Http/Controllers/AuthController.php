@@ -31,11 +31,13 @@ class AuthController extends Controller
 
         );
 
-        $client = Personne::where('email', $validated['email'])->first();
-        $clients = Client::all();    
-        if ($client && $clients->contains('idPersonne', $client->idPersonne)) {
-            if (Hash::check($validated['password'], $client->password)) {
-                session(['client' => $client]);
+        $clientP = Personne::where('email', $validated['email'])->first();
+        $client = Client::where('idPersonne', $clientP->idPersonne)->first();    
+        if ($client) {
+            if (Hash::check($validated['password'], $clientP->password)) {
+                $clientP = $clientP->toArray();
+                $clientP += ['pointFidelite' => $client->pointFidelite];
+                session(['client' => $clientP]);
                 return redirect()->route('index');
             } else {
                 return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect.');
@@ -58,13 +60,14 @@ class AuthController extends Controller
                 'prenom' => 'required|string',
                 'email' => 'required|email',
                 'date_naissance' => 'required|date',
-                'password' => 'required',
+                'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/'],
                 'password_confirmation' => 'required|same:password',
             ],
             [
                 'required' => 'Le champ :attribute est obligatoire.',
                 'email' => 'Le champ :attribute doit être une adresse email valide.',
                 'same' => 'Les mots de passe ne correspondent pas.',
+                'regex' => 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.',
             ],
             [
                 'name' => 'nom',
@@ -88,9 +91,13 @@ class AuthController extends Controller
         $client->idPersonne = $personne->idPersonne;
         $client->pointFidelite = 0;
         $client->save();
-        $request->session()->put('client', $client);
 
-        return redirect()->route('login')->with('success', 'Compte créé avec succès.');
+        $personne = $personne->toArray();
+        $personne += ['pointFidelite' => $client->pointFidelite];
+        $request->session()->put('client', $personne);
+        
+
+        return redirect()->route('index')->with('success', 'Compte créé avec succès.');
     }
 
     public function logout(Request $request)
@@ -98,4 +105,10 @@ class AuthController extends Controller
         $request->session()->forget('client');
         return redirect()->route('index');
     }
+
+    public function edit(Request $request) 
+    {
+        
+    }
+    
 }

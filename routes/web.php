@@ -16,6 +16,10 @@ Route::get('/register', [AuthController::class, 'register_view'])->name('registe
 Route::post('/register', [AuthController::class, 'register_store'])->name('register.register');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/profile', [ProfileController::class, 'index'])->middleware(AuthVerification::class)->name('profile.index');
+Route::middleware(AuthVerification::class)->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+});
 
 Route::get('/api/login', [ApiController::class, 'api_login']);
