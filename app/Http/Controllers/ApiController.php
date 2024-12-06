@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Personne;
 use App\Models\Serveur;
 use App\Models\Tokenapi;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,7 @@ class ApiController extends Controller
         if (Tokenapi::where('token', $token)->first()) {
             $email = htmlspecialchars($request->email);
             $password = htmlspecialchars($request->password);
-            $serveur = Serveur::where('EMAIL', $email)->first();
+            $serveur = Personne::where('EMAIL', $email)->first();
             if ($serveur) {
                 if (Hash::check($password, $serveur->PASSWORD)) {
                     return response()->json(['serveur' => $serveur]);

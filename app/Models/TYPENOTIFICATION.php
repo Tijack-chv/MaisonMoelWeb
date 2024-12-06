@@ -6,31 +6,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TYPENOTIFICATION
+ * Class TypeNotification
  * 
- * @property int $IDTYPENOTIFICATION
- * @property string $LIBELLETYPENOTIFICATION
- * 
- * @property Collection|NOTIFICATION[] $n_o_t_i_f_i_c_a_t_i_o_n_s
+ * @property int $idTypeNotification
+ * @property string $libelleTypeNotification
  *
  * @package App\Models
  */
-class TYPENOTIFICATION extends Model
+class TypeNotification extends Model
 {
-	protected $table = 'TYPE_NOTIFICATION';
-	protected $primaryKey = 'IDTYPENOTIFICATION';
+	protected $table = 'type_notification';
+	protected $primaryKey = 'idTypeNotification';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'LIBELLETYPENOTIFICATION'
+		'libelleTypeNotification'
 	];
-
-	public function n_o_t_i_f_i_c_a_t_i_o_n_s()
-	{
-		return $this->hasMany(NOTIFICATION::class, 'IDTYPENOTIFICATION');
-	}
 }

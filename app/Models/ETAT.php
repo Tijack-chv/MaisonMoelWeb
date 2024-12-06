@@ -10,27 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ETAT
+ * Class Etat
  * 
- * @property int $IDETAT
- * @property string $LIBELLEETAT
+ * @property int $idEtat
+ * @property string $libelleEtat
  * 
- * @property Collection|COMMANDE[] $c_o_m_m_a_n_d_e_s
+ * @property Collection|Commande[] $commandes
  *
  * @package App\Models
  */
-class ETAT extends Model
+class Etat extends Model
 {
-	protected $table = 'ETAT';
-	protected $primaryKey = 'IDETAT';
+	protected $table = 'etat';
+	protected $primaryKey = 'idEtat';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'LIBELLEETAT'
+		'libelleEtat'
 	];
 
-	public function c_o_m_m_a_n_d_e_s()
+	public function commandes()
 	{
-		return $this->hasMany(COMMANDE::class, 'IDETAT');
+		return $this->hasMany(Commande::class, 'idEtat');
 	}
 }

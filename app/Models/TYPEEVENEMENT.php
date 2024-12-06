@@ -10,27 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TYPEEVENEMENT
+ * Class TypeEvenement
  * 
- * @property int $IDTYPEEVENEMENT
- * @property string $LIBELLETYPEEVENEMENT
+ * @property int $idTypeEvenement
+ * @property string $libelleTypeEvenement
  * 
- * @property Collection|EVENEMENT[] $e_v_e_n_e_m_e_n_t_s
+ * @property Collection|Evenement[] $evenements
  *
  * @package App\Models
  */
-class TYPEEVENEMENT extends Model
+class TypeEvenement extends Model
 {
-	protected $table = 'TYPE_EVENEMENT';
-	protected $primaryKey = 'IDTYPEEVENEMENT';
+	protected $table = 'type_evenement';
+	protected $primaryKey = 'idTypeEvenement';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'LIBELLETYPEEVENEMENT'
+		'libelleTypeEvenement'
 	];
 
-	public function e_v_e_n_e_m_e_n_t_s()
+	public function evenements()
 	{
-		return $this->hasMany(EVENEMENT::class, 'IDTYPEEVENEMENT');
+		return $this->hasMany(Evenement::class, 'idTypeEvenement');
 	}
 }

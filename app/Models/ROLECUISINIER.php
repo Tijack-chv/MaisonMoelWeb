@@ -10,27 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ROLECUISINIER
+ * Class RoleCuisinier
  * 
- * @property int $IDROLE
- * @property string $LIBELLEROLE
+ * @property int $idRole
+ * @property string $libelleRole
  * 
- * @property Collection|CUISINIER[] $c_u_i_s_i_n_i_e_r_s
+ * @property Collection|Cuisinier[] $cuisiniers
  *
  * @package App\Models
  */
-class ROLECUISINIER extends Model
+class RoleCuisinier extends Model
 {
-	protected $table = 'ROLE_CUISINIER';
-	protected $primaryKey = 'IDROLE';
+	protected $table = 'role_cuisinier';
+	protected $primaryKey = 'idRole';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'LIBELLEROLE'
+		'libelleRole'
 	];
 
-	public function c_u_i_s_i_n_i_e_r_s()
+	public function cuisiniers()
 	{
-		return $this->hasMany(CUISINIER::class, 'IDROLE');
+		return $this->hasMany(Cuisinier::class, 'idRole');
 	}
 }

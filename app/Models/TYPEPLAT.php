@@ -10,27 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TYPEPLAT
+ * Class TypePlat
  * 
- * @property int $IDTYPEPLAT
- * @property string $LIBELLETYPEPLAT
+ * @property int $idTypePlat
+ * @property string $libelleTypePlat
  * 
- * @property Collection|PLAT[] $p_l_a_t_s
+ * @property Collection|Plat[] $plats
  *
  * @package App\Models
  */
-class TYPEPLAT extends Model
+class TypePlat extends Model
 {
-	protected $table = 'TYPE_PLAT';
-	protected $primaryKey = 'IDTYPEPLAT';
+	protected $table = 'type_plat';
+	protected $primaryKey = 'idTypePlat';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'LIBELLETYPEPLAT'
+		'libelleTypePlat'
 	];
 
-	public function p_l_a_t_s()
+	public function plats()
 	{
-		return $this->hasMany(PLAT::class, 'IDTYPEPLAT');
+		return $this->hasMany(Plat::class, 'idTypePlat');
 	}
 }

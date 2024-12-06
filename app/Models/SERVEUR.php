@@ -6,58 +6,39 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class SERVEUR
+ * Class Serveur
  * 
- * @property int $IDPERSONNE
- * @property int|null $APPRECIATIONS
- * @property int $SALAIRES
- * @property string $NOM
- * @property string $PRENOM
- * @property string $EMAIL
- * @property string $PASSWORD
- * @property Carbon|null $DATENAISS
+ * @property int $idPersonne
+ * @property int|null $appreciations
+ * @property int $salaires
  * 
- * @property PERSONNE $p_e_r_s_o_n_n_e
- * @property Collection|COMMANDE[] $c_o_m_m_a_n_d_e_s
+ * @property Personne $personne
  *
  * @package App\Models
  */
-class SERVEUR extends Model
+class Serveur extends Model
 {
-	protected $table = 'SERVEUR';
-	protected $primaryKey = 'IDPERSONNE';
+	protected $table = 'serveur';
+	protected $primaryKey = 'idPersonne';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'IDPERSONNE' => 'int',
-		'APPRECIATIONS' => 'int',
-		'SALAIRES' => 'int',
-		'DATENAISS' => 'datetime'
+		'idPersonne' => 'int',
+		'appreciations' => 'int',
+		'salaires' => 'int'
 	];
 
 	protected $fillable = [
-		'APPRECIATIONS',
-		'SALAIRES',
-		'NOM',
-		'PRENOM',
-		'EMAIL',
-		'PASSWORD',
-		'DATENAISS'
+		'appreciations',
+		'salaires'
 	];
 
-	public function p_e_r_s_o_n_n_e()
+	public function personne()
 	{
-		return $this->belongsTo(PERSONNE::class, 'IDPERSONNE');
-	}
-
-	public function c_o_m_m_a_n_d_e_s()
-	{
-		return $this->hasMany(COMMANDE::class, 'IDPERSONNE');
+		return $this->belongsTo(Personne::class, 'idPersonne');
 	}
 }

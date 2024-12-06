@@ -9,34 +9,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class RESTREINDRE
+ * Class Restreindre
  * 
- * @property int $IDPRODUIT
- * @property int $IDALERGENES
- * 
- * @property PRODUIT $p_r_o_d_u_i_t
- * @property ALERGENE $a_l_e_r_g_e_n_e
+ * @property int $idAlergenes
+ * @property int $idPlat
  *
  * @package App\Models
  */
-class RESTREINDRE extends Model
+class Restreindre extends Model
 {
-	protected $table = 'RESTREINDRE';
+	protected $table = 'restreindre';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'IDPRODUIT' => 'int',
-		'IDALERGENES' => 'int'
+		'idAlergenes' => 'int',
+		'idPlat' => 'int'
 	];
-
-	public function p_r_o_d_u_i_t()
-	{
-		return $this->belongsTo(PRODUIT::class, 'IDPRODUIT');
-	}
-
-	public function a_l_e_r_g_e_n_e()
-	{
-		return $this->belongsTo(ALERGENE::class, 'IDALERGENES');
-	}
 }

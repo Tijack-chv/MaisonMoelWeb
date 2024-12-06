@@ -10,42 +10,36 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class RESERVATION
+ * Class Reservation
  * 
- * @property int $IDPERSONNE
- * @property Carbon $DATEHEURERES
- * @property int $IDTABLE
- * @property int $NBPERSONNES
- * 
- * @property CLIENT $c_l_i_e_n_t
- * @property TABLE $t_a_b_l_e
+ * @property int $idTable
+ * @property int|null $idPersonne
+ * @property int $nbPersonnes
+ * @property Carbon|null $dateMoment
+ * @property int $idReservation
+ * @property Carbon $dateReservation
  *
  * @package App\Models
  */
-class RESERVATION extends Model
+class Reservation extends Model
 {
-	protected $table = 'RESERVATION';
-	public $incrementing = false;
+	protected $table = 'reservation';
+	protected $primaryKey = 'idReservation';
 	public $timestamps = false;
 
 	protected $casts = [
-		'IDPERSONNE' => 'int',
-		'DATEHEURERES' => 'datetime',
-		'IDTABLE' => 'int',
-		'NBPERSONNES' => 'int'
+		'idTable' => 'int',
+		'idPersonne' => 'int',
+		'nbPersonnes' => 'int',
+		'dateMoment' => 'datetime',
+		'dateReservation' => 'datetime'
 	];
 
 	protected $fillable = [
-		'NBPERSONNES'
+		'idTable',
+		'idPersonne',
+		'nbPersonnes',
+		'dateMoment',
+		'dateReservation'
 	];
-
-	public function c_l_i_e_n_t()
-	{
-		return $this->belongsTo(CLIENT::class, 'IDPERSONNE');
-	}
-
-	public function t_a_b_l_e()
-	{
-		return $this->belongsTo(TABLE::class, 'IDTABLE');
-	}
 }

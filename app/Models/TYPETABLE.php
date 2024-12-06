@@ -6,36 +6,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class TYPETABLE
+ * Class TypeTable
  * 
- * @property int $IDTYPETABLE
- * @property string $LIBELLETYPEPLAT
- * 
- * @property Collection|TABLE[] $t_a_b_l_e_s
+ * @property int $idTypeTable
+ * @property string $libelleTypePlat
  *
  * @package App\Models
  */
-class TYPETABLE extends Model
+class TypeTable extends Model
 {
-	protected $table = 'TYPE_TABLE';
-	protected $primaryKey = 'IDTYPETABLE';
+	protected $table = 'type_table';
+	protected $primaryKey = 'idTypeTable';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'IDTYPETABLE' => 'int'
+		'idTypeTable' => 'int'
 	];
 
 	protected $fillable = [
-		'LIBELLETYPEPLAT'
+		'libelleTypePlat'
 	];
-
-	public function t_a_b_l_e_s()
-	{
-		return $this->hasMany(TABLE::class, 'IDTYPETABLE');
-	}
 }

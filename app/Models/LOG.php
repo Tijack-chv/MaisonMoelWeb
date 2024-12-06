@@ -9,33 +9,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class LOG
+ * Class Log
  * 
- * @property int $IDLOGIN
- * @property int|null $IDPERSONNE
- * @property string $DESCRIPTION
- * 
- * @property PERSONNE|null $p_e_r_s_o_n_n_e
+ * @property int $idLog
+ * @property string $description
  *
  * @package App\Models
  */
-class LOG extends Model
+class Log extends Model
 {
-	protected $table = 'LOG';
-	protected $primaryKey = 'IDLOGIN';
+	protected $table = 'log';
+	protected $primaryKey = 'idLog';
 	public $timestamps = false;
 
-	protected $casts = [
-		'IDPERSONNE' => 'int'
-	];
-
 	protected $fillable = [
-		'IDPERSONNE',
-		'DESCRIPTION'
+		'description'
 	];
-
-	public function p_e_r_s_o_n_n_e()
-	{
-		return $this->belongsTo(PERSONNE::class, 'IDPERSONNE');
-	}
 }

@@ -10,27 +10,27 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class CATEGORIEPLAT
+ * Class CategoriePlat
  * 
- * @property int $IDCATEGORIEPLAT
- * @property string $LIBELLECATEGORIEPLAT
+ * @property int $idCategoriePlat
+ * @property string $libelleCategoriePlat
  * 
- * @property Collection|PLAT[] $p_l_a_t_s
+ * @property Collection|Plat[] $plats
  *
  * @package App\Models
  */
-class CATEGORIEPLAT extends Model
+class CategoriePlat extends Model
 {
-	protected $table = 'CATEGORIE_PLAT';
-	protected $primaryKey = 'IDCATEGORIEPLAT';
+	protected $table = 'categorie_plat';
+	protected $primaryKey = 'idCategoriePlat';
 	public $timestamps = false;
 
 	protected $fillable = [
-		'LIBELLECATEGORIEPLAT'
+		'libelleCategoriePlat'
 	];
 
-	public function p_l_a_t_s()
+	public function plats()
 	{
-		return $this->hasMany(PLAT::class, 'IDCATEGORIEPLAT');
+		return $this->hasMany(Plat::class, 'idCategoriePlat');
 	}
 }

@@ -6,47 +6,35 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class ADMIN
+ * Class Admin
  * 
- * @property int $IDPERSONNE
- * @property string|null $PROFILADMIN
- * @property string $NOM
- * @property string $PRENOM
- * @property string $EMAIL
- * @property string $PASSWORD
- * @property Carbon|null $DATENAISS
+ * @property int $idPersonne
+ * @property string|null $profilAdmin
  * 
- * @property PERSONNE $p_e_r_s_o_n_n_e
+ * @property Personne $personne
  *
  * @package App\Models
  */
-class ADMIN extends Model
+class Admin extends Model
 {
-	protected $table = 'ADMIN';
-	protected $primaryKey = 'IDPERSONNE';
+	protected $table = 'admin';
+	protected $primaryKey = 'idPersonne';
 	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'IDPERSONNE' => 'int',
-		'DATENAISS' => 'datetime'
+		'idPersonne' => 'int'
 	];
 
 	protected $fillable = [
-		'PROFILADMIN',
-		'NOM',
-		'PRENOM',
-		'EMAIL',
-		'PASSWORD',
-		'DATENAISS'
+		'profilAdmin'
 	];
 
-	public function p_e_r_s_o_n_n_e()
+	public function personne()
 	{
-		return $this->belongsTo(PERSONNE::class, 'IDPERSONNE');
+		return $this->belongsTo(Personne::class, 'idPersonne');
 	}
 }
