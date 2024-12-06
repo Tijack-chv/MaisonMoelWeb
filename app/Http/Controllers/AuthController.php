@@ -31,14 +31,19 @@ class AuthController extends Controller
 
         );
 
-        $clientP = Personne::where('email', $validated['email'])->first();
-        $client = Client::where('idPersonne', $clientP->idPersonne)->first();    
-        if ($client) {
-            if (Hash::check($validated['password'], $clientP->password)) {
-                $clientP = $clientP->toArray();
-                $clientP += ['pointFidelite' => $client->pointFidelite];
-                session(['client' => $clientP]);
-                return redirect()->route('index');
+        $clientP = Personne::where('email', $validated['email'])->first();  
+        if ($clientP) {
+            
+            $client = Client::where('idPersonne', $clientP->idPersonne)->first();  
+            if ($client) {
+                if (Hash::check($validated['password'], $clientP->password)) {
+                    $clientP = $clientP->toArray();
+                    $clientP += ['pointFidelite' => $client->pointFidelite];
+                    session(['client' => $clientP]);
+                    return redirect()->route('index');
+                } else {
+                    return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect.');
+                }
             } else {
                 return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect.');
             }

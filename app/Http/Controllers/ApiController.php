@@ -22,13 +22,17 @@ class ApiController extends Controller
             $email = htmlspecialchars($request->email);
             $password = htmlspecialchars($request->password);
             $serveurP = Personne::where('email', $email)->first();
-            $serveur = Serveur::where($serveurP->id)->first();
-            if ($serveur) {
-                if (Hash::check($password, $serveurP->password)) {
-                    $serveurP = $serveurP->toArray();
-                    $serveurP += ['appreciations' => $serveur->appreciations];
-                    $serveurP += ['salaires' => $serveur->salaires];
-                    return response()->json(['serveur' => $serveurP]);
+            if ($serveurP) {
+                $serveur = Serveur::where($serveurP->id)->first();
+                if ($serveur) {
+                    if (Hash::check($password, $serveurP->password)) {
+                        $serveurP = $serveurP->toArray();
+                        $serveurP += ['appreciations' => $serveur->appreciations];
+                        $serveurP += ['salaires' => $serveur->salaires];
+                        return response()->json(['serveur' => $serveurP]);
+                    } else {
+                        return response()->json(['error' => 'Email ou mot de passe incorrect.']);
+                    }
                 } else {
                     return response()->json(['error' => 'Email ou mot de passe incorrect.']);
                 }
