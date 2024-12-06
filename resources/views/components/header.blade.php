@@ -6,6 +6,8 @@
 
         <title>Maison Moël</title>
 
+        <link rel="icon" type="image/x-icon" href="http://192.168.143.9/images/favicon.ico">
+
         <!-- Swiper -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

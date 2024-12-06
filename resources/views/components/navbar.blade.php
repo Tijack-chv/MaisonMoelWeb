@@ -1,7 +1,7 @@
 <nav class="bg-[#292929] border-solid border-[0.1rem] border-b-[#FFEB99] border-x-transparent border-t-transparent">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="{{ asset('LOGO_TRANS.png') }}" class="h-[4rem]" alt="Maison Moël Logo" />
+        <img src="http://192.168.143.9/images/LOGO_TRANS.png" class="h-[4rem]" alt="Maison Moël Logo" />
         <span class="self-center text-[#FFEB99] text-2xl font-semibold whitespace-nowrap">Maison Moël</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 active:bg-[#292929] focus:bg-[#292929] justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none" aria-controls="navbar-default" aria-expanded="false">
@@ -31,21 +31,18 @@
             <div id="dropdownNavbar" class="z-10 hidden font-normal bg-[#292929] border-2 border-[#565656] divide-y divide-gray-600 rounded-lg shadow w-44">
                 <ul class="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-600 text-[#FFEB99]">Dashboard</a>
+                    <a href="/reservation" class="block px-4 py-2 hover:bg-zinc-700 text-[#FFEB99]">Mes réservations</a>
                   </li>
                   <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-600 text-[#FFEB99]">Settings</a>
-                  </li>
-                  <li>
-                    <a href="#" class="block px-4 py-2 hover:bg-gray-600 text-[#FFEB99]">Earnings</a>
+                    <a href="/profile" class="block px-4 py-2 hover:bg-zinc-700 text-[#FFEB99]">Mon profil</a>
                   </li>
                 </ul>
                 <div class="py-1">
-                  <a href="logout" class="block px-4 py-2 text-sm text-[#FFEB99] hover:bg-gray-600">Déconnexion</a>
+                  <a href="logout" class="block px-4 py-2 text-sm text-[#FFEB99] hover:bg-zinc-700">Déconnexion</a>
                 </div>
             </div>
           @else
-            <a href="/login" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-gray-600 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Connexion</a>
+            <a href="/login" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-600 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Connexion</a>
           @endif
         </li>
       </ul>

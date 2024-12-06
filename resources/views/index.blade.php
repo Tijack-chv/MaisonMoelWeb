@@ -1,6 +1,6 @@
 <x-header>
     <x-navbar></x-navbar>
-    <div class="relative h-screen bg-cover bg-center" style="background-image: url('{{ asset('FOND_ACCUEIL.png') }}');">
+    <div class="relative h-screen bg-cover bg-center" style="background-image: url('http://192.168.143.9/images/FOND_ACCUEIL.png');">
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         <div class="absolute flex h-screen justify-start pl-5 sm:px-10" style="flex-direction: column;">
             <div class="relative top-[40%]">
