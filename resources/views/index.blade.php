@@ -63,6 +63,27 @@
             </swiper-container>
         </div>
 
+        
+        <div id="map" class="mx-auto w-1/3 h-96"></div>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            const map = L.map('map').setView([47.481413, -2.396081], 16);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            const customIcon = L.icon({
+                iconUrl: "{{ asset('red_marker.svg') }}",
+                iconSize: [30, 40],
+                iconAnchor: [15, 40],
+                popupAnchor: [0, -40]
+            });
+
+            L.marker([47.481413, -2.396081], { icon: customIcon }).addTo(map)
+                .bindPopup('Camoël, France')
+                .openPopup();
+        </script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     </div>
