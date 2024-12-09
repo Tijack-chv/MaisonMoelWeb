@@ -14,8 +14,8 @@
             <form action="/profile/edit" method="post" class="pt-4">
                 @csrf
                 <div class="mb-4">
-                    <label for="nom" class="block text-md text-[#FFEB99]">Nom du compte</label>
-                    <input type="text" value="{{$user['nom']}}" name="nom" id="nom" class="border-2 bg-transparent rounded w-full md:w-1/2 py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]">
+                    <label for="name" class="block text-md text-[#FFEB99]">Nom du compte</label>
+                    <input type="text" value="{{$user['nom']}}" name="name" id="name" class="border-2 bg-transparent rounded w-full md:w-1/2 py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]">
                     @error('nom')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
@@ -33,8 +33,17 @@
                 </div>
                 <div class="mb-4">
                     <label for="email" class="block text-md text-[#FFEB99]">Email</label>
-                    <input type="email" value="{{ $user['email'] }}" name="email" id="email" class="border-2 bg-transparent rounded w-full md:w-1/2 py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]" value="{{ old('email') }}">
+                    <input type="email" value="{{ $user['email'] }}" name="email" id="email" class="border-2 bg-transparent rounded w-full md:w-1/2 py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]">
                     @error('email')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="mb-4">
+                    <label for="date_naissance" class="block text-[#FFEB99] text-sm font-medium mb-1">Date de naissance</label>
+                    <input type="date" value="{{ \Carbon\Carbon::parse($user['dateNaiss'])->format('Y-m-d') }}" name="date_naissance" style="color-scheme: dark;" id="date_naissance" class="bg-transparent rounded w-full md:w-1/2 py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]">
+                    @error('date_naissance')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
@@ -53,7 +62,7 @@
     <div class="mt-6 mb-6">
         <x-card>
             <h2 class="text-xl">Modification du mot de passe</h2>
-            <form action="/profile/" method="post" class="pt-4">
+            <form action="/profile/edit_password" method="post" class="pt-4">
                 @csrf
                 <div class="mb-4">
                     <label for="current_password" class="block text-md text-[#FFEB99]">Mot de passe actuel</label>
@@ -63,6 +72,11 @@
                             {{ $message }}
                         </div>
                     @enderror
+                    @if(session('error'))
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ session('error') }}
+                        </div>
+                    @endif
                 </div>
                 <div class="mb-4">
                     <label for="new_password" class="block text-md text-[#FFEB99]">Nouveau mot de passe</label>

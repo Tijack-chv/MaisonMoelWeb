@@ -109,11 +109,5 @@ class AuthController extends Controller
     {
         $request->session()->forget('client');
         return redirect()->route('index');
-    }
-
-    public function edit(Request $request) 
-    {
-        
-    }
-    
+    }    
 }

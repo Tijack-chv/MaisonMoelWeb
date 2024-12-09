@@ -17,9 +17,10 @@ Route::post('/register', [AuthController::class, 'register_store'])->name('regis
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(AuthVerification::class)->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/edit_password', [ProfileController::class, 'edit_password'])->name('profile.edit_password');
 
-    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 });
 
 Route::get('/api/login', [ApiController::class, 'api_login']);
