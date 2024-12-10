@@ -2,7 +2,7 @@
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="http://192.168.143.9:8080/images/LOGO_TRANS.png" class="h-[4rem]" alt="Maison Moël Logo" />
-        <span class="self-center text-[#FFEB99] text-2xl font-semibold whitespace-nowrap">Maison Moël</span>
+        <span class="self-center text-[#FFEB99] text-2xl font-semibold whitespace-nowrap titre-font">Maison Moël</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 active:bg-[#292929] focus:bg-[#292929] justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none" aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>

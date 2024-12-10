@@ -11,7 +11,6 @@ use App\Http\Controllers\ReservationController;
 Route::get('/', [PublicController::class, 'index'])->name('index');
 
 
-Route::get('/payment', [ReservationController::class, 'index'])->name('reservation.payment');
 Route::get('/login', [AuthController::class, 'login_view'])->name('login');
 Route::post('/login', [AuthController::class, 'login_verif'])->name('login.login');
 
@@ -24,6 +23,7 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/profile/edit_password', [ProfileController::class, 'edit_password'])->name('profile.edit_password');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::get('/payment', [ReservationController::class, 'index'])->name('reservation.payment');
 });
 
 Route::get('/api/login', [ApiController::class, 'api_login']);

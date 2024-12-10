@@ -4,5 +4,9 @@
 
 
 body {
-    font-family: "Libre Baskerville", serif;
+    font-family: "Montserrat", sans-serif;
+}
+
+.titre-font {
+    font-family: 'Libre Baskerville', serif;
 }
