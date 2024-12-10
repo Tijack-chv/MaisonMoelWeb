@@ -99,7 +99,7 @@
                 </div>
 
                 <div class="h-full place-content-center">
-                    <x-card-contact>
+                    <x-card-contact title="ml-8">
                         <h3 class="text-4xl text-white">
                             Maison Moël
                         </h3>
@@ -120,24 +120,93 @@
 
 
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        const map = L.map('map').setView([47.481413, -2.396081], 16);
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <script>
+            const map = L.map('map').setView([47.481413, -2.396081], 16);
 
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-        }).addTo(map);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
 
-        const customIcon = L.icon({
-            iconUrl: "http://192.168.143.9:8080/images/red_marker.svg",
-            iconSize: [30, 40],
-            iconAnchor: [15, 40],
-            popupAnchor: [0, -40]
-        });
+            const customIcon = L.icon({
+                iconUrl: "http://192.168.143.9:8080/images/red_marker.svg",
+                iconSize: [30, 40],
+                iconAnchor: [15, 40],
+                popupAnchor: [0, -40]
+            });
 
-        L.marker([47.481413, -2.396081], { icon: customIcon }).addTo(map)
-            .bindPopup('Camoël, France');
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
-    </div>
+            L.marker([47.481413, -2.396081], { icon: customIcon }).addTo(map)
+                .bindPopup('Camoël, France');
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+        </div>
+
+        <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
+
+        <div class="pt-2 pb-6 px-48">
+            <h1 class="place-self-center text-4xl md:text-5xl text-[#FFEB99] titre-font pb-6">
+                Vos avis
+            </h1>
+            <x-card-contact title="mx-auto w-1/2">
+                <div class="flex justify-center mb-2">
+                    <div class="flex">
+                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                        </svg>
+                        <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">4.95/5</p>
+                    </div>
+                </div>
+                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 text-center">1,745 global ratings</p>
+                <div class="grid grid-cols-1">
+                    <div class="flex justify-center mt-4">
+                        <p class="text-sm font-medium text-white">5 étoiles</p>
+                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                            <div class="h-5 bg-yellow-300 rounded" style="width: 70%"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <p class="text-sm font-medium text-white">4 étoiles</p>
+                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                            <div class="h-5 bg-yellow-300 rounded" style="width: 20%"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">20%</span>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <p class="text-sm font-medium text-white">3 étoiles</p>
+                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                            <div class="h-5 bg-yellow-300 rounded" style="width: 5%"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">5%</span>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <p class="text-sm font-medium text-white">2 étoiles</p>
+                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                            <div class="h-5 bg-yellow-300 rounded" style="width: 3%"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">3%</span>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <p class="text-sm font-medium text-white">1 étoile</p>
+                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                            <div class="h-5 bg-yellow-300 rounded" style="width: 2%"></div>
+                        </div>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">2%</span>
+                    </div>
+                </div>
+
+            </x-card-contact>
+
 </x-header>
