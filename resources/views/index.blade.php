@@ -74,7 +74,7 @@
             }).addTo(map);
 
             const customIcon = L.icon({
-                iconUrl: "{{ asset('red_marker.svg') }}",
+                iconUrl: "http://192.168.143.9:8080/images/red_marker.svg",
                 iconSize: [30, 40],
                 iconAnchor: [15, 40],
                 popupAnchor: [0, -40]
