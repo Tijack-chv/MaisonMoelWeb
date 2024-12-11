@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idPersonne
  * @property int $pointFidelite
+ * @property string $imageClient
  * 
  * @property Collection|Reservation[] $reservations
  *
@@ -32,7 +33,8 @@ class Client extends Model
 	];
 
 	protected $fillable = [
-		'pointFidelite'
+		'pointFidelite',
+		'imageClient'
 	];
 
 	public function reservations()
