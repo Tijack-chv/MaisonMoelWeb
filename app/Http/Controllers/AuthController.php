@@ -39,6 +39,7 @@ class AuthController extends Controller
                 if (Hash::check($validated['password'], $clientP->password)) {
                     $clientP = $clientP->toArray();
                     $clientP += ['pointFidelite' => $client->pointFidelite];
+                    $clientP += ['imageClient' => $client->imageClient];
                     session(['client' => $clientP]);
                     return redirect()->route('index');
                 } else {
@@ -99,6 +100,7 @@ class AuthController extends Controller
 
         $personne = $personne->toArray();
         $personne += ['pointFidelite' => $client->pointFidelite];
+        $personne += ['imageClient' => $client->imageClient];
         $request->session()->put('client', $personne);
         
 
