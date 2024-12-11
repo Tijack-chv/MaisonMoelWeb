@@ -22,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Admin $admin
  * @property Cuisinier $cuisinier
  * @property Serveur $serveur
+ * @property Client $client
+ * 
  *
  * @package App\Models
  */
@@ -60,5 +62,10 @@ class Personne extends Model
 	public function serveur()
 	{
 		return $this->hasOne(Serveur::class, 'idPersonne');
+	}
+
+	public function client()
+	{
+		return $this->hasOne(Client::class, 'idPersonne');
 	}
 }

@@ -59,18 +59,18 @@
                 <div class="text-center">
                     <div class="flex justify-center">
                     @if ($user['imageClient'])
-                        <img src="http://192.168.143.9:8080/images/{{ $user['imageClient'] }}" alt="avatar" class="w-32 h-32 rounded-full">
+                        <img src="http://192.168.143.9:8080/images/{{ $user['imageClient'] }}" alt="avatar" class="w-64 h-64 rounded-full">
                     @else
-                        <img src="http://192.168.143.9:8080/images/defautProfil.png" alt="avatar" class="w-32 h-32 rounded-full">
+                        <img src="http://192.168.143.9:8080/images/defautProfil.png" alt="avatar" class="w-64 h-64 rounded-full">
                     @endif
                     </div>
-                    <div class="flex justify-center">
-                        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-                        Choisir une image
+                    <div class="flex justify-center mt-4">
+                        <button data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-gray-900 bg-[#FFEB99] focus:ring-4 focus:outline-none focus:ring-[#FFEB99] font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center" type="button">
+                        Choisir un avatar
                         </button>
                     </div>
                     <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                        <div class="relative p-4 w-full max-w-md max-h-full">
+                        <div class="relative w-full max-w-md max-h-full">
                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                 <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -79,16 +79,45 @@
                                     <span class="sr-only">Close modal</span>
                                 </button>
                                 <div class="p-4 md:p-5 text-center">
-                                    <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Choisir une image</h2>
-                                    <div class="flex justify-center mt-4">
-                                        <img src="http://192.168.143.9:8080/images/defautProfil.png" alt="avatar" class="w-32 h-32 rounded-full">
-                                        <img src="http://192.168.143.9:8080/images/defautProfil.png" alt="avatar" class="w-32 h-32 rounded-full">
-                                        <img src="http://192.168.143.9:8080/images/defautProfil.png" alt="avatar" class="w-32 h-32 rounded-full">
+                                    <h2 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Choisir un avatar</h2>
+                                    <div class="flex justify-center my-4 gap-4">
+                                        <div>
+                                            <img src="http://192.168.143.9:8080/images/defautProfil.png" alt="avatar" class="w-32 rounded-full">
+                                        </div>
+                                        <div>
+                                            <img src="http://192.168.143.9:8080/images/hommeProfil.png" alt="avatar" class="w-32 rounded-full">
+                                        </div>
+                                        <div>
+                                            <img src="http://192.168.143.9:8080/images/femmeProfil.png" alt="avatar" class="w-32 rounded-full">
+                                        </div>
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                const images = document.querySelectorAll('#popup-modal img');
+                                                const currentAvatar = "{{ $user['imageClient'] }}";
+                                                images.forEach(image => {
+                                                    if (image.src.includes(currentAvatar)) {
+                                                        image.classList.add('border-4', 'border-[#FFEB99]');
+                                                    }
+                                                    image.addEventListener('click', function () {
+                                                        images.forEach(img => img.classList.remove('border-4', 'border-[#FFEB99]'));
+                                                        this.classList.add('border-4', 'border-[#FFEB99]');
+                                                        document.getElementById('avatar').value = this.src.split('/').pop();
+                                                    });
+                                                });
+                                            });
+                                        </script>
                                     </div>
-                                    <button data-modal-hide="popup-modal" type="button" class="text-[#292929] bg-[#FFEB99] focus:ring-4 focus:outline-none focus:ring-[#FFEB99] font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                                        Choisir cet avatar
-                                    </button>
-                                    <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-100">Annuler</button>
+                                    <div class="flex justify-center">
+                                        <form action="/profile/edit_avatar" method="post">
+                                            @csrf
+                                            <input type="hidden" name="avatar" id="avatar" value="defautProfil.png">
+                                            <button data-modal-hide="popup-modal" type="button" class="text-gray-900 bg-[#FFEB99] focus:ring-4 focus:outline-none focus:ring-[#FFEB99] font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center" onclick="this.closest('form').submit();">
+                                                Choisir cet avatar
+                                            </button>
+                                        </form>
+                                        <button data-modal-hide="popup-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-4 focus:ring-gray-100">Annuler</button>
+                                
+                                    </div>
                                 </div>
                             </div>
                         </div>

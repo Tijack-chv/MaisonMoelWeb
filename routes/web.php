@@ -21,6 +21,7 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/edit_password', [ProfileController::class, 'edit_password'])->name('profile.edit_password');
+    Route::post('/profile/edit_avatar', [ProfileController::class, 'edit_avatar'])->name('profile.edit_avatar');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/payment', [ReservationController::class, 'index'])->name('reservation.payment');

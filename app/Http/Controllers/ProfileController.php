@@ -50,6 +50,7 @@ class ProfileController extends Controller
         
         $personne = $personne->toArray();
         $personne += ['pointFidelite' => $client->pointFidelite];
+        $personne += ['imageClient' => $client->imageClient];
         $request->session()->put('client', $personne);
         
         return redirect()->route('profile.index')->with('success', 'Profil modifié avec succès.');
@@ -87,8 +88,28 @@ class ProfileController extends Controller
         
         $personne = $personne->toArray();
         $personne += ['pointFidelite' => $client->pointFidelite];
+        $personne += ['imageClient' => $client->imageClient];
         $request->session()->put('client', $personne);
         
         return redirect()->route('profile.index')->with('success', 'Profil modifié avec succès.');
+    }
+
+    public function edit_avatar(Request $request) {
+        if (!in_array($request->input('avatar'),['defautProfil.png','hommeProfil.png','femmeProfil.png'])) {
+            return redirect()->route('profile.index')->with('error', 'Avatar invalide.');
+        }
+
+        $client = Client::where('idPersonne', session('client')['idPersonne'])->first();
+        $client->imageClient = $request->input('avatar');
+        $client->save();
+
+        $personne = Personne::where('idPersonne', session('client')['idPersonne'])->first();
+
+        $personne = $personne->toArray();
+        $personne += ['pointFidelite' => $client->pointFidelite];
+        $personne += ['imageClient' => $client->imageClient];
+        $request->session()->put('client', $personne);
+
+        return redirect()->route('profile.index')->with('success', 'Avatar modifié avec succès.');
     }
 }

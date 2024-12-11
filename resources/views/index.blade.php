@@ -208,8 +208,8 @@
             <x-card-contact title="mx-auto w-full mb-4">
                 <article>
                     <div class="flex items-center mb-4">
-                        @if($unAvis->personne->imageClient)
-                            <img class="w-10 h-10 me-4 rounded-full" src="http://192.168.143.9:8080/images/{{$unAvis->personne->imageClient}}" alt="">
+                        @if($unAvis->personne->client->imageClient)
+                            <img class="w-10 h-10 me-4 rounded-full" src="http://192.168.143.9:8080/images/{{$unAvis->personne->client->imageClient}}" alt="">
                         @else
                             <img class="w-10 h-10 me-4 rounded-full" src="http://192.168.143.9:8080/images/defautProfil.png" alt="">
                         @endif
