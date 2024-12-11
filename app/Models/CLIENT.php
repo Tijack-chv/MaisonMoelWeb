@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idPersonne
  * @property int $pointFidelite
+ * 
+ * @property Collection|Reservation[] $reservations
  *
  * @package App\Models
  */
@@ -31,4 +34,9 @@ class Client extends Model
 	protected $fillable = [
 		'pointFidelite'
 	];
+
+	public function reservations()
+	{
+		return $this->hasMany(Reservation::class, 'idPersonne');
+	}
 }

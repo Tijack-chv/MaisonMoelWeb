@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $dateHeureReapro
  * @property int $idPlat
  * @property int $quantiteReapro
+ * 
+ * @property Plat $plat
  *
  * @package App\Models
  */
@@ -33,4 +35,9 @@ class Reapprovisionnement extends Model
 	protected $fillable = [
 		'quantiteReapro'
 	];
+
+	public function plat()
+	{
+		return $this->belongsTo(Plat::class, 'idPlat');
+	}
 }

@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,6 +19,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $dateMoment
  * @property int $idReservation
  * @property Carbon $dateReservation
+ * 
+ * @property Client|null $client
+ * @property Table $table
+ * @property Collection|Commande[] $commandes
  *
  * @package App\Models
  */
@@ -42,4 +47,19 @@ class Reservation extends Model
 		'dateMoment',
 		'dateReservation'
 	];
+
+	public function client()
+	{
+		return $this->belongsTo(Client::class, 'idPersonne');
+	}
+
+	public function table()
+	{
+		return $this->belongsTo(Table::class, 'idTable');
+	}
+
+	public function commandes()
+	{
+		return $this->hasMany(Commande::class, 'idReservation');
+	}
 }

@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idPlat
  * @property int $prix
  * @property int $nbCommander
+ * 
+ * @property Commande $commande
+ * @property Plat $plat
  *
  * @package App\Models
  */
@@ -35,4 +38,14 @@ class Comporter extends Model
 		'prix',
 		'nbCommander'
 	];
+
+	public function commande()
+	{
+		return $this->belongsTo(Commande::class, 'idCommande');
+	}
+
+	public function plat()
+	{
+		return $this->belongsTo(Plat::class, 'idPlat');
+	}
 }

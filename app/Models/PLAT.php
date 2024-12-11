@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property CategoriePlat $categorie_plat
  * @property TypePlat $type_plat
+ * @property Collection|Comporter[] $comporters
+ * @property Collection|PromoPlat[] $promo_plats
+ * @property Collection|Reapprovisionnement[] $reapprovisionnements
+ * @property Collection|Restreindre[] $restreindres
  *
  * @package App\Models
  */
@@ -54,5 +59,25 @@ class Plat extends Model
 	public function type_plat()
 	{
 		return $this->belongsTo(TypePlat::class, 'idTypePlat');
+	}
+
+	public function comporters()
+	{
+		return $this->hasMany(Comporter::class, 'idPlat');
+	}
+
+	public function promo_plats()
+	{
+		return $this->hasMany(PromoPlat::class, 'idPlat');
+	}
+
+	public function reapprovisionnements()
+	{
+		return $this->hasMany(Reapprovisionnement::class, 'idPlat');
+	}
+
+	public function restreindres()
+	{
+		return $this->hasMany(Restreindre::class, 'idPlat');
 	}
 }

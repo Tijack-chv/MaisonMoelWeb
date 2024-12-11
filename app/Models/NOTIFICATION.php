@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idNotification
  * @property int $idTypeNotification
  * @property string $descriptionNotification
+ * 
+ * @property TypeNotification $type_notification
  *
  * @package App\Models
  */
@@ -31,4 +33,9 @@ class Notification extends Model
 		'idTypeNotification',
 		'descriptionNotification'
 	];
+
+	public function type_notification()
+	{
+		return $this->belongsTo(TypeNotification::class, 'idTypeNotification');
+	}
 }

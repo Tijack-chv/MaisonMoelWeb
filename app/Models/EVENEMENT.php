@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -17,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $imageEvenement
  * 
  * @property TypeEvenement $type_evenement
+ * @property Collection|PromoPlat[] $promo_plats
  *
  * @package App\Models
  */
@@ -39,5 +41,10 @@ class Evenement extends Model
 	public function type_evenement()
 	{
 		return $this->belongsTo(TypeEvenement::class, 'idTypeEvenement');
+	}
+
+	public function promo_plats()
+	{
+		return $this->hasMany(PromoPlat::class, 'idEvenement');
 	}
 }

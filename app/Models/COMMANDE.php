@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -19,6 +20,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idCommande
  * 
  * @property Etat $etat
+ * @property Reservation $reservation
+ * @property Serveur $serveur
+ * @property Collection|Comporter[] $comporters
  *
  * @package App\Models
  */
@@ -45,5 +49,20 @@ class Commande extends Model
 	public function etat()
 	{
 		return $this->belongsTo(Etat::class, 'idEtat');
+	}
+
+	public function reservation()
+	{
+		return $this->belongsTo(Reservation::class, 'idReservation');
+	}
+
+	public function serveur()
+	{
+		return $this->belongsTo(Serveur::class, 'idPersonne');
+	}
+
+	public function comporters()
+	{
+		return $this->hasMany(Comporter::class, 'idCommande');
 	}
 }

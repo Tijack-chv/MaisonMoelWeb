@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -16,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $salaires
  * 
  * @property Personne $personne
+ * @property Collection|Commande[] $commandes
  *
  * @package App\Models
  */
@@ -40,5 +42,10 @@ class Serveur extends Model
 	public function personne()
 	{
 		return $this->belongsTo(Personne::class, 'idPersonne');
+	}
+
+	public function commandes()
+	{
+		return $this->hasMany(Commande::class, 'idPersonne');
 	}
 }

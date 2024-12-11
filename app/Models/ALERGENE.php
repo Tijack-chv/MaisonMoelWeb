@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -13,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idAlergenes
  * @property string $descriptionAlergenes
+ * 
+ * @property Collection|Restreindre[] $restreindres
  *
  * @package App\Models
  */
@@ -25,4 +28,9 @@ class Alergene extends Model
 	protected $fillable = [
 		'descriptionAlergenes'
 	];
+
+	public function restreindres()
+	{
+		return $this->hasMany(Restreindre::class, 'idAlergenes');
+	}
 }

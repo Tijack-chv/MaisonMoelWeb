@@ -16,6 +16,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idPlat
  * @property Carbon $dateDebut
  * @property Carbon $dateFin
+ * 
+ * @property Evenement $evenement
+ * @property Plat $plat
  *
  * @package App\Models
  */
@@ -36,4 +39,14 @@ class PromoPlat extends Model
 		'dateDebut',
 		'dateFin'
 	];
+
+	public function evenement()
+	{
+		return $this->belongsTo(Evenement::class, 'idEvenement');
+	}
+
+	public function plat()
+	{
+		return $this->belongsTo(Plat::class, 'idPlat');
+	}
 }
