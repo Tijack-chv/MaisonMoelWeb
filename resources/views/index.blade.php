@@ -14,8 +14,8 @@
         </div>
     </div>
 
-    <div class="py-6 px-48">
-        <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font pb-9">
+    <div class="py-6 px-3 lg:px-48">
+        <h1 class="place-self-center text-center text-4xl lg:text-5xl text-[#FFEB99] titre-font pb-9">
             À propos de nous
         </h1>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0">
@@ -89,17 +89,17 @@
 
         <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10">
 
-        <div class="pt-2 pb-6 px-48">
+        <div class="pt-2 pb-6 px-3 lg:px-48">
             <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font pb-6">
                 Contactez-nous
             </h1>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0">
-                <div class="mr-8">
+                <div class="lg:mr-8">
                     <div id="map" class="mx-auto w-full px-6 h-96"></div>
                 </div>
 
                 <div class="h-full place-content-center">
-                    <x-card-contact title="ml-8">
+                    <x-card-contact title="lg:ml-8">
                         <h3 class="text-4xl text-white">
                             Maison Moël
                         </h3>
@@ -139,7 +139,7 @@
 
         <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10">
 
-        <div class="pt-2 pb-6 px-48">
+        <div class="pt-2 pb-6 px-3 lg:px-48">
             <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font pb-6">
                 Vos avis
             </h1>
