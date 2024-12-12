@@ -25,6 +25,8 @@ Route::middleware(AuthVerification::class)->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/payment', [ReservationController::class, 'index'])->name('reservation.payment');
+
+    Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
 });
 
 Route::get('/api/login', [ApiController::class, 'api_login']);

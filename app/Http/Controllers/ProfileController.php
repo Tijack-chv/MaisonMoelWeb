@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Personne;
+use App\Models\Avi;
 use App\Models\Client;
+use App\Models\Personne;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -111,5 +112,36 @@ class ProfileController extends Controller
         $request->session()->put('client', $personne);
 
         return redirect()->route('profile.index')->with('success', 'Avatar modifié avec succès.');
+    }
+
+    public function rating(Request $request) {
+        $validated = $request->validate(
+            [
+                'note' => 'required|integer|between:1,5',
+                'titre' => 'required|string',
+                'commentaire' => 'nullable|string',
+            ],
+            [
+                'required' => 'Le champ :attribute est obligatoire.',
+                'integer' => 'Le champ :attribute doit être un entier.',
+                'between' => 'Le champ :attribute doit être compris entre :min et :max.',
+                'string' => 'Le champ :attribute doit être une chaine de caractères.',
+            ],
+            [
+                'note' => 'note',
+                'titre' => 'titre',
+                'commentaire' => 'commentaire',
+            ]
+        );
+
+        $avis = new Avi();
+        $avis->idPersonne = session('client')['idPersonne'];
+        $avis->note = $validated['note'];
+        $avis->description = $validated['commentaire'];
+        $avis->titre = $validated['titre'];
+        $avis->date = now();
+        $avis->save();
+
+        return redirect('/');
     }
 }

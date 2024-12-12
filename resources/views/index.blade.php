@@ -146,94 +146,142 @@
             <x-card-contact title="mx-auto w-full mb-8">
                 <div class="flex justify-center mb-2">
                     <div class="flex">
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">4.95/5</p>
+                        @for($i = 0;$i<(int)$avgAvis;$i++)
+                            <svg class="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                        @endfor
+
+                        @for($i = (int)$avgAvis;$i<5;$i++)
+                            <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                        @endfor
+                        <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">{{ fmod($avgAvis, 1) == 0 ? (int)$avgAvis : number_format($avgAvis,2) }}/5</p>
                     </div>
                 </div>
-                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 text-center">1,745 global ratings</p>
+                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 text-center">{{$notes[5]}} notes</p>
                 <div class="grid grid-cols-1">
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">5 étoiles</p>
                         <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                            <div class="h-5 bg-yellow-300 rounded" style="width: 70%"></div>
+                            <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[4]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">70%</span>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[4]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">4 étoiles</p>
                         <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                            <div class="h-5 bg-yellow-300 rounded" style="width: 20%"></div>
+                            <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[3]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">20%</span>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[3]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">3 étoiles</p>
                         <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                            <div class="h-5 bg-yellow-300 rounded" style="width: 5%"></div>
+                            <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[2]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">5%</span>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[2]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">2 étoiles</p>
                         <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                            <div class="h-5 bg-yellow-300 rounded" style="width: 3%"></div>
+                            <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[1]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">3%</span>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[1]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">1 étoile</p>
                         <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
-                            <div class="h-5 bg-yellow-300 rounded" style="width: 2%"></div>
+                            <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[0]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">2%</span>
+                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[0]*100/$notes[5]) }}%</span>
                     </div>
                 </div>
             </x-card-contact>
-
             @foreach($avis as $unAvis)
-            <x-card-contact title="mx-auto w-full mb-4">
-                <article>
-                    <div class="flex items-center mb-4">
-                        @if($unAvis->personne->client->imageClient)
-                            <img class="w-10 h-10 me-4 rounded-full" src="http://192.168.143.9:8080/images/{{$unAvis->personne->client->imageClient}}" alt="">
-                        @else
-                            <img class="w-10 h-10 me-4 rounded-full" src="http://192.168.143.9:8080/images/defautProfil.png" alt="">
-                        @endif
-                        <div class="font-medium dark:text-white">
-                            <p>{{$unAvis->personne->prenom}} {{$unAvis->personne->nom}}</p>
+                <x-card-contact title="mx-auto w-full mb-4">
+                    <article>
+                        <div class="flex items-center mb-4">
+                            @if($unAvis->personne->client->imageClient)
+                                <img class="w-10 h-10 me-4 rounded-full" src="http://192.168.143.9:8080/images/{{$unAvis->personne->client->imageClient}}" alt="">
+                            @else
+                                <img class="w-10 h-10 me-4 rounded-full" src="http://192.168.143.9:8080/images/defautProfil.png" alt="">
+                            @endif
+                            <div class="font-medium dark:text-white">
+                                <p>{{$unAvis->personne->prenom}} {{$unAvis->personne->nom}}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
-                        @for($i = 0;$i<$unAvis->note;$i++)
-                        <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        @endfor
-                        @for($i = $unAvis->note;$i<5;$i++)
-                        <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                            <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                        </svg>
-                        @endfor
-                        <h3 class="ms-2 text-sm font-semibold text-white">{{ $unAvis->titre }}</h3>
-                    </div>
-                    <footer class="mb-5 text-sm text-gray-500">{{ \Carbon\Carbon::parse($unAvis->date)->locale('fr')->translatedFormat('d F Y') }}</footer>
-                    <p class="mb-2 text-white">{{ $unAvis->description }}</p>                    
-                </article>
-            </x-card-contact>
+                        <div class="flex items-center mb-1 space-x-1 rtl:space-x-reverse">
+                            @for($i = 0;$i<$unAvis->note;$i++)
+                            <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            @endfor
+                            @for($i = $unAvis->note;$i<5;$i++)
+                            <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                            </svg>
+                            @endfor
+                            <h3 class="ms-2 text-sm font-semibold text-white">{{ $unAvis->titre }}</h3>
+                        </div>
+                        <footer class="mb-5 text-sm text-gray-500">{{ \Carbon\Carbon::parse($unAvis->date)->locale('fr')->translatedFormat('d F Y') }}</footer>
+                        <p class="mb-2 text-white">{{ $unAvis->description }}</p>                    
+                    </article>
+                </x-card-contact>
             @endforeach
-
+            <form class="rounded-lg bg-[#292929]" method="post" action="/rating">
+                @csrf
+                <h1 class="text-left text-2xl text-[#FFEB99] titre-font pt-2 px-5">
+                    Laissez votre avis
+                </h1>
+                <div class="flex items-center px-5 py-2" id="star_rating">
+                    <svg class="w-6 h-6 text-yellow-300 ms-1" onclick="rateStar(1)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(2)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(3)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(4)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(5)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                </div>
+                <input type="hidden" name="note" id="note" value="1">
+                <script type="text/javascript">
+                    function rateStar(note) {
+                        document.getElementById('note').value = note;
+                        for (let i = 1; i <= 5; i++) {
+                            if (i <= note) {
+                                document.getElementById('star_rating').children[i - 1].classList.remove('text-gray-300');
+                                document.getElementById('star_rating').children[i - 1].classList.add('text-yellow-300');
+                            } else {
+                                document.getElementById('star_rating').children[i - 1].classList.remove('text-yellow-300');
+                                document.getElementById('star_rating').children[i - 1].classList.add('text-gray-300');
+                            }
+                        }
+                    }
+                </script>
+                <div class="px-5 py-2">
+                    <label for="titre" class="sr-only">Titre</label>
+                    <input type="text" id="titre" name="titre" class="block w-full p-2.5 text-sm text-white bg-[#292929] rounded-lg border border-gray-300 focus:ring-[#FFEB99] focus:border-[#FFEB99]" placeholder="Le titre" />
+                </div>
+                <label for="chat" class="sr-only">Votre avis</label>
+                <div class="flex items-center px-5 py-2">
+                    <textarea id="chat" rows="1" name="commentaire" class="block mr-4 p-2.5 w-full text-sm text-white bg-[#292929] rounded-lg border border-gray-300 focus:ring-[#FFEB99] focus:border-[#FFEB99]" placeholder="Votre avis..."></textarea>
+                        <button type="submit" class="inline-flex justify-center p-2 text-[#FFEB99] rounded-full cursor-pointer hover:bg-zinc-700">
+                            <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
+                            </svg>
+                            <span class="sr-only">Envoyer le message</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </x-header>
