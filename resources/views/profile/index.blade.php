@@ -11,8 +11,8 @@
     <div class="mt-6">
         <x-card>
             <h2 class="text-xl">Vos informations</h2>
-            <div class="grid grid-cols-2">
-                <form action="/profile/edit" method="post" class="pt-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <form action="/profile/edit" method="post" class="pt-4 lg:order-1 order-2">
                     @csrf
                     <div class="mb-4">
                         <label for="name" class="block text-md text-[#FFEB99]">Nom du compte</label>
@@ -56,7 +56,7 @@
                         </button>
                     </div>
                 </form>
-                <div class="text-center">
+                <div class="text-center lg:order-2 order-1 lg:my-0 my-6">
                     <div class="flex justify-center">
                     @if ($user['imageClient'])
                         <img src="http://192.168.143.9:8080/images/{{ $user['imageClient'] }}" alt="avatar" class="w-64 h-64 rounded-full">
