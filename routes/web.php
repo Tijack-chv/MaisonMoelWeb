@@ -24,7 +24,9 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/profile/edit_avatar', [ProfileController::class, 'edit_avatar'])->name('profile.edit_avatar');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('/payment', [ReservationController::class, 'index'])->name('reservation.payment');
+    
+    Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/payment', [ReservationController::class, 'payment'])->name('reservation.payment');
 
     Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
 });

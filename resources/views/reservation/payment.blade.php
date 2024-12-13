@@ -41,7 +41,7 @@
             <section class="py-2 antialiased md:pb-2">
                 <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <div class="mx-auto max-w-5xl">
-                        <h2 class="text-xl font-semibold text-white sm:text-4xl text-center">Paiement</h2>
+                        <h2 class="text-xl font-semibold sm:text-4xl text-center">Paiement</h2>
 
                         <div class="mt-6 sm:mt-4 lg:flex lg:items-start lg:gap-12">
                             <form id="paymentForm" action="#" class="w-full rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:max-w-xl lg:p-8">
