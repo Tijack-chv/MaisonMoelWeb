@@ -230,7 +230,8 @@
                     </article>
                 </x-card-contact>
             @endforeach
-            <form class="rounded-lg bg-[#292929]" method="post" action="/rating">
+            @if (session('client'))
+            <form class="rounded-lg bg-[#292929] lg:px-4 py-4" method="post" action="/rating">
                 @csrf
                 <h1 class="text-left text-2xl text-[#FFEB99] titre-font pt-2 px-5">
                     Laissez votre avis
@@ -239,16 +240,16 @@
                     <svg class="w-6 h-6 text-yellow-300 ms-1" onclick="rateStar(1)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
-                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(2)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <svg class="w-6 h-6 text-yellow-300 ms-1" onclick="rateStar(2)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
-                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(3)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <svg class="w-6 h-6 text-yellow-300 ms-1" onclick="rateStar(3)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
-                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(4)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <svg class="w-6 h-6 text-yellow-300 ms-1" onclick="rateStar(4)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
-                    <svg class="w-6 h-6 ms-1 text-gray-300 dark:text-gray-500" onclick="rateStar(5)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                    <svg class="w-6 h-6 text-yellow-300 ms-1" onclick="rateStar(5)" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
                 </div>
@@ -269,11 +270,11 @@
                 </script>
                 <div class="px-5 py-2">
                     <label for="titre" class="sr-only">Titre</label>
-                    <input type="text" id="titre" name="titre" class="block w-full p-2.5 text-sm text-white bg-[#292929] rounded-lg border border-gray-300 focus:ring-[#FFEB99] focus:border-[#FFEB99]" placeholder="Le titre" />
+                    <input type="text" id="titre" name="titre" class="block w-full p-2.5 text-sm text-white bg-[#292929] rounded-lg border border-zinc-600 focus:ring-[#FFEB99] focus:border-[#FFEB99]" placeholder="Le titre" />
                 </div>
                 <label for="chat" class="sr-only">Votre avis</label>
                 <div class="flex items-center px-5 py-2">
-                    <textarea id="chat" rows="1" name="commentaire" class="block mr-4 p-2.5 w-full text-sm text-white bg-[#292929] rounded-lg border border-gray-300 focus:ring-[#FFEB99] focus:border-[#FFEB99]" placeholder="Votre avis..."></textarea>
+                    <textarea id="chat" rows="1" name="commentaire" class="block mr-4 p-2.5 w-full text-sm text-white bg-[#292929] rounded-lg border border-zinc-600 focus:ring-[#FFEB99] focus:border-[#FFEB99]" placeholder="Votre avis..."></textarea>
                         <button type="submit" class="inline-flex justify-center p-2 text-[#FFEB99] rounded-full cursor-pointer hover:bg-zinc-700">
                             <svg class="w-5 h-5 rotate-90 rtl:-rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                                 <path d="m17.914 18.594-8-18a1 1 0 0 0-1.828 0l-8 18a1 1 0 0 0 1.157 1.376L8 18.281V9a1 1 0 0 1 2 0v9.281l6.758 1.689a1 1 0 0 0 1.156-1.376Z"/>
@@ -282,6 +283,7 @@
                     </button>
                 </div>
             </form>
+            @endif
         </div>
     </div>
 </x-header>
