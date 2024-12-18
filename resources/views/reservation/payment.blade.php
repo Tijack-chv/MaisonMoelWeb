@@ -41,10 +41,11 @@
             <section class="py-2 antialiased md:pb-2">
                 <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
                     <div class="mx-auto max-w-5xl">
-                        <h2 class="text-xl font-semibold sm:text-4xl text-center">Paiement</h2>
+                        <h1 class="place-self-center text-center text-2xl lg:text-4xl text-[#FFEB99] titre-font">Paiement</h1>
 
                         <div class="mt-6 sm:mt-4 lg:flex lg:items-start lg:gap-12">
                             <form id="paymentForm" action="#" class="w-full rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6 lg:max-w-xl lg:p-8">
+                                @csrf
                                 <div class="mb-6 grid grid-cols-2 gap-4">
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="full_name" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white">Nom complet <span class="text-red-600">*</span></label>
@@ -100,8 +101,24 @@
                                 <script type="text/javascript">
                                     $('#paymentForm').submit(function(e) {
                                         e.preventDefault();
+                                        reservation();
                                         payment();
                                     });
+
+                                    function reservation() {
+                                        var data = $('#paymentForm').serialize();
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: '/reservation/register',
+                                            data: data,
+                                            success: function(response) {
+                                                console.log(response);
+                                            },
+                                            error: function(error) {
+                                                console.log(error);
+                                            }
+                                        });
+                                    }
 
                                     function payment() {
                                         $('#paybtn').hide();
@@ -120,23 +137,18 @@
                                     <div class="space-y-2">
                                     <dl class="flex items-center justify-between gap-4">
                                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Prix original</dt>
-                                        <dd class="text-base font-medium text-gray-900 dark:text-white">$6,592.00</dd>
+                                        <dd class="text-base font-medium text-gray-900 dark:text-white">{{ session()->get('reservation')['nb_personnes'] * 10 }}.00 €</dd>
                                     </dl>
 
                                     <dl class="flex items-center justify-between gap-4">
                                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400">Réduction</dt>
-                                        <dd class="text-base font-medium text-green-500">-$0.00</dd>
-                                    </dl>
-
-                                    <dl class="flex items-center justify-between gap-4">
-                                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400">TVA</dt>
-                                        <dd class="text-base font-medium text-gray-900 dark:text-white">$799</dd>
+                                        <dd class="text-base font-medium text-green-500">-0.00 €</dd>
                                     </dl>
                                     </div>
 
                                     <dl class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                                     <dt class="text-base font-bold text-gray-900 dark:text-white">Total</dt>
-                                    <dd class="text-base font-bold text-gray-900">$7,191.00</dd>
+                                    <dd class="text-base font-bold text-gray-900">{{ session()->get('reservation')['nb_personnes'] * 10 }}.00 €</dd>
                                     </dl>
                                 </div>
 

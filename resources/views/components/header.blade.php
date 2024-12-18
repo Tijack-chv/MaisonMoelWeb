@@ -37,6 +37,11 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
             <style>
+                input[type="date"]::-webkit-inner-spin-button,
+                input[type="date"]::-webkit-calendar-picker-indicator {
+                    display: none;
+                    -webkit-appearance: none;
+                }
                 swiper-container {
                     width: 100%;
                     height: 100%;

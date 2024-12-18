@@ -1,20 +1,5 @@
 <x-header title="bg-[#353535]">
     <x-navbar></x-navbar>
-    <div id="toast-success" class="absolute right-5 bottom-3 flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert" style="display:none;">
-        <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-            </svg>
-            <span class="sr-only">Check icon</span>
-        </div>
-        <div class="ms-3 text-sm font-normal">Votre réservation a été pris en compte.</div>
-        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
-            <span class="sr-only">Close</span>
-            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-            </svg>
-        </button>
-    </div>
     <div class="mt-6 mb-6">
         <x-card-payment>
             <ol class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base mb-2 mt-4 sm:flex hidden">
@@ -28,40 +13,74 @@
                     Paiement
                 </li>
             </ol>
-            <section class="py-2">
-                <h1 class="text-2xl text-center font-semibold">Votre réservation</h1>
-                <div class="flex flex-col items-center justify-center mt-6">
-                    <div class="relative w-full">
-                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                            </svg>
+            <section class="pb-2 pt-6">
+                <h1 class="place-self-center text-center text-2xl lg:text-4xl text-[#FFEB99] titre-font">Votre réservation</h1>
+                <div class="flex flex-col items-center justify-center">
+                    <form method="post" id="form_test" action="/reservation" class="rounded border border-zinc-700 md:w-9/12 text-zinc-200 mt-2 px-2 py-4 gap-2 flex flex-wrap justify-center">
+                        @csrf
+                        <h1 class="text-xl text-left font-semibold mt-1 w-full mx-2">La date :</h1>
+                        <div class="relative w-full mx-2 mb-4">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                </svg>
+                            </div>
+                            <input  id="default-datepicker" type="date" class="bg-[#292929] border border-zinc-700 text-gray-500 font-semibold text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full ps-10 p-2.5" placeholder="Sélectionner une date">
                         </div>
-                        <input datepicker id="default-datepicker" type="text" class="bg-[#292929] border border-zinc-700 text-zinc-200 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5" placeholder="Sélectionner une date">
-                    </div>
-                    <div class="flex items-left">
-                        <div class="rounded border border-zinc-700 w-1/2 text-zinc-200 mt-6 px-2 py-4 gap-2 flex flex-wrap justify-center">
-                            @for ($time = strtotime('12:30'); $time <= strtotime('22:00'); $time = strtotime('+30 minutes', $time))
-                                <button class="bg-[#292929] focus:border-3 focus:bg-[#313131] hover:bg-[#323232] rounded border border-zinc-700 px-3 py-2">{{ date('H:i', $time) }}</button>
-                            @endfor
+                        <div class="flex items-center justify-center flex-wrap w-full gap-2 mx-2">
+                            <ul class="grid w-full gap-3 md:grid-cols-4">
+                                <?php $i = 0; ?>
+                                @for ($time = strtotime('12:30'); $time <= strtotime('22:00'); $time = strtotime('+30 minutes', $time))
+                                    <li>
+                                        <input type="radio" id="{{ date('H:i', $time) }}" name="hosting" value="{{ date('H:i', $time) }}" class="hidden peer"/>
+                                        <label for="{{ date('H:i', $time) }}" class="inline-flex items-center text-center justify-between w-full px-2.5 py-2 text-gray-500 bg-[#292929] border border-zinc-700 rounded-lg cursor-pointer peer-checked:bg-[#323232] peer-checked:font-bold hover:bg-[#323232] ">
+                                            {{ date('H:i', $time) }}
+                                        </label>
+                                    </li>
+                                    <?php $i++; ?>
+                                @endfor
+                            </ul>
                         </div>
-                    </div>
-                    <input type="hidden" id="default-time" value="">
-                    <script type="text/javascript">
-                        document.querySelectorAll('#default-time').forEach((element) => {
-                            document.querySelectorAll('.rounded').forEach((button) => {
-                                button.addEventListener('click', () => {
-                                    element.value = button.innerText;
-                                });
+                        <h1 class="text-lg text-center font-medium mt-2" id="date_resume">Date : xx/xx/xxxx à xx:xx</h1>
+                        <input type="hidden" id="datetime_reservation" name="datetime_reservation" value="">
+                        <script type="text/javascript">
+                            function updateDate() {
+                                var date = document.getElementById('default-datepicker').value ? document.getElementById('default-datepicker').value : 'xx/xx/xxxx';
+                                var time = document.querySelector('input[name="hosting"]:checked')?.value ? document.querySelector('input[name="hosting"]:checked').value : 'xx:xx';
+                                var date_time = date + ' à ' + time;
+                                document.getElementById('date_resume').innerHTML = 'Date : ' + date_time;
+                                document.getElementById('datetime_reservation').value = date + ' ' + time + ':00';
+                            }
+
+                            $('input[name="hosting"]').change(function() {
+                                updateDate();
                             });
-                        });
-                    </script>
-                    <select id="default" class="mt-6 bg-[#292929] border border-zinc-700 text-zinc-200 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Choisir un type de table</option>
-                        @foreach($tables as $table)
-                            <option value="{{ $table->idTypeTable }}">{{ $table->libelleTypeTable }}</option>
-                        @endforeach
-                    </select>
+
+                            $('#default-datepicker').change(function() {
+                                updateDate();
+                            });
+                        </script>
+
+                        <h1 class="text-xl text-left font-semibold mt-4 w-full mx-2">La table :</h1>
+                        <select name="type_table" id="default" class="mx-2 bg-[#292929] border border-zinc-700 text-zinc-200 mb-2 text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full p-2.5">
+                            <option selected>Choisir un type de table</option>
+                            @foreach($tables as $table)
+                                <option value="{{ $table->idTypeTable }}">{{ $table->libelleTypeTable }}</option>
+                            @endforeach
+                        </select>
+                        <h1 class="text-xl text-left font-semibold mt-4 w-full mx-2">Nombres de personnes :</h1>
+                        <input type="number" name="nb_personnes" min="1" max="99" id="nb_personnes" class="mx-2 bg-[#292929] border border-zinc-700 text-zinc-200 mb-2 text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full p-2.5" placeholder="Nombre de personnes">
+
+
+
+                        <button type="submit" class="bg-[#FFEB99] text-[#333333] py-2 px-4 rounded hover:bg-[#FFD966] inline-flex">
+                            Suivant
+                            <svg class="w-6 h-6 text-gray-800 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4"/>
+                            </svg>
+                        </button>
+                    </form>
+
                 </div>
             </section>
         </x-card-payment>

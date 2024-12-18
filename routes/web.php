@@ -24,9 +24,14 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/profile/edit_avatar', [ProfileController::class, 'edit_avatar'])->name('profile.edit_avatar');
 
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-    
+
+    Route::get('/reservations', [ReservationController::class, 'index_s'])->name('reservation.index_s');
     Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
-    Route::get('/payment', [ReservationController::class, 'payment'])->name('reservation.payment');
+    Route::post('/reservation', [ReservationController::class, 'reservation'])->name('reservation.reservation');
+    Route::get('/reservation/cgr', [ReservationController::class, 'cgr'])->name('reservation.cgr');
+    Route::get('/reservation/payment', [ReservationController::class, 'payment'])->name('reservation.payment');
+    Route::post('/reservation/register', [ReservationController::class, 'register'])->name('reservation.register');
+    Route::post('/reservation/payment', [ReservationController::class, 'cgr_valid'])->name('reservation.verif_payment');
 
     Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
 });
