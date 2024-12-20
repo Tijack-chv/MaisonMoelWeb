@@ -21,11 +21,11 @@
                         <h1 class="text-xl text-left font-semibold mt-1 w-full mx-2">La date :</h1>
                         <div class="relative w-full mx-2 mb-4">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <svg class="w-4 h-4 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input  id="default-datepicker" type="date" class="bg-[#292929] border border-zinc-700 text-gray-500 font-semibold text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full ps-10 p-2.5" placeholder="Sélectionner une date">
+                            <input id="default-datepicker" type="date" class="bg-[#292929] border border-zinc-700 text-white font-semibold text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full ps-10 p-2.5" placeholder="Sélectionner une date">
                         </div>
                         <div class="flex items-center justify-center flex-wrap w-full gap-2 mx-2">
                             <ul class="grid w-full gap-3 md:grid-cols-4">
@@ -33,7 +33,7 @@
                                 @for ($time = strtotime('12:30'); $time <= strtotime('22:00'); $time = strtotime('+30 minutes', $time))
                                     <li>
                                         <input type="radio" id="{{ date('H:i', $time) }}" name="hosting" value="{{ date('H:i', $time) }}" class="hidden peer"/>
-                                        <label for="{{ date('H:i', $time) }}" class="inline-flex items-center text-center justify-between w-full px-2.5 py-2 text-gray-500 bg-[#292929] border border-zinc-700 rounded-lg cursor-pointer peer-checked:bg-[#323232] peer-checked:font-bold hover:bg-[#323232] ">
+                                        <label for="{{ date('H:i', $time) }}" class="inline-flex items-center text-center justify-between w-full px-2.5 py-2 text-white bg-[#292929] border border-zinc-700 rounded-lg cursor-pointer peer-checked:bg-[#323232] peer-checked:font-bold hover:bg-[#323232] ">
                                             {{ date('H:i', $time) }}
                                         </label>
                                     </li>
@@ -62,16 +62,14 @@
                         </script>
 
                         <h1 class="text-xl text-left font-semibold mt-4 w-full mx-2">La table :</h1>
-                        <select name="type_table" id="default" class="mx-2 bg-[#292929] border border-zinc-700 text-zinc-200 mb-2 text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full p-2.5">
+                        <select name="type_table" id="default" class="mx-2 bg-[#292929] border border-zinc-700 text-white mb-2 text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full p-2.5">
                             <option selected>Choisir un type de table</option>
                             @foreach($tables as $table)
                                 <option value="{{ $table->idTypeTable }}">{{ $table->libelleTypeTable }}</option>
                             @endforeach
                         </select>
                         <h1 class="text-xl text-left font-semibold mt-4 w-full mx-2">Nombres de personnes :</h1>
-                        <input type="number" name="nb_personnes" min="1" max="99" id="nb_personnes" class="mx-2 bg-[#292929] border border-zinc-700 text-zinc-200 mb-2 text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full p-2.5" placeholder="Nombre de personnes">
-
-
+                        <input type="number" name="nb_personnes" min="1" max="99" id="nb_personnes" class="text-white mx-2 bg-[#292929] border border-zinc-700 text-zinc-200 mb-2 text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full p-2.5" placeholder="Nombre de personnes">
 
                         <button type="submit" class="bg-[#FFEB99] text-[#333333] py-2 px-4 rounded hover:bg-[#FFD966] inline-flex">
                             Suivant

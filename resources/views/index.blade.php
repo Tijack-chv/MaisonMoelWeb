@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="py-6 px-3 lg:px-48">
+    <div class="py-6 px-3 lg:px-48" id="about">
         <h1 class="place-self-center text-center text-4xl lg:text-5xl text-[#FFEB99] titre-font pb-9">
             À propos de nous
         </h1>
@@ -38,7 +38,7 @@
 
     <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10">
     
-    <div class="grid grid-cols-1 pt-2 pb-6">
+    <div class="grid grid-cols-1 pt-2 pb-6" id="selection">
         <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font">
             Nos sélections
         </h1>

@@ -16,10 +16,10 @@
           <a href="/" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Accueil</a>
         </li>
         <li>
-          <a href="#" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Carte</a>
+          <a href="index.php#about" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">À propos</a>
         </li>
         <li>
-          <a href="#about" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">À propos</a>
+          <a href="index.php#selection" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Carte</a>
         </li>
         <li>
           <a href="/reservation" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Réserver</a>
