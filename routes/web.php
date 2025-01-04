@@ -27,6 +27,9 @@ Route::middleware(AuthVerification::class)->group(function () {
 
     Route::get('/reservations', [ReservationController::class, 'index_s'])->name('reservation.index_s');
     Route::get('/reservation', [ReservationController::class, 'index'])->name('reservation.index');
+    Route::get('/reservation/hours', [ReservationController::class, 'hours'])->name('reservation.hours');
+
+    Route::get('/reservation/remove/{id}', [ReservationController::class, 'remove'])->name('reservation.remove');
     Route::post('/reservation', [ReservationController::class, 'reservation'])->name('reservation.reservation');
     Route::get('/reservation/cgr', [ReservationController::class, 'cgr'])->name('reservation.cgr');
     Route::get('/reservation/payment', [ReservationController::class, 'payment'])->name('reservation.payment');

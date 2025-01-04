@@ -87,4 +87,48 @@ class ReservationController extends Controller
         $reservation->save();
         session()->forget('reservation');
     }
+
+    public function remove($id)
+    {
+        $reservation = Reservation::find($id);
+        if ($reservation->idPersonne == session('client')['idPersonne']) {
+            $reservation->delete();
+        }
+        return redirect()->route('reservation.index_s');
+    }
+
+    private function getHoursMinutes($time)
+    {
+        $time = explode(':', $time);
+        if ($time[1] >= 30) {
+            $hour = $time[0].'30';
+        } else {
+            $hour = $time[0].'00';
+        }
+        return $hour;
+    }
+
+    public function hours(Request $request)
+    {
+        $date = $request->date;
+        $reservations = Reservation::where('dateReservation', 'like', $date . '%')->get();
+        dd($reservations);
+        $hours = array();
+        for($time = strtotime('12:30'); $time <= strtotime('22:00'); $time = strtotime('+30 minutes', $time)) {
+            array_push($hours, date('H:i', $time));
+        }
+        foreach ($reservations as $reservation) {
+            $key = array_search(date('H:i', strtotime($this->getHoursMinutes($reservation->dateReservation))), $hours);
+            if ($key !== false) {
+                unset($hours[$key]);
+                if (isset($hours[$key + 1])) {
+                    unset($hours[$key + 1]);
+                }
+                if (isset($hours[$key + 2])) {
+                    unset($hours[$key + 2]);
+                }
+            }
+        }
+        return view('reservation.ajax.hoursReservation', ['hours' => $hours]);
+    }
 }

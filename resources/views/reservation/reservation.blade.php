@@ -25,20 +25,11 @@
                                     <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                 </svg>
                             </div>
-                            <input id="default-datepicker" type="date" class="bg-[#292929] border border-zinc-700 text-white font-semibold text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full ps-10 p-2.5" placeholder="Sélectionner une date">
+                            <input id="default-datepicker" value="{{ date('Y-m-d') }}" min="{{ date('Y-m-d') }}" type="date" class="bg-[#292929] border border-zinc-700 text-white font-semibold text-sm rounded-lg focus:ring-zinc-700 focus:border-zinc-700 block w-full ps-10 p-2.5" placeholder="Sélectionner une date">
                         </div>
                         <div class="flex items-center justify-center flex-wrap w-full gap-2 mx-2">
-                            <ul class="grid w-full gap-3 md:grid-cols-4">
-                                <?php $i = 0; ?>
-                                @for ($time = strtotime('12:30'); $time <= strtotime('22:00'); $time = strtotime('+30 minutes', $time))
-                                    <li>
-                                        <input type="radio" id="{{ date('H:i', $time) }}" name="hosting" value="{{ date('H:i', $time) }}" class="hidden peer"/>
-                                        <label for="{{ date('H:i', $time) }}" class="inline-flex items-center text-center justify-between w-full px-2.5 py-2 text-white bg-[#292929] border border-zinc-700 rounded-lg cursor-pointer peer-checked:bg-[#323232] peer-checked:font-bold hover:bg-[#323232] ">
-                                            {{ date('H:i', $time) }}
-                                        </label>
-                                    </li>
-                                    <?php $i++; ?>
-                                @endfor
+                            <ul class="grid w-full gap-3 md:grid-cols-4" id="hours">
+                                
                             </ul>
                         </div>
                         <h1 class="text-lg text-center font-medium mt-2" id="date_resume">Date : xx/xx/xxxx à xx:xx</h1>
@@ -57,6 +48,12 @@
                             });
 
                             $('#default-datepicker').change(function() {
+                                console.log('change');
+                                fetch('/reservation/hours')
+                                    .then(response => response.text())
+                                    .then(html => {
+                                        document.getElementById('hours').innerHTML = html;
+                                });
                                 updateDate();
                             });
                         </script>
