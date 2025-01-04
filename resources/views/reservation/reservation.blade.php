@@ -48,8 +48,7 @@
                             });
 
                             $('#default-datepicker').change(function() {
-                                console.log('change');
-                                fetch('/reservation/hours')
+                                fetch('/reservation/hours?date=' + document.getElementById('default-datepicker').value)
                                     .then(response => response.text())
                                     .then(html => {
                                         document.getElementById('hours').innerHTML = html;

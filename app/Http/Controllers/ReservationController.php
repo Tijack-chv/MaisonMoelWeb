@@ -112,7 +112,7 @@ class ReservationController extends Controller
     {
         $date = $request->date;
         $reservations = Reservation::where('dateReservation', 'like', $date . '%')->get();
-        dd($reservations);
+        
         $hours = array();
         for($time = strtotime('12:30'); $time <= strtotime('22:00'); $time = strtotime('+30 minutes', $time)) {
             array_push($hours, date('H:i', $time));
