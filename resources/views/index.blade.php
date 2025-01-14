@@ -30,8 +30,8 @@
                     À la Maison Moël, nous croyons que chaque repas est une occasion de se connecter, de célébrer et de savourer la vie. Nous vous invitons à découvrir notre menu, à explorer nos sélections de vins et à profiter de l'ambiance chaleureuse et accueillante de notre restaurant.
                 </p>
             </div>
-            <div class="flex justify-center lg:justify-center">
-                <img src="http://192.168.143.9:8080/images/CHEF_DELASAGNA.png" class="rounded-full border-8 border-[#FFEB99]" alt="Chef DELASAGNA" />
+            <div class="flex justify-center">
+                <img src="http://192.168.143.9:8080/images/CHEF_DELASAGNA.png" class="rounded-full border-8 border-[#FFEB99]" style="position: relative;object-fit: cover;height:fit-content;top: 50%;transform: translateY(-50%);" alt="Chef DELASAGNA" />
             </div>
         </div>
     </div>
@@ -44,46 +44,25 @@
         </h1>
         <div class="pt-6 pb-2 md:px-[6rem] lg:px-[12rem]">
             <swiper-container class="mySwiper" slides-per-view="4"
-            space-between="30" free-mode="true" autoplay-delay="2500" autoplay-disable-on-interaction="false" mousewheel="true">
-                <swiper-slide>
-                    <x-card-accueil>
-                        <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
-                        <p class="text-sm text-center text-gray-500 mt-3">La mousse au chocolat du Chef</p>
-                    </x-card-accueil>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card-accueil>
-                        <x-badge>Édition limitée • 15€</x-badge>
-                        <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
-                        <p class="text-sm text-center text-gray-500 mt-3">Le boeuf Cucurry</p>
-                    </x-card-accueil>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card-accueil>
-                        <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
-                        <p class="text-sm text-center text-gray-500 mt-3">La mousse au chocolat du Chef</p>
-                    </x-card-accueil>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card-accueil>
-                        <x-badge>Édition limitée • 15€</x-badge>
-                        <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
-                        <p class="text-sm text-center text-gray-500 mt-3">Le boeuf Cucurry</p>
-                    </x-card-accueil>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card-accueil>
-                        <img class="rounded-t-lg" src="{{ asset('image_test/mousse.png') }}" alt="" />
-                        <p class="text-sm text-center text-gray-500 mt-3">La mousse au chocolat du Chef</p>
-                    </x-card-accueil>
-                </swiper-slide>
-                <swiper-slide>
-                    <x-card-accueil>
-                        <x-badge>Édition limitée • 15€</x-badge>
-                        <img class="rounded-t-lg" src="{{ asset('image_test/boeuf_curry.png') }}" alt="" />
-                        <p class="text-sm text-center text-gray-500 mt-3">Le boeuf Cucurry</p>
-                    </x-card-accueil>
-                </swiper-slide>
+            space-between="30" free-mode="true" autoplay-delay="2500" autoplay-disable-on-interaction="true" mousewheel="true">
+                @foreach($plats as $plat)
+                    <swiper-slide>
+                        <x-card-accueil>
+                            @if($plat->quantite < 10)
+                                <div class="hidden md:flex">
+                                    <x-badge>
+                                        Bientôt en rupture !
+                                    </x-badge>
+                                </div>
+                            @endif
+                            <div class="md:w-auto md:h-[25rem] h-[10rem] lg:h-[30rem]">
+                                <img class="rounded-xl" src="http://192.168.143.9:8080/{{$plat->imagePlat}}" style="width: 100%;height:100%;object-fit: cover;" alt="" />
+                            </div>
+                            <p class="text-sm text-center text-gray-300 mt-3">{{$plat->nomPlat}}</p>
+                        
+                        </x-card-accueil>
+                    </swiper-slide>
+                @endforeach
             </swiper-container>
         </div>
 
