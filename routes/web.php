@@ -39,4 +39,3 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
 });
 
-Route::get('/api/login', [ApiController::class, 'api_login']);
