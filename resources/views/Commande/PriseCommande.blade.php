@@ -7,7 +7,7 @@
 
         <!-- Entrées -->
         <div class="mb-6">
-            <button class="w-full text-left text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
+            <button class="w-full text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
                     onclick="toggleList('entree-list')">
                 Entrées
             </button>
@@ -15,18 +15,22 @@
                 @foreach ($entrees as $entree)
                     <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
                         <div class="flex items-center space-x-4">
-                            <img src="{{ asset($entree->imagePlat) }}" alt="{{ $entree->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
+                            <img src="http://192.168.143.9:8080/{{$entree->imagePlat}}" alt="{{ $entree->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $entree->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $entree->descriptionPlat }}</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button class="px-3 py-1 bg-red-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', -1)">-</button>
-                            <span id="item-{{ $entree->idPlat }}" class="text-xl text-white">0</span>
-                            <button class="px-3 py-1 bg-green-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', 1)">+</button>
+                        <div class="flex items-center space-x-4">
+                            <button class="w-12 h-12 bg-red-600 text-white text-2xl  flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', -1)">
+                                -
+                            </button>
+                            <span id="item-{{ $entree->idPlat }}" class="text-3xl text-white font-bold">0</span>
+                            <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', 1)">
+                                +
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -35,7 +39,7 @@
 
         <!-- Plats -->
         <div class="mb-6">
-            <button class="w-full text-left text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
+            <button class="w-full text-center  text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
                     onclick="toggleList('plat-list')">
                 Plats
             </button>
@@ -43,18 +47,22 @@
                 @foreach ($plats as $plat)
                     <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
                         <div class="flex items-center space-x-4">
-                            <img src="{{ asset($plat->imagePlat) }}" alt="{{ $plat->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
+                            <img src="http://192.168.143.9:8080/{{$plat->imagePlat}}" alt="{{ $plat->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $plat->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $plat->descriptionPlat }}</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button class="px-3 py-1 bg-red-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $plat->idPlat }}', -1)">-</button>
-                            <span id="item-{{ $plat->idPlat }}" class="text-xl text-white">0</span>
-                            <button class="px-3 py-1 bg-green-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $plat->idPlat }}', 1)">+</button>
+                        <div class="flex items-center space-x-4">
+                            <button class="w-12 h-12 bg-red-600 text-white text-2xl  flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $plat->idPlat }}', -1)">
+                                -
+                            </button>
+                            <span id="item-{{ $plat->idPlat }}" class="text-3xl text-white font-bold">0</span>
+                            <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $plat->idPlat }}', 1)">
+                                +
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -63,7 +71,7 @@
 
         <!-- Desserts -->
         <div class="mb-6">
-            <button class="w-full text-left text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
+            <button class="w-full text-center  text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
                     onclick="toggleList('dessert-list')">
                 Desserts
             </button>
@@ -71,18 +79,22 @@
                 @foreach ($desserts as $dessert)
                     <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
                         <div class="flex items-center space-x-4">
-                            <img src="{{ asset($dessert->imagePlat) }}" alt="{{ $dessert->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
+                            <img src="http://192.168.143.9:8080/{{$dessert->imagePlat}}" alt="{{ $dessert->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $dessert->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $dessert->descriptionPlat }}</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button class="px-3 py-1 bg-red-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $dessert->idPlat }}', -1)">-</button>
-                            <span id="item-{{ $dessert->idPlat }}" class="text-xl text-white">0</span>
-                            <button class="px-3 py-1 bg-green-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $dessert->idPlat }}', 1)">+</button>
+                        <div class="flex items-center space-x-4">
+                            <button class="w-12 h-12 bg-red-600 text-white text-2xl  flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $dessert->idPlat }}', -1)">
+                                -
+                            </button>
+                            <span id="item-{{ $dessert->idPlat }}" class="text-3xl text-white font-bold">0</span>
+                            <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $dessert->idPlat }}', 1)">
+                                +
+                            </button>
                         </div>
                     </div>
                 @endforeach
@@ -91,7 +103,7 @@
 
         <!-- Boissons -->
         <div class="mb-6">
-            <button class="w-full text-left text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
+            <button class="w-full text-center  text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
                     onclick="toggleList('boisson-list')">
                 Boissons
             </button>
@@ -99,23 +111,31 @@
                 @foreach ($boissons as $boisson)
                     <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
                         <div class="flex items-center space-x-4">
-                            <img src="{{ asset($boisson->imagePlat) }}" alt="{{ $boisson->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
+                            <img src="http://192.168.143.9:8080/{{$boisson->imagePlat }}" alt="{{ $boisson->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $boisson->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $boisson->descriptionPlat }}</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button class="px-3 py-1 bg-red-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $boisson->idPlat }}', -1)">-</button>
-                            <span id="item-{{ $boisson->idPlat }}" class="text-xl text-white">0</span>
-                            <button class="px-3 py-1 bg-green-500 text-white rounded-full" 
-                                    onclick="updateQuantity('item-{{ $boisson->idPlat }}', 1)">+</button>
+                        <div class="flex items-center space-x-4">
+                            <button class="w-12 h-12 bg-red-600 text-white text-2xl  flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $boisson->idPlat }}', -1)">
+                                -
+                            </button>
+                            <span id="item-{{ $boisson->idPlat }}" class="text-3xl text-white font-bold">0</span>
+                            <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $boisson->idPlat }}', 1)">
+                                +
+                            </button>
                         </div>
                     </div>
                 @endforeach
             </div>
         </div>
+        <div class="flex justify-center items-center ">
+            <button class="text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2 p-5">Commander</button>
+        </div>
+
     </div>
 </x-header>
 
