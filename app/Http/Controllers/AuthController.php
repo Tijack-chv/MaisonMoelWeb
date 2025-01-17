@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Client;
 use App\Models\Personne;
+use App\Models\Serveur;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -31,21 +32,34 @@ class AuthController extends Controller
 
         );
 
-        $clientP = Personne::where('email', $validated['email'])->first();  
-        if ($clientP) {
+        $Personne = Personne::where('email', $validated['email'])->first();  
+        if ($Personne) {
             
-            $client = Client::where('idPersonne', $clientP->idPersonne)->first();  
+            $client = Client::where('idPersonne', $Personne->idPersonne)->first();
+            $serveur = Serveur::where('idPersonne', $Personne->idPersonne)->first(); 
+
             if ($client) {
-                if (Hash::check($validated['password'], $clientP->password)) {
-                    $clientP = $clientP->toArray();
-                    $clientP += ['pointFidelite' => $client->pointFidelite];
-                    $clientP += ['imageClient' => $client->imageClient];
-                    session(['client' => $clientP]);
+                if (Hash::check($validated['password'], $Personne->password)) {
+                    $Personne = $Personne->toArray();
+                    $Personne += ['pointFidelite' => $client->pointFidelite];
+                    $Personne += ['imageClient' => $client->imageClient];
+                    session(['client' => $Personne]);
                     return redirect()->route('index');
                 } else {
                     return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect.');
                 }
-            } else {
+            } 
+            elseif ($serveur){
+                
+                if (Hash::check($validated['password'], $Personne->password)) {
+                    $Personne = $Personne->toArray();
+                    session(['serveur' => $Personne]);
+                    return redirect()->route('Commande.PriseCommande');
+                } else {
+                    return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect.');
+                }   
+            }
+            else {
                 return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect.');
             }
         } else {
@@ -110,6 +124,7 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         $request->session()->forget('client');
+        $request->session()->forget('serveur');
         return redirect()->route('index');
     }    
 }

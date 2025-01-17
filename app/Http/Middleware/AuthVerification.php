@@ -16,7 +16,9 @@ class AuthVerification
     public function handle(Request $request, Closure $next): Response
     {
         if (!session('client')) {
-            return redirect('/login');
+            if(!session('serveur')){
+                return redirect('/login');
+            }
         }
         return $next($request);
     }
