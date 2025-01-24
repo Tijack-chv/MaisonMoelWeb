@@ -19,6 +19,8 @@
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $entree->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $entree->descriptionPlat }}</p>
+                                <br>
+                                <p class="text-sm text-gray-300 font-bold">Prix : <span class="plat-price">{{ $entree->prixHT }}</span> €</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -51,6 +53,8 @@
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $plat->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $plat->descriptionPlat }}</p>
+                                <br>
+                                <p class="text-sm text-gray-300 font-bold">Prix : <span class="plat-price">{{ $plat->prixHT }}</span> €</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -83,6 +87,8 @@
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $dessert->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $dessert->descriptionPlat }}</p>
+                                <br>
+                                <p class="text-sm text-gray-300 font-bold">Prix : <span class="plat-price">{{ $dessert->prixHT }}</span> €</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -115,6 +121,8 @@
                             <div>
                                 <h3 class="text-lg text-[#FFEB99]">{{ $boisson->nomPlat }}</h3>
                                 <p class="text-sm text-gray-300">{{ $boisson->descriptionPlat }}</p>
+                                <br>
+                                <p class="text-sm text-gray-300 font-bold">Prix : <span class="plat-price">{{ $boisson->prixHT }}</span> €</p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -127,15 +135,30 @@
                                     onclick="updateQuantity('item-{{ $boisson->idPlat }}', 1)">
                                 +
                             </button>
+                            
                         </div>
+                        
+
                     </div>
                 @endforeach
             </div>
         </div>
-        <div class="flex justify-center items-center ">
-            <button class="text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2 p-5">Commander</button>
+        <div class="mt-6 p-4 bg-[#333] rounded-lg text-center text-[#FFEB99]">
+            <h2 class="text-2xl font-bold">Total : <span id="total-price">0.00</span> €</h2>
         </div>
 
+         <!-- Affichage du total -->
+         <div class="mt-6 p-4 bg-[#333] rounded-lg text-center text-[#FFEB99]">
+            <h2 class="text-2xl font-bold">Total : <span id="total-price">0.00</span> €</h2>
+        </div>
+
+        <!-- Bouton Commander -->
+        <div class="flex justify-center items-center mt-6">
+            <button class="text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2 p-5"
+                    onclick="placeOrder()">
+                Commander
+            </button>
+        </div>
     </div>
 </x-header>
 
@@ -145,10 +168,22 @@ function toggleList(id) {
     element.classList.toggle('hidden');
 }
 
-function updateQuantity(id, increment) {
+function updateQuantity(id, increment, price) {
     const element = document.getElementById(id);
     let currentQuantity = parseInt(element.textContent, 10) || 0;
     currentQuantity = Math.max(0, currentQuantity + increment);
     element.textContent = currentQuantity;
+
+    
+    totalPrice = Math.max(0, totalPrice + increment * price);
+    document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+}
+
+function placeOrder() {
+    if (totalPrice > 0) {
+        alert(`Votre commande d'un total de ${totalPrice.toFixed(2)} € a bien été enregistrée. Merci !`);
+    } else {
+        alert("Veuillez sélectionner au moins un plat avant de commander.");
+    }
 }
 </script>
