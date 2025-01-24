@@ -21,6 +21,11 @@ class PublicController extends Controller
     {
         $plats = Plat::all();
 
+        $plats = $plats->map(function($plat) {
+            $plat->nomPlat = addslashes($plat->nomPlat);  // Échappe les apostrophes
+            return $plat;
+        });
+
         // Filtrage par idCategoriePlat
         $entrees = $plats->where('idCategoriePlat', 1);
         $platsT = $plats->where('idCategoriePlat', 2);
@@ -34,6 +39,7 @@ class PublicController extends Controller
             'desserts' => $desserts,
             'boissons' => $boissons
         ]);
+
     }
 
 }
