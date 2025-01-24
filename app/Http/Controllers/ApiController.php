@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriePlat;
 use Illuminate\Http\Request;
 use App\Models\Personne;
+use App\Models\Plat;
 use App\Models\Serveur;
 use App\Models\TokenApi;
 use Illuminate\Support\Facades\Hash;
@@ -41,6 +43,27 @@ class ApiController extends Controller
             }
         } else {
             return response()->json(['error' => 'Le token est invalide.']);
+        }
+    }
+
+    public function plats(Request $request){
+        if(!$request->has('token')) {
+            return response()->json(['error' => 'Le token est manquant.']);
+        } else {
+            if (!$request->has('type')) { 
+                return response()->json(['error' => 'Le type de plat est manquant.']);
+            } else {
+                $personne = Personne::where('token',$request->token)->first();
+                if ($personne && Serveur::where('idPersonne', $personne->idPersonne)->first()) {
+                    if (CategoriePlat::where('idCategoriePlat', $request->type)->first()) {
+                        return response()->json(["plats" => Plat::where('idCategoriePlat', $request->type)->get()]);
+                    } else {
+                        return response()->json(['error' => 'Le type de plat est invalide.']);
+                    }
+                } else {
+                    return response()->json(['error' => 'Le token est invalide.']);
+                }
+            }
         }
     }
 }

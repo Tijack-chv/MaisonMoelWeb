@@ -6,3 +6,4 @@ use App\Http\Controllers\ApiController;
 
 
 Route::get('/login', [ApiController::class, 'api_login']);
+Route::get('/plats', [ApiController::class, 'plats']);
