@@ -40,8 +40,7 @@ class Personne extends Model
 	];
 
 	protected $hidden = [
-		'password',
-		'token'
+		'password'
 	];
 
 	protected $fillable = [
@@ -71,10 +70,5 @@ class Personne extends Model
 	public function serveur()
 	{
 		return $this->hasOne(Serveur::class, 'idPersonne');
-	}
-
-	public function token_user_apis()
-	{
-		return $this->hasMany(TokenUserApi::class, 'idUser');
 	}
 }

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CategoriePlat;
-use Illuminate\Http\Request;
-use App\Models\Personne;
 use App\Models\Plat;
 use App\Models\Serveur;
+use App\Models\Personne;
 use App\Models\TokenApi;
+use Illuminate\Http\Request;
+use App\Models\CategoriePlat;
 use Illuminate\Support\Facades\Hash;
 
 class ApiController extends Controller
 {
+
     public function api_login(Request $request)
     {
         if (!$request->has('email') || !$request->has('password')) {
@@ -45,6 +46,7 @@ class ApiController extends Controller
             return response()->json(['error' => 'Le token est invalide.']);
         }
     }
+
 
     public function plats(Request $request){
         if(!$request->has('token')) {
