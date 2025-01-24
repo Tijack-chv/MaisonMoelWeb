@@ -16,4 +16,24 @@ class PublicController extends Controller
         $plats = Plat::limit(8)->get();
         return view('index', ['avis' => $avis, 'avgAvis' => $avgAvis, 'notes' => $notes, 'plats' => $plats]);
     }
+
+    public function priseCommande()
+    {
+        $plats = Plat::all();
+
+        // Filtrage par idCategoriePlat
+        $entrees = $plats->where('idCategoriePlat', 1);
+        $platsT = $plats->where('idCategoriePlat', 2);
+        $desserts = $plats->where('idCategoriePlat', 3);
+        $boissons = $plats->where('idCategoriePlat', 4);
+
+        // Envoyer les données filtrées à la vue
+        return view('Commande.PriseCommande', [
+            'entrees' => $entrees,
+            'plats' => $platsT,
+            'desserts' => $desserts,
+            'boissons' => $boissons
+        ]);
+    }
+
 }

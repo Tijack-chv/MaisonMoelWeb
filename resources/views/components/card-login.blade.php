@@ -9,6 +9,10 @@
     @endif
     <form method="post" action="/login" class="mt-3">
         @csrf
+
+        <div>
+            
+        </div>
         <div class="mb-4">
             <label for="email" class="block text-sm text-[#FFEB99]">Email</label>
             <input type="email" name="email" id="email" class="border-2 bg-transparent rounded w-full py-2 px-3 text-[#FFEB99] placeholder-[#FFEB99]::placeholder focus:outline-none focus:border-[#FFEB99]" value="{{ old('email') }}">

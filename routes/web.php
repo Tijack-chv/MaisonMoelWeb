@@ -37,5 +37,7 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/reservation/payment', [ReservationController::class, 'cgr_valid'])->name('reservation.verif_payment');
 
     Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
+
+    Route::get('/PriseCommande', [PublicController::class, 'PriseCommande'])->name('Commande.PriseCommande');
 });
 
