@@ -103,7 +103,7 @@ class ApiController extends Controller
         } else {
             $personne = Personne::where('token', $request->token)->first();
             if ($personne && !Client::where('idPersonne', $personne->idPersonne)->first()) {
-                $messages = Message::limit(5)->orderby('date', 'desc')->get();
+                $messages = Message::limit(50)->orderby('date', 'desc')->get();
                 foreach ($messages as $message) {
                     $personne = Personne::where('idPersonne', $message->idPersonne)->first();
                     $message['personne'] = $personne;
