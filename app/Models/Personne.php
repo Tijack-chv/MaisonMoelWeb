@@ -71,4 +71,9 @@ class Personne extends Model
 	{
 		return $this->hasOne(Serveur::class, 'idPersonne');
 	}
+
+	public function client()
+	{
+		return $this->hasOne(Client::class, 'idPersonne');
+	}
 }
