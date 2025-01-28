@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 use App\Models\CategoriePlat;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Message;
+use App\Models\Commande;
 use App\Models\Cuisine;
+use App\Models\Etat;
 
 class ApiController extends Controller
 {
@@ -101,14 +103,40 @@ class ApiController extends Controller
         } else {
             $personne = Personne::where('token', $request->token)->first();
             if ($personne && !Client::where('idPersonne', $personne->idPersonne)->first()) {
-                $messages = Message::all();
+                $messages = Message::limit(5)->orderby('date', 'desc')->get();
                 foreach ($messages as $message) {
                     $personne = Personne::where('idPersonne', $message->idPersonne)->first();
-                    $message['token'] = $personne->token;
+                    $message['personne'] = $personne;
                 }
                 return response()->json(['messages' => $messages]);
             } else {
                 return response()->json(['error' => 'Le token est invalide.']);
+            }
+        }
+    }
+
+    public function getCommandes(Request $request) {
+        if (!$request->has('token')) {
+            return response()->json(['error' => 'Le token est manquant.']);
+        } else {
+            if (!$request->has('etat')) {
+                return response()->json(['error' => 'L\'état est manquant.']);
+            } else {
+                $personne = Personne::where('token', $request->token)->first();
+                if ($personne && Serveur::where('idPersonne', $personne->idPersonne)->first()) {
+                    $commandes = Commande::where('idEtat', $request->etat)->orderby('dateCommande', 'asc')->get();
+                    foreach ($commandes as $commande) {
+                        $serveur = Personne::where('idPersonne', $commande->idPersonne)->first();
+                        $commande['serveur'] = $serveur;
+                        $commande['comporters'] = $commande->comporters;
+                        $commande['reservation'] = $commande->reservation;
+                        $commande['reservation']['client'] = Personne::where('idPersonne', $commande->reservation->idPersonne)->first();
+                        $commande['etat'] = Etat::where('idEtat', $commande->idEtat)->first();
+                    }
+                    return response()->json(['commandes' => $commandes]);
+                } else {
+                    return response()->json(['error' => 'Le token est invalide.']);
+                }
             }
         }
     }
