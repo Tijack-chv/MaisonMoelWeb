@@ -129,6 +129,9 @@ class ApiController extends Controller
                         $serveur = Personne::where('idPersonne', $commande->idPersonne)->first();
                         $commande['serveur'] = $serveur;
                         $commande['comporters'] = $commande->comporters;
+                        foreach ($commande['comporters'] as $comporter) {
+                            $comporter['plat'] = Plat::where('idPlat', $comporter->idPlat)->first();
+                        }
                         $commande['reservation'] = $commande->reservation;
                         $commande['reservation']['client'] = Personne::where('idPersonne', $commande->reservation->idPersonne)->first();
                         $commande['etat'] = Etat::where('idEtat', $commande->idEtat)->first();
