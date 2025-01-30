@@ -108,8 +108,6 @@
                 </div>
 
             </div>
-
-            <!-- Boissons -->
             <div class="mb-6">
                 <button class="w-full text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
                         onclick="toggleList('boisson-list')">
@@ -256,9 +254,6 @@ function renderSelectedItems() {
         }
     });
 }
-
-
-
 
 function placeOrder() {
     if (totalPrice > 0) {
