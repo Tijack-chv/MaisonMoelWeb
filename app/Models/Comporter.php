@@ -36,7 +36,10 @@ class Comporter extends Model
 
 	protected $fillable = [
 		'prix',
-		'nbCommander'
+		'nbCommander',
+		'idCommande',
+		'idPlat'
+
 	];
 
 	public function commande()

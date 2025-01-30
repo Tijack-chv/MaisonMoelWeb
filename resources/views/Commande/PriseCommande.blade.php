@@ -26,12 +26,12 @@
             </div>
                 <div class="flex items-center space-x-4">
                     <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                onclick="updateQuantity('item-{{ $entree->idPlat }}', -1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees')">
+                onclick="updateQuantity('item-{{ $entree->idPlat }}', -1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees','{{ $entree->idPlat }}')">
                     -
                 </button>
                 <span id="item-{{ $entree->idPlat }}" class="text-3xl text-white font-bold">0</span>
                 <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                        onclick="updateQuantity('item-{{ $entree->idPlat }}', 1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees')">
+                        onclick="updateQuantity('item-{{ $entree->idPlat }}', 1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees','{{ $entree->idPlat }}')">
                     +
                 </button>
             </div>
@@ -60,12 +60,12 @@
                             </div>
                             <div class="flex items-center space-x-4">
                                 <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $plat->idPlat }}', -1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats')">
+                                        onclick="updateQuantity('item-{{ $plat->idPlat }}', -1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats','{{ $plat->idPlat }}')">
                                     -
                                 </button>
                                 <span id="item-{{ $plat->idPlat }}" class="text-3xl text-white font-bold">0</span>
                                 <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $plat->idPlat }}', 1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats')">
+                                        onclick="updateQuantity('item-{{ $plat->idPlat }}', 1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats','{{ $plat->idPlat }}')">
                                     +
                                 </button>
                             </div>
@@ -94,12 +94,12 @@
                             </div>
                             <div class="flex items-center space-x-4">
                                 <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', -1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts')">
+                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', -1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts', '{{ $dessert->idPlat }}')">
                                     -
                                 </button>
                                 <span id="item-{{ $dessert->idPlat }}" class="text-3xl text-white font-bold">0</span>
                                 <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', 1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts')">
+                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', 1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts','{{ $dessert->idPlat }}')">
                                     +
                                 </button>
                             </div>
@@ -108,8 +108,6 @@
                 </div>
 
             </div>
-
-            <!-- Boissons -->
             <div class="mb-6">
                 <button class="w-full text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
                         onclick="toggleList('boisson-list')">
@@ -129,12 +127,12 @@
                             <div class="flex items-center space-x-4">
                                 
                                 <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', -1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons')">
+                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', -1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons', '{{ $boisson->idPlat }}')">
                                     -
                                 </button>
                                 <span id="item-{{ $boisson->idPlat }}" class="text-3xl text-white font-bold">0</span>
                                 <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', 1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons')">
+                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', 1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons', '{{ $boisson->idPlat }}')">
                                     +
                                 </button>
 
@@ -176,15 +174,18 @@
             </div>
         </div>
 
+        <form action="/commander" method="POST" id="order-form" class="hidden">
+            @csrf <!-- Protection contre les attaques CSRF -->
+            <input type="hidden" name="orderData" id="orderData">
+            <input type="hidden" name="totalPrice" id="totalPriceHidden">
+        </form>
 
-
-        
         <div class="flex justify-center items-center mt-6">
-            <button class="text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2 p-5"
-                    onclick="placeOrder()">
+            <button type="button" class="text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2 p-5" onclick="submitOrder()">
                 Commander
             </button>
         </div>
+
     </div>
 </x-header>
 
@@ -198,8 +199,7 @@ function toggleList(id) {
 let totalPrice = 0;
 let selectedItems = {}; // Pour stocker les articles sélectionnés
 
-function updateQuantity(id, increment, price, name, category) {
-
+function updateQuantity(id, increment, price, name, category, idPlat) {
     const element = document.getElementById(id);
     if (!element) {
         console.error(`L'élément avec l'ID ${id} n'a pas été trouvé.`);
@@ -217,9 +217,9 @@ function updateQuantity(id, increment, price, name, category) {
     currentQuantity = Math.max(0, currentQuantity + increment);
     element.textContent = currentQuantity;
 
-    // Mise à jour des articles sélectionnés
+    // Mise à jour des articles sélectionnés avec l'idPlat
     if (currentQuantity > 0) {
-        selectedItems[id] = { name, quantity: currentQuantity, price: price * currentQuantity, category: category };
+        selectedItems[id] = { name, quantity: currentQuantity, price: price * currentQuantity, category: category, idPlat: idPlat };
     } else {
         delete selectedItems[id];
     }
@@ -231,6 +231,7 @@ function updateQuantity(id, increment, price, name, category) {
     // Mise à jour de la liste des articles choisis
     renderSelectedItems();
 }
+
 
 function renderSelectedItems() {
     const categories = ['entrees', 'plats', 'desserts', 'boissons'];
@@ -257,14 +258,31 @@ function renderSelectedItems() {
     });
 }
 
-
-
-
-function placeOrder() {
-    if (totalPrice > 0) {
-        alert(`Votre commande d'un total de ${totalPrice.toFixed(2)} € a bien été enregistrée. Merci !`);
-    } else {
-        alert("Veuillez sélectionner au moins un plat avant de commander.");
+function submitOrder() {
+    if (Object.keys(selectedItems).length === 0) {
+        alert('Aucun article sélectionné.');
+        return;
     }
+
+    // Créer un objet avec les données de la commande
+    const orderData = {
+        items: Object.values(selectedItems).map(item => ({
+            idPlat: item.idPlat, // Ajout de l'ID de l'article
+            name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+            category: item.category
+        })),
+    };
+
+    // Mettre les données dans les champs cachés du formulaire
+    document.getElementById('orderData').value = JSON.stringify(orderData);
+    document.getElementById('totalPriceHidden').value = totalPrice.toFixed(2);
+
+    // Soumettre le formulaire
+    document.getElementById('order-form').submit();
 }
+
+
+
 </script>

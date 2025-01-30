@@ -4,7 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Avi;
+use App\Models\Client;
+use App\Models\Commande;
+use App\Models\Comporter;
 use App\Models\Plat;
+use App\Models\Reservation;
+use App\Models\Table;
 
 class PublicController extends Controller
 {
@@ -19,8 +24,9 @@ class PublicController extends Controller
 
     public function priseCommande()
     {
+        
         $plats = Plat::all();
-
+        
         $plats = $plats->map(function($plat) {
             $plat->nomPlat = addslashes($plat->nomPlat);  // Échappe les apostrophes
             return $plat;
@@ -39,7 +45,66 @@ class PublicController extends Controller
             'desserts' => $desserts,
             'boissons' => $boissons
         ]);
-
     }
 
+    public function reserver()
+    {
+        $tables = Table::all();
+        $clients = Client::with('personne')->get();
+       
+
+        return view('Commande.ReservationCommande', [
+            'tables' => $tables,
+            'clients' => $clients
+        ]);
+    }
+
+    public function ajoutReserverParServeur(Request $request)
+    {
+    
+        // Création de la réservation
+        Reservation::create([
+            'idPersonne' => $request->client_id,
+            'idTable' => $request->table_id,
+            'nbPersonnes' => $request->nombre_personnes,
+            'dateMoment' => now(),
+            'dateReservation' => now(),
+        ]);
+
+        return redirect()->route('Commande.PriseCommande');
+    }
+
+    public function commander(Request $request)
+    {
+
+        Commande::create([
+            'idEtat' => 1,
+            'idReservation' =>3,
+            'idPersonne' => 7,
+            'dateCommande'=> now(),
+        ]);
+        
+        $derniereCommande = Commande::latest('idCommande')->first();
+        $idDeCommande = $derniereCommande->idCommande;
+        
+
+        // Récupérer les données de la commande
+        $orderData = json_decode($request->input('orderData'), true);
+
+        // Vous pouvez maintenant traiter les articles de la commande
+        foreach ($orderData['items'] as $item) {
+            
+            // Exemple : enregistrer chaque item dans une table de commandes
+            Comporter::create([
+                
+                'idCommande' => $idDeCommande,
+                'nbCommander' => $item['quantity'],
+                'prix' => $item['price'],
+                'idPlat' => $item['idPlat'],
+            ]);
+        }
+
+        // Retourner une réponse ou rediriger vers une autre page
+        return redirect()->route('confirmation')->with('success', 'Votre commande a été envoyée avec succès !');
+    }
 }

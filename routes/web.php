@@ -39,5 +39,8 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
 
     Route::get('/PriseCommande', [PublicController::class, 'PriseCommande'])->name('Commande.PriseCommande');
+    Route::post('/commander', [PublicController::class, 'commander'])->name('Commande.commander');
+    Route::get('/ReservationCommande', [PublicController::class, 'reserver'])->name('Commande.ReservationCommande');
+    Route::post('/ReservationCommande', [PublicController::class, 'ajoutReserverParServeur'])->name('Commande.ReservationCommande');
 });
 
