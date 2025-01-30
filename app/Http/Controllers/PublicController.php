@@ -10,6 +10,8 @@ use App\Models\Comporter;
 use App\Models\Plat;
 use App\Models\Reservation;
 use App\Models\Table;
+use App\Models\Reservation;
+use App\Models\Table;
 
 class PublicController extends Controller
 {
@@ -25,7 +27,9 @@ class PublicController extends Controller
     public function priseCommande()
     {
         
+        
         $plats = Plat::all();
+        
         
         $plats = $plats->map(function($plat) {
             $plat->nomPlat = addslashes($plat->nomPlat);  // Échappe les apostrophes
