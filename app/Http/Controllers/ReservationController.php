@@ -19,6 +19,7 @@ class ReservationController extends Controller
         $reservationsFutur = Reservation::where('idPersonne', session('client')['idPersonne'])->where('dateReservation', '>', date('Y-m-d H:i:s'))->get();
         return view('reservation.logs_reservation', ['reservationsPasse' => $reservationsPasse, 'reservationsFutur' => $reservationsFutur]);
     }
+    
     public function index()
     {
         if (session()->has('reservation')) {
@@ -33,6 +34,7 @@ class ReservationController extends Controller
         }
         return view('reservation.cgr');
     }
+
     public function payment()
     {
         if (!session()->has('reservation')) {

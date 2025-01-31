@@ -16,8 +16,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idTypeTable
  * @property string $NomTable
  * @property int $capacite
+ * @property int|null $idReservation
  * 
  * @property TypeTable $type_table
+ * @property Reservation|null $reservation
  * @property Collection|Reservation[] $reservations
  *
  * @package App\Models
@@ -30,18 +32,25 @@ class Table extends Model
 
 	protected $casts = [
 		'idTypeTable' => 'int',
-		'capacite' => 'int'
+		'capacite' => 'int',
+		'idReservation' => 'int'
 	];
 
 	protected $fillable = [
 		'idTypeTable',
 		'NomTable',
-		'capacite'
+		'capacite',
+		'idReservation'
 	];
 
 	public function type_table()
 	{
 		return $this->belongsTo(TypeTable::class, 'idTypeTable');
+	}
+
+	public function reservation()
+	{
+		return $this->belongsTo(Reservation::class, 'idReservation');
 	}
 
 	public function reservations()

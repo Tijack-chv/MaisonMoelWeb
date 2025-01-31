@@ -125,6 +125,7 @@ class AuthController extends Controller
     {
         $request->session()->forget('client');
         $request->session()->forget('serveur');
+        session()->forget('reservationServeur');
         return redirect()->route('index');
     }    
 }

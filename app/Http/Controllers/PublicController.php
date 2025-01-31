@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Avi;
+use App\Models\Plat;
+use App\Models\Table;
 use App\Models\Client;
 use App\Models\Commande;
 use App\Models\Comporter;
-use App\Models\Plat;
 use App\Models\Reservation;
-use App\Models\Table;
-use App\Models\Reservation;
-use App\Models\Table;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+
 
 class PublicController extends Controller
 {
@@ -67,24 +67,27 @@ class PublicController extends Controller
     {
     
         // Création de la réservation
-        Reservation::create([
+       $reservation = Reservation::create([
             'idPersonne' => $request->client_id,
             'idTable' => $request->table_id,
             'nbPersonnes' => $request->nombre_personnes,
             'dateMoment' => now(),
             'dateReservation' => now(),
+            'uuid'=> Str::uuid(),
         ]);
+
+        $request->session()->put('reservationServeur', $reservation->idReservation);
 
         return redirect()->route('Commande.PriseCommande');
     }
 
     public function commander(Request $request)
     {
-
+       
         Commande::create([
             'idEtat' => 1,
-            'idReservation' =>3,
-            'idPersonne' => 7,
+            'idReservation' => session('reservationServeur'),
+            'idPersonne' => session('serveur.idPersonne'),
             'dateCommande'=> now(),
         ]);
         

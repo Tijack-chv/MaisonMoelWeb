@@ -244,7 +244,7 @@ function renderSelectedItems() {
 
     // Ajouter les articles par catégorie
     Object.values(selectedItems).forEach(item => {
-        const list = document.getElementById(item.category); // Assurez-vous que la catégorie est correcte
+        const list = document.getElementById(item.category);
         if (list) {
             if (list.querySelector('.text-gray-400')) list.innerHTML = ''; // Supprimer le message "Aucun article"
             const li = document.createElement('li');
@@ -267,7 +267,7 @@ function submitOrder() {
     // Créer un objet avec les données de la commande
     const orderData = {
         items: Object.values(selectedItems).map(item => ({
-            idPlat: item.idPlat, // Ajout de l'ID de l'article
+            idPlat: item.idPlat,
             name: item.name,
             quantity: item.quantity,
             price: item.price,
@@ -275,11 +275,9 @@ function submitOrder() {
         })),
     };
 
-    // Mettre les données dans les champs cachés du formulaire
     document.getElementById('orderData').value = JSON.stringify(orderData);
     document.getElementById('totalPriceHidden').value = totalPrice.toFixed(2);
 
-    // Soumettre le formulaire
     document.getElementById('order-form').submit();
 }
 
