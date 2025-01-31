@@ -63,7 +63,12 @@ class ApiController extends Controller
                 $personne = Personne::where('token',$request->token)->first();
                 if ($personne && Serveur::where('idPersonne', $personne->idPersonne)->first()) {
                     if (CategoriePlat::where('idCategoriePlat', $request->type)->first()) {
-                        return response()->json(["plats" => Plat::where('idCategoriePlat', $request->type)->get()]);
+                        $plats = Plat::where('idCategoriePlat', $request->type)->get();
+                        foreach ($plats as $plat) {
+                            $plat->type_plat;
+                            $plat->restreindres;
+                        }
+                        return response()->json(["plats" => $plats]);
                     } else {
                         return response()->json(['error' => 'Le type de plat est invalide.']);
                     }
