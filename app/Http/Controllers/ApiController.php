@@ -7,8 +7,11 @@ use App\Models\Serveur;
 use App\Models\Personne;
 use App\Models\TokenApi;
 use App\Models\Client;
+use App\Models\Alergene;
+use App\Models\Restreindre;
 use Illuminate\Http\Request;
 use App\Models\CategoriePlat;
+use App\Models\TypePlat;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Message;
 use App\Models\Commande;
@@ -66,7 +69,13 @@ class ApiController extends Controller
                         $plats = Plat::where('idCategoriePlat', $request->type)->get();
                         foreach ($plats as $plat) {
                             $plat->type_plat;
-                            $plat->restreindres;
+                            $res = $plat->restreindres;
+                            $restriction = [];
+                            foreach ($plat["restreindres"] as $res) {
+                                array_push($restriction, $res->alergene);
+                            }
+                            $plat["alergenes"] = $restriction;
+                            unset($plat["restreindres"]);
                         }
                         return response()->json(["plats" => $plats]);
                     } else {
