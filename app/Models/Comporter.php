@@ -30,7 +30,7 @@ class Comporter extends Model
 	protected $casts = [
 		'idCommande' => 'int',
 		'idPlat' => 'int',
-		'prix' => 'int',
+		'prix' => 'float',
 		'nbCommander' => 'int'
 	];
 

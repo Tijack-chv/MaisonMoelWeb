@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Avi;
 use App\Models\Plat;
 use App\Models\Table;
@@ -53,7 +54,17 @@ class PublicController extends Controller
 
     public function reserver()
     {
-        $tables = Table::all();
+        $tablesLibres = Table::whereNull('idReservation')->get();
+
+        $tables = $tablesLibres->filter(function ($table) {
+            return !$table->reservations()
+                ->whereBetween('dateReservation', [Carbon::now(), Carbon::now()->addHours(2)])
+                ->exists(); // Vérifie si une réservation existe dans les 2 prochaines heures
+        });
+
+
+
+        
         $clients = Client::with('personne')->get();
        
 
@@ -75,6 +86,10 @@ class PublicController extends Controller
             'dateReservation' => now(),
             'uuid'=> Str::uuid(),
         ]);
+
+        $table = Table::find($request->table_id);
+        $table->idReservation = $reservation->idReservation;
+        $table->save();
 
         $request->session()->put('reservationServeur', $reservation->idReservation);
 
