@@ -17,9 +17,22 @@ use App\Models\Message;
 use App\Models\Commande;
 use App\Models\Cuisine;
 use App\Models\Etat;
+use App\Models\Table;
+use App\Models\Comporter;
 
 class ApiController extends Controller
 {
+    public function verificationTokenServeur($token) {
+        $personne = Personne::where('token', $token)->first();
+        if ($personne) {
+            $serveur = Serveur::where('idPersonne', $personne->idPersonne)->first();
+            if ($serveur) {
+                return $personne->idPersonne;
+            }
+        }
+        return false;
+    }
+
 
     public function api_login(Request $request)
     {
@@ -123,6 +136,73 @@ class ApiController extends Controller
                     $message['personne'] = $personne;
                 }
                 return response()->json(['messages' => $messages]);
+            } else {
+                return response()->json(['error' => 'Le token est invalide.']);
+            }
+        }
+    }
+
+    public function registerOrder(Request $request) {
+        if (!$request->has('token')) {
+            return response()->json(['error' => 'Le token est manquant.']);
+        } else {
+            $idServeur = $this->verificationTokenServeur(htmlspecialchars($request->token));
+            if (!$idServeur) {
+                return response()->json(['error' => 'Le token est invalide.']);
+            } else {
+                if (!$request->has('table')) {
+                    return response()->json(['error' => 'Le numéro de table est manquant.']);
+                } else {
+                    $table = Table::where('idTable', $request->table)->first();
+                    if ($table->idReservation != null) {
+                        $commande = new Commande();
+                        $commande->idPersonne = $idServeur;
+                        $commande->idEtat = 1;
+                        $commande->idReservation = $table->idReservation;
+                        $commande->dateCommande = date('Y-m-d H:i:s');
+                        $commande->save();
+                        return response()->json(['success' => $commande->idCommande]);
+                    } else {
+                        return response()->json(['error' => 'La table n\'est pas réservée.']);
+                    }
+                }
+            }
+        }
+    }
+
+    public function registerLignOrder(Request $request) {
+        if (!$request->has('token')) {
+            return response()->json(['error' => 'Le token est manquant.']);
+        } else {
+            if ($this->verificationTokenServeur(htmlspecialchars($request->token))) {
+                if (!$request->has('commande')) {
+                    return response()->json(['error' => 'Le numéro de commande est manquant.']);
+                } else {
+                    if (!$request->has('plat') || !$request->has('quantite') || !$request->has('prix')) {
+                        return response()->json(['error' => 'Les informations sur la ligne de commande du plat sont manquantes.']);
+                    } else {
+                        if (Plat::where('idPlat', $request->plat)->first()->quantite < $request->quantite) {
+                            return response()->json(['error' => 'La quantité de plat est insuffisante.']);
+                        } else {
+                            $commande = Commande::where('idCommande', $request->commande)->first();
+                            if ($commande) {
+                                $plat = Plat::where('idPlat', $request->plat)->first();
+                                $plat->quantite -= $request->quantite;
+                                $plat->save();
+
+                                $lignCommande = new Comporter();
+                                $lignCommande->idCommande = $commande->idCommande;
+                                $lignCommande->idPlat = $request->plat;
+                                $lignCommande->nbCommander = $request->quantite;
+                                $lignCommande->prix = $request->prix;
+                                $lignCommande->save();
+                          return response()->json(['success' => 'Ligne de commande ajoutée.']);
+                            } else {
+                        return response()->json(['error' => 'La commande est invalide.']);
+                            }
+                        }
+                    }
+                }
             } else {
                 return response()->json(['error' => 'Le token est invalide.']);
             }
