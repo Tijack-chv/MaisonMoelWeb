@@ -49,9 +49,10 @@
                     <a href="/reservations" class="block px-4 py-2 hover:bg-zinc-700 text-[#FFEB99]">Mes réservations</a>
                   </li>
                   <li>
-                @endif
+                
                     <a href="/profile" class="block px-4 py-2 hover:bg-zinc-700 text-[#FFEB99]">Mon profil</a>
                   </li>
+                  @endif
                 </ul>
                 <div class="py-1">
                   <a href="logout" class="block px-4 py-2 text-sm text-[#FFEB99] hover:bg-zinc-700">Déconnexion</a>
