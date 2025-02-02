@@ -123,10 +123,13 @@ class PublicController extends Controller
         // Récupérer les données de la commande
         $orderData = json_decode($request->input('orderData'), true);
 
-        // Vous pouvez maintenant traiter les articles de la commande
+        
         foreach ($orderData['items'] as $item) {
+
+            $plat = Plat::find($item['idPlat']);
+            $plat->decrement('quantite', $item['quantity']);
             
-            // Exemple : enregistrer chaque item dans une table de commandes
+            
             Comporter::create([
                 
                 'idCommande' => $idDeCommande,

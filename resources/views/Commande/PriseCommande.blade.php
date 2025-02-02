@@ -15,30 +15,31 @@
                     Entrées
                 </button>
                 <div id="entree-list" class="hidden space-y-4">
-    @foreach ($entrees as $entree)
-        <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
-            <div class="flex items-center space-x-4">
-                <img src="http://192.168.143.9:8080/{{$entree->imagePlat}}" alt="{{ $entree->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
-                <div>
-                    <h3 class="text-lg text-[#FFEB99]">{{ $entree->nomPlat }}</h3>
-                    <p class="text-sm text-gray-300">{{ $entree->descriptionPlat }}</p>
-                    <p class="text-sm text-gray-300 font-bold">Prix : {{ $entree->prixHT }} €</p>
+                @foreach ($entrees as $entree)
+                    <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
+                        <div class="flex items-center space-x-4">
+                            <img src="http://192.168.143.9:8080/{{$entree->imagePlat}}" alt="{{ $entree->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
+                            <div>
+                                <h3 class="text-lg text-[#FFEB99]">{{ $entree->nomPlat }}</h3>
+                                <p class="text-sm text-gray-300">{{ $entree->descriptionPlat }}</p>
+                                <p class="text-sm text-gray-300 font-bold">Prix : {{ $entree->prixHT }} €</p>
+                                <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $entree->idPlat }}">{{ $entree->quantite }}</span></p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', -1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees', '{{ $entree->idPlat }}', '{{ $entree->quantite }}')">
+                                -
+                            </button>
+                            <span id="item-{{ $entree->idPlat }}" class="text-3xl text-white font-bold">0</span>
+                            <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', 1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees', '{{ $entree->idPlat }}', '{{ $entree->quantite }}')">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
                 </div>
-            </div>
-                <div class="flex items-center space-x-4">
-                    <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                onclick="updateQuantity('item-{{ $entree->idPlat }}', -1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees','{{ $entree->idPlat }}')">
-                    -
-                </button>
-                <span id="item-{{ $entree->idPlat }}" class="text-3xl text-white font-bold">0</span>
-                <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                        onclick="updateQuantity('item-{{ $entree->idPlat }}', 1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees','{{ $entree->idPlat }}')">
-                    +
-                </button>
-            </div>
-        </div>
-    @endforeach
-</div>
 
             </div>
 
@@ -49,29 +50,31 @@
                     Plats
                 </button>
                 <div id="plat-list" class="hidden space-y-4">
-                    @foreach ($plats as $plat)
-                        <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
-                            <div class="flex items-center space-x-4">
-                                <img src="http://192.168.143.9:8080/{{$plat->imagePlat}}" alt="{{ $plat->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
-                                <div>
-                                    <h3 class="text-lg text-[#FFEB99]">{{ $plat->nomPlat }}</h3>
-                                    <p class="text-sm text-gray-300">{{ $plat->descriptionPlat }}</p>
-                                    <p class="text-sm text-gray-300 font-bold">Prix : {{ $plat->prixHT }} €</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $plat->idPlat }}', -1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats','{{ $plat->idPlat }}')">
-                                    -
-                                </button>
-                                <span id="item-{{ $plat->idPlat }}" class="text-3xl text-white font-bold">0</span>
-                                <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $plat->idPlat }}', 1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats','{{ $plat->idPlat }}')">
-                                    +
-                                </button>
+                @foreach ($plats as $plat)
+                    <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
+                        <div class="flex items-center space-x-4">
+                            <img src="http://192.168.143.9:8080/{{$plat->imagePlat}}" alt="{{ $plat->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
+                            <div>
+                                <h3 class="text-lg text-[#FFEB99]">{{ $plat->nomPlat }}</h3>
+                                <p class="text-sm text-gray-300">{{ $plat->descriptionPlat }}</p>
+                                <p class="text-sm text-gray-300 font-bold">Prix : {{ $plat->prixHT }} €</p>
+                                <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $plat->idPlat }}">{{ $plat->quantite }}</span></p>
                             </div>
                         </div>
-                    @endforeach
+                        <div class="flex items-center space-x-4">
+                            <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $plat->idPlat }}', -1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats', '{{ $plat->idPlat }}', '{{ $plat->quantite }}')">
+                                -
+                            </button>
+                            <span id="item-{{ $plat->idPlat }}" class="text-3xl text-white font-bold">0</span>
+                            <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
+                                    onclick="updateQuantity('item-{{ $plat->idPlat }}', 1, '{{ $plat->prixHT }}', '{{ $plat->nomPlat }}', 'plats', '{{ $plat->idPlat }}', '{{ $plat->quantite }}')">
+                                +
+                            </button>
+                        </div>
+                    </div>
+                @endforeach
+
                 </div>
 
             </div>
@@ -91,16 +94,17 @@
                                     <h3 class="text-lg text-[#FFEB99]">{{ $dessert->nomPlat }}</h3>
                                     <p class="text-sm text-gray-300">{{ $dessert->descriptionPlat }}</p>
                                     <p class="text-sm text-gray-300 font-bold">Prix : {{ $dessert->prixHT }} €</p>
+                                    <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $dessert->idPlat }}">{{ $dessert->quantite }}</span></p>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
                                 <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', -1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts', '{{ $dessert->idPlat }}')">
+                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', -1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts', '{{ $dessert->idPlat }}', '{{ $dessert->quantite }}')">
                                     -
                                 </button>
                                 <span id="item-{{ $dessert->idPlat }}" class="text-3xl text-white font-bold">0</span>
                                 <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', 1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts','{{ $dessert->idPlat }}')">
+                                        onclick="updateQuantity('item-{{ $dessert->idPlat }}', 1, '{{ $dessert->prixHT }}', '{{ $dessert->nomPlat }}', 'desserts', '{{ $dessert->idPlat }}', '{{ $dessert->quantite }}')">
                                     +
                                 </button>
                             </div>
@@ -123,20 +127,19 @@
                                     <h3 class="text-lg text-[#FFEB99]">{{ $boisson->nomPlat }}</h3>
                                     <p class="text-sm text-gray-300">{{ $boisson->descriptionPlat }}</p>
                                     <p class="text-sm text-gray-300 font-bold">Prix : {{ $boisson->prixHT }} €</p>
+                                    <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $boisson->idPlat }}">{{ $boisson->quantite }}</span></p>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
-                                
                                 <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', -1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons', '{{ $boisson->idPlat }}')">
+                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', -1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons', '{{ $boisson->idPlat }}', '{{ $boisson->quantite }}')">
                                     -
                                 </button>
                                 <span id="item-{{ $boisson->idPlat }}" class="text-3xl text-white font-bold">0</span>
                                 <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', 1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons', '{{ $boisson->idPlat }}')">
+                                        onclick="updateQuantity('item-{{ $boisson->idPlat }}', 1, '{{ $boisson->prixHT }}', '{{ $boisson->nomPlat }}', 'boissons', '{{ $boisson->idPlat }}', '{{ $boisson->quantite }}')">
                                     +
                                 </button>
-
                             </div>
                         </div>
                     @endforeach
@@ -200,7 +203,7 @@ function toggleList(id) {
 let totalPrice = 0;
 let selectedItems = {}; // Pour stocker les articles sélectionnés
 
-function updateQuantity(id, increment, price, name, category, idPlat) {
+function updateQuantity(id, increment, price, name, category, idPlat, stock) {
     const element = document.getElementById(id);
     if (!element) {
         console.error(`L'élément avec l'ID ${id} n'a pas été trouvé.`);
@@ -209,7 +212,13 @@ function updateQuantity(id, increment, price, name, category, idPlat) {
 
     let currentQuantity = parseInt(element.textContent, 10) || 0;
 
-    // Vérification pour éviter une soustraction quand la quantité est déjà 0
+    // Empêcher de commander plus que le stock disponible
+    if (currentQuantity + increment > stock) {
+        alert("Stock insuffisant pour cet article !");
+        return;
+    }
+
+    // Empêcher la quantité négative
     if (currentQuantity === 0 && increment < 0) {
         return;
     }
@@ -218,9 +227,9 @@ function updateQuantity(id, increment, price, name, category, idPlat) {
     currentQuantity = Math.max(0, currentQuantity + increment);
     element.textContent = currentQuantity;
 
-    // Mise à jour des articles sélectionnés avec l'idPlat
+    // Mise à jour des articles sélectionnés
     if (currentQuantity > 0) {
-        selectedItems[id] = { name, quantity: currentQuantity, price: price * currentQuantity, category: category, idPlat: idPlat };
+        selectedItems[id] = { name, quantity: currentQuantity, price: price * currentQuantity, category, idPlat };
     } else {
         delete selectedItems[id];
     }
@@ -229,9 +238,10 @@ function updateQuantity(id, increment, price, name, category, idPlat) {
     totalPrice = Object.values(selectedItems).reduce((total, item) => total + item.price, 0);
     document.getElementById('total-price').textContent = totalPrice.toFixed(2);
 
-    // Mise à jour de la liste des articles choisis
+    // Met à jour la liste des articles choisis
     renderSelectedItems();
 }
+
 
 
 function renderSelectedItems() {
