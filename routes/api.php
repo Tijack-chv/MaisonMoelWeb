@@ -12,3 +12,4 @@ Route::get('/getMessages', [ApiController::class, 'getMessages']);
 Route::get('/getCommandes', [ApiController::class, 'getCommandes']);
 Route::get('/registerLignOrder', [ApiController::class, 'registerLignOrder']);
 Route::get('/registerOrder', [ApiController::class, 'registerOrder']);
+Route::get('/registerReservation', [ApiController::class, 'registerReservation']);

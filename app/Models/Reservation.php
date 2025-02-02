@@ -13,16 +13,18 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Reservation
  * 
+ * @property int $idReservation
  * @property int $idTable
  * @property int|null $idPersonne
  * @property int $nbPersonnes
  * @property Carbon|null $dateMoment
- * @property int $idReservation
  * @property Carbon $dateReservation
+ * @property string $uuid
  * 
  * @property Client|null $client
  * @property Table $table
  * @property Collection|Commande[] $commandes
+ * @property Collection|Table[] $tables
  *
  * @package App\Models
  */
@@ -45,7 +47,8 @@ class Reservation extends Model
 		'idPersonne',
 		'nbPersonnes',
 		'dateMoment',
-		'dateReservation'
+		'dateReservation',
+		'uuid'
 	];
 
 	public function client()
@@ -61,5 +64,10 @@ class Reservation extends Model
 	public function commandes()
 	{
 		return $this->hasMany(Commande::class, 'idReservation');
+	}
+
+	public function tables()
+	{
+		return $this->hasMany(Table::class, 'idReservation');
 	}
 }

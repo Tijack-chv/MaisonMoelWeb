@@ -19,6 +19,7 @@ use App\Models\Cuisine;
 use App\Models\Etat;
 use App\Models\Table;
 use App\Models\Comporter;
+use App\Models\Reservation;
 
 class ApiController extends Controller
 {
@@ -38,25 +39,18 @@ class ApiController extends Controller
     {
         if (!$request->has('email') || !$request->has('password')) {
             return response()->json(['error' => 'Email et mot de passe sont requis.']);
-        } else if (!$request->has('token')) {
-            return response()->json(['error' => 'Token est requis.']);
-        }
-        $token = htmlspecialchars($request->token);
-        if (TokenApi::where('token', $token)->first()) {
-            $email = htmlspecialchars($request->email);
-            $password = htmlspecialchars($request->password);
-            $serveurP = Personne::where('email', $email)->first();
-            if ($serveurP) {
-                $serveur = Serveur::where($serveurP->id)->first();
-                if ($serveur) {
-                    if (Hash::check($password, $serveurP->password)) {
-                        $serveurP = $serveurP->toArray();
-                        $serveurP += ['appreciations' => $serveur->appreciations];
-                        $serveurP += ['salaires' => $serveur->salaires];
-                        return response()->json(['serveur' => $serveurP]);
-                    } else {
-                        return response()->json(['error' => 'Email ou mot de passe incorrect.']);
-                    }
+        } 
+        $email = htmlspecialchars($request->email);
+        $password = htmlspecialchars($request->password);
+        $serveurP = Personne::where('email', $email)->first();
+        if ($serveurP) {
+            $serveur = Serveur::where($serveurP->id)->first();
+            if ($serveur) {
+                if (Hash::check($password, $serveurP->password)) {
+                    $serveurP = $serveurP->toArray();
+                    $serveurP += ['appreciations' => $serveur->appreciations];
+                    $serveurP += ['salaires' => $serveur->salaires];
+                    return response()->json(['serveur' => $serveurP]);
                 } else {
                     return response()->json(['error' => 'Email ou mot de passe incorrect.']);
                 }
@@ -64,7 +58,7 @@ class ApiController extends Controller
                 return response()->json(['error' => 'Email ou mot de passe incorrect.']);
             }
         } else {
-            return response()->json(['error' => 'Le token est invalide.']);
+            return response()->json(['error' => 'Email ou mot de passe incorrect.']);
         }
     }
 
@@ -209,6 +203,35 @@ class ApiController extends Controller
         }
     }
 
+    public function registerReservation(Request $request) {
+        if (!$request->has('token')) {
+            return response()->json(['error' => 'Le token est manquant.']);
+        } else {
+            if ($request->has('uuid')) {
+                $uid = $request->uuid;
+                $reservation = Reservation::where('uuid', $uid)->first();
+                if ($reservation) {
+                    $date = date('Y-m-d H:i:s', strtotime('+1 hour'));
+                    $dateRAvant = $reservation->dateReservation;
+                    $dateRApres = date('Y-m-d H:i:s', strtotime($reservation->dateReservation . ' +30 minutes'));
+                    if ($dateRAvant <= $date && $dateRApres >= $date) {
+                        $table = $reservation->idTable;
+                        $table = Table::where('idTable', $table)->first();
+                        $table->idReservation = $reservation->idReservation;
+                        $table->save();
+                        return response()->json(['success' => 'La réservation est confirmée.']);
+                    } else {
+                        return response()->json(['error' => 'La réservation n\'est pas valide.']);
+                    }
+                } else {
+                    return response()->json(['error' => 'La réservation n\'existe pas.']);
+                }
+            } else {
+                response()->json(['error' => 'L\'UUID est manquant.']);
+            }
+        }
+    }
+
     public function getCommandes(Request $request) {
         if (!$request->has('token')) {
             return response()->json(['error' => 'Le token est manquant.']);
@@ -222,11 +245,13 @@ class ApiController extends Controller
                     foreach ($commandes as $commande) {
                         $serveur = Personne::where('idPersonne', $commande->idPersonne)->first();
                         $commande['serveur'] = $serveur;
-                        $commande['comporters'] = $commande->comporters;
-                        foreach ($commande['comporters'] as $comporter) {
-                            $comporter['plat'] = Plat::where('idPlat', $comporter->idPlat)->first();
+                        $plats = [];
+                        foreach ($commande->comporters as $comporter) {
+                            array_push($plats, Plat::where('idPlat', $comporter->idPlat)->first());
                         }
+                        $commande['plats'] = $plats;
                         $commande['reservation'] = $commande->reservation;
+                        unset($commande['comporters']);
                         $commande['reservation']['client'] = Personne::where('idPersonne', $commande->reservation->idPersonne)->first();
                         $commande['etat'] = Etat::where('idEtat', $commande->idEtat)->first();
                     }
