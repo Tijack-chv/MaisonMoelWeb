@@ -8,8 +8,11 @@ use App\Models\Plat;
 use App\Models\Table;
 use App\Models\Client;
 use App\Models\Commande;
+use App\Models\Personne;
 use App\Models\Comporter;
 use App\Models\Reservation;
+
+use App\Utils\EmailHelpers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -48,7 +51,8 @@ class PublicController extends Controller
             'entrees' => $entrees,
             'plats' => $platsT,
             'desserts' => $desserts,
-            'boissons' => $boissons
+            'boissons' => $boissons,
+            'serveur'=> session('reservationServeur')
         ]);
     }
 
@@ -70,13 +74,14 @@ class PublicController extends Controller
 
         return view('Commande.ReservationCommande', [
             'tables' => $tables,
-            'clients' => $clients
+            'clients' => $clients,
+            'serveur'=> session('reservationServeur')
         ]);
     }
 
     public function ajoutReserverParServeur(Request $request)
     {
-    
+        
         // Création de la réservation
        $reservation = Reservation::create([
             'idPersonne' => $request->client_id,
@@ -86,12 +91,17 @@ class PublicController extends Controller
             'dateReservation' => now(),
             'uuid'=> Str::uuid(),
         ]);
+        
+
+        $personne = Personne::find($reservation->idPersonne);
 
         $table = Table::find($request->table_id);
         $table->idReservation = $reservation->idReservation;
         $table->save();
 
+        
         $request->session()->put('reservationServeur', $reservation->idReservation);
+        EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne,]);
 
         return redirect()->route('Commande.PriseCommande');
     }
@@ -127,6 +137,6 @@ class PublicController extends Controller
         }
 
         // Retourner une réponse ou rediriger vers une autre page
-        return redirect()->route('confirmation')->with('success', 'Votre commande a été envoyée avec succès !');
+        return redirect()->route('Commande.ReservationCommande')->with('success', 'Votre commande a été envoyée avec succès !');
     }
 }

@@ -1,6 +1,7 @@
 <x-header title="bg-[#323232]">
     <x-navbar></x-navbar>
     <div class="py-6 px-3 lg:px-48" id="about">
+        
         <h1 class="text-center text-4xl lg:text-5xl text-[#FFEB99] titre-font pb-9">
             Prise de Commande
         </h1>

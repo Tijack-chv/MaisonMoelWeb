@@ -52,5 +52,13 @@
                 </div>
             </div>
         </form>
+        <br>
+        <br>
+        @if (session('success'))
+            <div style="color: green; background-color: #d4edda; padding: 10px; border-radius: 5px;">
+                {{ session('success') }}
+            </div>
+        @endif
+
     </div>
 </x-header>
