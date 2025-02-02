@@ -15,11 +15,12 @@
                 <!-- Sélection de la commande -->
                 <div>
                     <label for="commandeSelect" class="block text-[#FFEB99] text-xl font-bold mb-2">Sélectionner une commande :</label>
+                        
                     <select id="commandeSelect" class="w-full py-3 px-4 bg-[#333] text-[#FFEB99] rounded-lg shadow-md text-xl">
                         <option value="">Choisir une commande...</option>
                         @foreach($commandeAPayer as $commande)
                             @php 
-                                $totalMontant = $commande->comporters->sum('prix');
+                                $totalMontant = $commande->comporters->sum('prix') - $commande->reservation->accompte;
                             @endphp
                             <option value="{{ $commande->idCommande }}" 
                                 data-id-commande = "{{ $commande->idCommande }}"  
@@ -27,7 +28,7 @@
                                 data-client="{{ $commande->reservation->client->personne->nom ?? 'Inconnu' }}" 
                                 data-prenom="{{ $commande->reservation->client->personne->prenom ?? 'Inconnu' }}" 
                                 data-table="{{ $commande->reservation->table->NomTable ?? 'Inconnue' }}"
-                                data-acompte="{{ $commande->reservation->acompte ? 'Oui' : 'Non' }}"
+                                data-acompte="{{ $commande->reservation->accompte}} € "
                                 data-commande="{{ json_encode($commande->comporters->map(fn($c) => [
                                     'nom' => $c->plat ? $c->plat->nomPlat : 'Inconnu',
                                     'prix' => $c->prix,
@@ -37,6 +38,7 @@
                                 Commande #{{ $commande->idCommande }} - Client : {{ $commande->reservation->client->personne->nom ?? 'Inconnu' }} {{ $commande->reservation->client->personne->prenom ?? '' }} - Table : {{ $commande->reservation->table->NomTable ?? 'Inconnue' }}
                             </option>
                         @endforeach
+                        
                     </select>
                 </div>
 
@@ -45,8 +47,8 @@
                     <h5 class="text-2xl font-bold">Détails de la commande</h5>
                     <p><strong>Client :</strong> <span id="clientNom"></span> <span id="clientPrenom"></span></p>
                     <p><strong>Table :</strong> <span id="tableId"></span></p>
-                    <p><strong>Montant total :</strong> <span id="commandeMontant"></span> €</p>
-                    <p><strong>Acompte versé :</strong> <span id="acompteStatut"></span></p>
+                    <p><strong>Montant total avec l'acompte  :</strong> <span id="commandeMontant"></span> €</p>
+                    <p><strong>Acompte versé à rembourser :</strong> <span id="acompteStatut"></span></p>
 
                     <!-- Liste des plats commandés -->
                     <h5 class="text-xl font-bold mt-4">Contenu de la commande :</h5>

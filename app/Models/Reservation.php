@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $dateMoment
  * @property Carbon $dateReservation
  * @property string $uuid
- * @property bool $accompte
+ * @property int $accompte
  * 
  * @property Client|null $client
  * @property Table $table
@@ -41,7 +41,7 @@ class Reservation extends Model
 		'nbPersonnes' => 'int',
 		'dateMoment' => 'datetime',
 		'dateReservation' => 'datetime',
-		'accompte' => 'bool'
+		'accompte' => 'int'
 	];
 
 	protected $fillable = [
