@@ -13,7 +13,7 @@
 <body style="background-color: #f7f7f7; padding-top: 50px;">
     <div class="container" style="max-width: 600px; background-color: #ffffff; border-radius: 10px; padding: 30px;">
         <div class="text-center mb-4">
-            <img src="http://192.168.143.9:8080/images/LOGO_TRANS.png" alt="Logo MaisonMoël" class="img-fluid mb-3">
+           
             <h2 class="text-success">Confirmation de Réservation</h2>
         </div>
         <p>Bonjour <strong>{{ $personne->prenom }} {{ $personne->nom }}</strong>,</p>

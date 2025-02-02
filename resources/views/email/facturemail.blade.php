@@ -48,11 +48,16 @@
 
                         </tr>
                         @endforeach
+                        <tr>
+                        <td>Acompte</td>
+                        <td></td>
+                        <td> - {{ $reservation->accompte }} €</td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <div class="d-flex justify-content-end">
-                    <h4><strong>Total à Payer : {{ number_format($total, 2, ',', ' ') }} €</strong></h4>
+                    <h4><strong>Total à Payer : {{$total - $reservation->accompte }}  €</strong></h4>
                 </div>
             </div>
             <div class="card-footer text-center">
