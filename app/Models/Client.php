@@ -29,7 +29,7 @@ class Client extends Model
 
 	protected $casts = [
 		'idPersonne' => 'int',
-		'pointFidelite' => 'int'
+		'pointFidelite' => 'int',
 	];
 
 	protected $fillable = [

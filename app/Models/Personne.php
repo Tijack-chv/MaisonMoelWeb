@@ -7,6 +7,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -18,12 +19,13 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string $password
  * @property Carbon|null $dateNaiss
+ * @property string $token
  * 
  * @property Admin $admin
+ * @property Collection|Avi[] $avis
  * @property Cuisinier $cuisinier
  * @property Serveur $serveur
- * @property Client $client
- * 
+ * @property Collection|TokenUserApi[] $token_user_apis
  *
  * @package App\Models
  */
@@ -46,12 +48,18 @@ class Personne extends Model
 		'prenom',
 		'email',
 		'password',
-		'dateNaiss'
+		'dateNaiss',
+		'token'
 	];
 
 	public function admin()
 	{
 		return $this->hasOne(Admin::class, 'idPersonne');
+	}
+
+	public function avis()
+	{
+		return $this->hasMany(Avi::class, 'idPersonne');
 	}
 
 	public function cuisinier()
