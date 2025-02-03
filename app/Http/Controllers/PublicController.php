@@ -91,6 +91,7 @@ class PublicController extends Controller
             'dateMoment' => now(),
             'dateReservation' => now(),
             'uuid'=> Str::uuid(),
+            'accompte' => 0,
         ]);
         
 
