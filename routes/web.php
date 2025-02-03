@@ -11,10 +11,6 @@ use App\Http\Controllers\ReservationController;
 
 Route::get('/', [PublicController::class, 'index'])->name('index');
 
-
-Route::get('/test', [PublicController::class, 'test'])->name('test');
-
-
 Route::get('/login', [AuthController::class, 'login_view'])->name('login');
 Route::post('/login', [AuthController::class, 'login_verif'])->name('login.login');
 

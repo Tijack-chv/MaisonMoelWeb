@@ -107,13 +107,6 @@ class PublicController extends Controller
         return redirect()->route('Commande.PriseCommande');
     }
 
-    public function test()
-    {
-        return view('email.reserveremail', [
-            'reservation' => Reservation::find(3),
-            'personne' => Personne::find(3),
-        ]);
-    }
 
     public function commander(Request $request)
     {

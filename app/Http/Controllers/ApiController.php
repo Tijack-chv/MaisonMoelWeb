@@ -212,8 +212,8 @@ class ApiController extends Controller
                 $reservation = Reservation::where('uuid', $uid)->first();
                 if ($reservation) {
                     $date = date('Y-m-d H:i:s', strtotime('+1 hour'));
-                    $dateRAvant = $reservation->dateReservation;
-                    $dateRApres = date('Y-m-d H:i:s', strtotime($reservation->dateReservation . ' +30 minutes'));
+                    $dateRAvant = date('Y-m-d H:i:s', strtotime($reservation->dateReservation));
+                    $dateRApres = date('Y-m-d H:i:s', strtotime($reservation->dateReservation . ' +1 hour 30 minutes'));
                     if ($dateRAvant <= $date && $dateRApres >= $date) {
                         $table = $reservation->idTable;
                         $table = Table::where('idTable', $table)->first();
