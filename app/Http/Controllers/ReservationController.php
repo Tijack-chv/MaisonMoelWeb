@@ -85,6 +85,7 @@ class ReservationController extends Controller
                     date('Y-m-d H:i:s', strtotime($request->datetime_reservation . ' +2 hours'))
                 ])->first();
                 if (!$reservation) {
+                    $request->session()->put('reservation', ['table' => $table->idTable] + session('reservation'));
                     return redirect()->route('reservation.cgr');
                 }
             }
@@ -99,7 +100,7 @@ class ReservationController extends Controller
             return redirect()->route('reservation.index');
         }
         $reservation = new Reservation();
-        $reservation->idTable = 1;
+        $reservation->idTable = session('reservation')['table'];
         $reservation->idPersonne = session('client')['idPersonne'];
         $reservation->dateMoment = date('Y-m-d H:i:s');
         $reservation->dateReservation = session('reservation')['datetime_reservation'];
