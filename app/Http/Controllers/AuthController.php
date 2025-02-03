@@ -54,7 +54,7 @@ class AuthController extends Controller
                 if (Hash::check($validated['password'], $Personne->password)) {
                     $Personne = $Personne->toArray();
                     session(['serveur' => $Personne]);
-                    return redirect()->route('Commande.PriseCommande');
+                    return redirect()->route('Commande.ReservationCommande');
                 } else {
                     return redirect()->route('login')->with('error', 'Email ou mot de passe incorrect.');
                 }   
@@ -125,6 +125,7 @@ class AuthController extends Controller
     {
         $request->session()->forget('client');
         $request->session()->forget('serveur');
+        session()->forget('reservationServeur');
         return redirect()->route('index');
     }    
 }

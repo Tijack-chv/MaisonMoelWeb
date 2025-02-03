@@ -2,9 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Avi;
 use App\Models\Plat;
+use App\Models\Table;
+use App\Models\Client;
+use App\Models\Commande;
+use App\Models\Personne;
+use App\Models\Comporter;
+use App\Models\Reservation;
+
+use App\Utils\EmailHelpers;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+
 
 class PublicController extends Controller
 {
@@ -19,7 +30,15 @@ class PublicController extends Controller
 
     public function priseCommande()
     {
+        
+        
         $plats = Plat::all();
+        
+        
+        $plats = $plats->map(function($plat) {
+            $plat->nomPlat = addslashes($plat->nomPlat);  // Échappe les apostrophes
+            return $plat;
+        });
 
         // Filtrage par idCategoriePlat
         $entrees = $plats->where('idCategoriePlat', 1);
@@ -32,8 +51,95 @@ class PublicController extends Controller
             'entrees' => $entrees,
             'plats' => $platsT,
             'desserts' => $desserts,
-            'boissons' => $boissons
+            'boissons' => $boissons,
+            'serveur'=> session('reservationServeur')
         ]);
     }
 
+    public function reserver()
+    {
+        $tablesLibres = Table::whereNull('idReservation')->get();
+
+        $tables = $tablesLibres->filter(function ($table) {
+            return !$table->reservations()
+                ->whereBetween('dateReservation', [Carbon::now(), Carbon::now()->addHours(2)])
+                ->exists(); // Vérifie si une réservation existe dans les 2 prochaines heures
+        });
+
+
+
+        
+        $clients = Client::with('personne')->get();
+       
+
+        return view('Commande.ReservationCommande', [
+            'tables' => $tables,
+            'clients' => $clients,
+            'serveur'=> session('reservationServeur')
+        ]);
+    }
+
+    public function ajoutReserverParServeur(Request $request)
+    {
+        
+        // Création de la réservation
+       $reservation = Reservation::create([
+            'idPersonne' => $request->client_id,
+            'idTable' => $request->table_id,
+            'nbPersonnes' => $request->nombre_personnes,
+            'dateMoment' => now(),
+            'dateReservation' => now(),
+            'uuid'=> Str::uuid(),
+        ]);
+        
+
+        $personne = Personne::find($reservation->idPersonne);
+
+        $table = Table::find($request->table_id);
+        $table->idReservation = $reservation->idReservation;
+        $table->save();
+
+        
+        $request->session()->put('reservationServeur', $reservation->idReservation);
+        EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne,]);
+
+        return redirect()->route('Commande.PriseCommande');
+    }
+
+    public function commander(Request $request)
+    {
+       
+        Commande::create([
+            'idEtat' => 1,
+            'idReservation' => session('reservationServeur'),
+            'idPersonne' => session('serveur.idPersonne'),
+            'dateCommande'=> now(),
+        ]);
+        
+        $derniereCommande = Commande::latest('idCommande')->first();
+        $idDeCommande = $derniereCommande->idCommande;
+        
+
+        // Récupérer les données de la commande
+        $orderData = json_decode($request->input('orderData'), true);
+
+        
+        foreach ($orderData['items'] as $item) {
+
+            $plat = Plat::find($item['idPlat']);
+            $plat->decrement('quantite', $item['quantity']);
+            
+            
+            Comporter::create([
+                
+                'idCommande' => $idDeCommande,
+                'nbCommander' => $item['quantity'],
+                'prix' => $item['price'],
+                'idPlat' => $item['idPlat'],
+            ]);
+        }
+
+        // Retourner une réponse ou rediriger vers une autre page
+        return redirect()->route('Commande.ReservationCommande')->with('success', 'Votre commande a été envoyée avec succès !');
+    }
 }

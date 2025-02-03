@@ -30,13 +30,16 @@ class Comporter extends Model
 	protected $casts = [
 		'idCommande' => 'int',
 		'idPlat' => 'int',
-		'prix' => 'int',
+		'prix' => 'float',
 		'nbCommander' => 'int'
 	];
 
 	protected $fillable = [
 		'prix',
-		'nbCommander'
+		'nbCommander',
+		'idCommande',
+		'idPlat'
+
 	];
 
 	public function commande()

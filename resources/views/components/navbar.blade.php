@@ -27,7 +27,16 @@
           <a href="/reservation" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Réserver</a>
         </li>
         <li>
-        @endif
+      @endif
+      @if(session('serveur'))
+        <li>
+          <a href="/ReservationCommande" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Reservation</a>
+        </li>
+        <li>
+          <a href="/Facturation" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Facturation</a>
+        </li>
+      @endif
+
           @if(session('client')||session('serveur'))
             <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 px-3 text-[#FFEB99] rounded hover:bg-gray-600 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0 md:w-auto">Mon compte
               <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
@@ -41,9 +50,10 @@
                     <a href="/reservations" class="block px-4 py-2 hover:bg-zinc-700 text-[#FFEB99]">Mes réservations</a>
                   </li>
                   <li>
-                @endif
+                
                     <a href="/profile" class="block px-4 py-2 hover:bg-zinc-700 text-[#FFEB99]">Mon profil</a>
                   </li>
+                  @endif
                 </ul>
                 <div class="py-1">
                   <a href="logout" class="block px-4 py-2 text-sm text-[#FFEB99] hover:bg-zinc-700">Déconnexion</a>

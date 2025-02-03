@@ -13,11 +13,12 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class Commande
  * 
+ * @property int $idCommande
  * @property int $idEtat
  * @property int $idReservation
  * @property int $idPersonne
  * @property Carbon $dateCommande
- * @property int $idCommande
+ * @property bool $est_payer
  * 
  * @property Etat $etat
  * @property Reservation $reservation
@@ -36,14 +37,16 @@ class Commande extends Model
 		'idEtat' => 'int',
 		'idReservation' => 'int',
 		'idPersonne' => 'int',
-		'dateCommande' => 'datetime'
+		'dateCommande' => 'datetime',
+		'est_payer' => 'bool'
 	];
 
 	protected $fillable = [
 		'idEtat',
 		'idReservation',
 		'idPersonne',
-		'dateCommande'
+		'dateCommande',
+		'est_payer'
 	];
 
 	public function etat()

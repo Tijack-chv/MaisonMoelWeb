@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\FacturationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\AuthVerification;
 use App\Http\Controllers\ReservationController;
@@ -39,5 +40,13 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
 
     Route::get('/PriseCommande', [PublicController::class, 'PriseCommande'])->name('Commande.PriseCommande');
+    Route::post('/commander', [PublicController::class, 'commander'])->name('Commande.commander');
+    Route::get('/ReservationCommande', [PublicController::class, 'reserver'])->name('Commande.ReservationCommande');
+    Route::post('/ReservationCommande', [PublicController::class, 'ajoutReserverParServeur'])->name('Commande.ReservationCommande');
+
+    Route::get('/Facturation', [FacturationController::class, 'facturer'])->name('Facturation.Facturer');
+    Route::post('/Payerfacture', [FacturationController::class, 'payerfacture'])->name('Facturation.payer');
+
+    
 });
 
