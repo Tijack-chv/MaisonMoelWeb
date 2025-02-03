@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Personne;
 use Illuminate\Http\Request;
 use App\Models\TypeTable;
 use App\Models\Reservation;
 use Illuminate\Support\Str;
 use App\Models\Table;
+use App\Utils\EmailHelpers;
 
 
 
@@ -108,6 +110,8 @@ class ReservationController extends Controller
         $reservation->uuid = Str::uuid();
         $reservation->accompte = (int) session('reservation')['nb_personnes'] * 10;
         $reservation->save();
+        $personne = Personne::find(session('client')['idPersonne']);
+        EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne]);
         session()->forget('reservation');
         return redirect()->route('reservation.index_s');
     }

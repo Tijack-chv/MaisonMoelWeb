@@ -34,8 +34,6 @@ class FacturationController extends Controller
 
         $commande = Commande::with('comporters.plat')->find($id);
 
-        
-
         $personne = $commande->reservation->client->personne;
         
         $commande->update(['est_payer' => 1]);

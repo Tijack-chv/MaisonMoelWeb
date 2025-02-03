@@ -83,7 +83,6 @@ class PublicController extends Controller
 
     public function ajoutReserverParServeur(Request $request)
     {
-        
         // Création de la réservation
        $reservation = Reservation::create([
             'idPersonne' => $request->client_id,
@@ -106,6 +105,14 @@ class PublicController extends Controller
         EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne,]);
 
         return redirect()->route('Commande.PriseCommande');
+    }
+
+    public function test()
+    {
+        return view('email.reserveremail', [
+            'reservation' => Reservation::find(3),
+            'personne' => Personne::find(3),
+        ]);
     }
 
     public function commander(Request $request)

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,11 +20,14 @@
         <p>Merci beaucoup d'avoir choisi <strong>MaisonMoël</strong> pour votre prochaine expérience culinaire ! Nous sommes ravis de vous accueillir.</p>
 
         <p>Voici les détails de votre réservation :</p>
-        
         <ul>
             <li><strong>Date de la réservation :</strong> {{ $reservation->dateReservation }}</li>
-            <li><strong>Numéro de réservation :</strong> #{{ $reservation->idReservation }}</li>
+            <li><strong>Numéro de réservation :</strong> {{ $reservation->uuid }}</li>
+            <li><strong>QR Code :</li>
         </ul>
+        <li>
+            <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($reservation->client->nom." ".$reservation->client->prenom.";".$reservation->dateReservation.";".$reservation->uuid)) !!} " alt="QR Code">
+        </li>
 
         <p>Nous avons hâte de vous recevoir et de vous offrir une expérience inoubliable à MaisonMoël.</p>
 
