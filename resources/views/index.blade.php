@@ -19,7 +19,7 @@
             À propos de nous
         </h1>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0">
-            <div class="h-full place-content-center">
+            <div class="h-full place-content-center order-2 lg:order-1">
                 <p class="text-lg text-white">
                     Bienvenue à la Maison Moël, un lieu où la tradition culinaire rencontre l'innovation moderne. Situé au cœur de Camoël, notre restaurant vous offre une expérience gastronomique unique, alliant des ingrédients locaux de la plus haute qualité à des techniques culinaires raffinées.
                 </p>
@@ -30,7 +30,7 @@
                     À la Maison Moël, nous croyons que chaque repas est une occasion de se connecter, de célébrer et de savourer la vie. Nous vous invitons à découvrir notre menu, à explorer nos sélections de vins et à profiter de l'ambiance chaleureuse et accueillante de notre restaurant.
                 </p>
             </div>
-            <div class="flex justify-center">
+            <div class="flex justify-center order-1 lg:order-2 mb-4 lg:mb-0">
                 <img src="http://192.168.143.9:8080/images/CHEF_DELASAGNA.png" class="rounded-full border-8 border-[#FFEB99]" style="position: relative;object-fit: cover;height:fit-content;top: 50%;transform: translateY(-50%);" alt="Chef DELASAGNA" />
             </div>
         </div>
@@ -48,7 +48,13 @@
                 @foreach($plats as $plat)
                     <swiper-slide>
                         <x-card-accueil>
-                            @if($plat->quantite < 10)
+                            @if($plat->quantite == 0)
+                                <div class="hidden md:flex">
+                                    <x-badge>
+                                        En rupture !
+                                    </x-badge>
+                                </div>
+                            @elseif($plat->quantite < 10)
                                 <div class="hidden md:flex">
                                     <x-badge>
                                         Bientôt en rupture !
@@ -115,6 +121,28 @@
                 .bindPopup('Camoël, France');
         </script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+        <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10">
+
+        <div class="pt-2 pb-6 px-3 lg:px-48">
+            <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font pb-6">
+                Nos événements
+            </h1>
+            <div class="grid grid-cols-1 gap-4">
+                @foreach($evenements as $evenement)
+                    <div class="mx-auto flex flex-col items-center w-full bg-[#292929] rounded-lg shadow-sm md:flex-row md:max-w-4xl">
+                        <img class="object-cover w-full rounded-t-lg h-96 md:h-48 md:w-48 md:rounded-none md:rounded-s-lg" src="http://192.168.143.9:8080/{{ $evenement->imageEvenement }}" alt="">
+                        <div class="flex flex-col justify-between p-4 leading-normal">
+                            <h5 class="text-md text-zinc-500">{{ \Carbon\Carbon::parse($evenement->dateEvenement)->locale('fr')->translatedFormat('d F Y \à H:i') }}</h5>
+                            <h2 class="mb-2 text-2xl font-semibold text-white">{{ $evenement->descriptionEvenement }}</h2>
+                            <div class="bg-[#323232] w-fit py-2 px-4 rounded-full">
+                                <h6 class="text-xs text-zinc-400">{{ $evenement->type_evenement->libelleTypeEvenement }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
 
         <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10">
 
@@ -232,7 +260,7 @@
                         <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                     </svg>
                 </div>
-                <input type="hidden" name="note" id="note" value="1">
+                <input type="hidden" name="note" id="note" value="5">
                 <script type="text/javascript">
                     function rateStar(note) {
                         document.getElementById('note').value = note;

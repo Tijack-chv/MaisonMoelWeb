@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,8 +15,9 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idEvenement
  * @property int $idTypeEvenement
- * @property string $descritionEvenement
+ * @property string $descriptionEvenement
  * @property string|null $imageEvenement
+ * @property Carbon|null $dateEvenement
  * 
  * @property TypeEvenement $type_evenement
  * @property Collection|PromoPlat[] $promo_plats
@@ -29,13 +31,15 @@ class Evenement extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'idTypeEvenement' => 'int'
+		'idTypeEvenement' => 'int',
+		'dateEvenement' => 'datetime'
 	];
 
 	protected $fillable = [
 		'idTypeEvenement',
-		'descritionEvenement',
-		'imageEvenement'
+		'descriptionEvenement',
+		'imageEvenement',
+		'dateEvenement'
 	];
 
 	public function type_evenement()

@@ -1,7 +1,6 @@
 <x-header title="bg-[#353535]">
     <x-navbar></x-navbar>
 
-
     <div class="mt-6">
         <x-card>
             <h1 class="text-2xl">Modification du profil</h1>

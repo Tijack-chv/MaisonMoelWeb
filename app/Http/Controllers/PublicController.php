@@ -11,7 +11,7 @@ use App\Models\Commande;
 use App\Models\Personne;
 use App\Models\Comporter;
 use App\Models\Reservation;
-
+use App\Models\Evenement;
 use App\Utils\EmailHelpers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -21,19 +21,21 @@ class PublicController extends Controller
 {
     public function index()
     {
-        $avis = Avi::limit(5)->orderBy('note', 'desc')->get();
+        $evenements = Evenement::orderBy('dateEvenement', 'asc')->limit(3)->get();
+        $avis = Avi::limit(5)->orderBy('date', 'desc')->get();
         $avgAvis = Avi::avg('note');
         $notes = array(Avi::where('note', 1)->count(), Avi::where('note', 2)->count(), Avi::where('note', 3)->count(), Avi::where('note', 4)->count(), Avi::where('note', 5)->count(), Avi::count());
-        $plats = Plat::limit(8)->get();
-        return view('index', ['avis' => $avis, 'avgAvis' => $avgAvis, 'notes' => $notes, 'plats' => $plats]);
+        $comporters = Comporter::groupBy('idPlat')->selectRaw('idPlat, sum(nbCommander) as total')->orderBy('total', 'desc')->limit(8)->get();
+        $plats = [];
+        foreach ($comporters as $comporter) {
+            array_push($plats, Plat::find($comporter->idPlat));
+        }
+        return view('index', ['avis' => $avis, 'avgAvis' => $avgAvis, 'notes' => $notes, 'plats' => $plats, 'evenements' => $evenements]);
     }
 
     public function priseCommande()
-    {
-        
-        
+    {        
         $plats = Plat::all();
-        
         
         $plats = $plats->map(function($plat) {
             $plat->nomPlat = addslashes($plat->nomPlat);  // Échappe les apostrophes

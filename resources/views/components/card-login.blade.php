@@ -41,9 +41,4 @@
         <a href="/register" class="text-[#FFEB99] text-sm underline">S'inscrire</a>
         <a href="/" class="text-[#FFEB99] text-sm underline p-5">Retour</a>
     </div>
-    <br>
-    <div class="mt-4">
-        
-    </div>
-    <br>
 </div>
