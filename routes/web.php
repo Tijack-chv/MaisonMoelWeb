@@ -34,7 +34,7 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/reservation', [ReservationController::class, 'reservation'])->name('reservation.reservation');
     Route::get('/reservation/cgr', [ReservationController::class, 'cgr'])->name('reservation.cgr');
     Route::get('/reservation/payment', [ReservationController::class, 'payment'])->name('reservation.payment');
-    Route::post('/reservation/register', [ReservationController::class, 'register'])->name('reservation.register');
+    Route::get('/reservation/register', [ReservationController::class, 'register'])->name('reservation.register');
     Route::post('/reservation/payment', [ReservationController::class, 'cgr_valid'])->name('reservation.verif_payment');
 
     Route::post('/rating', [ProfileController::class, 'rating'])->name('profile.rating');
@@ -45,8 +45,6 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::post('/ReservationCommande', [PublicController::class, 'ajoutReserverParServeur'])->name('Commande.ReservationCommande');
 
     Route::get('/Facturation', [FacturationController::class, 'facturer'])->name('Facturation.Facturer');
-    Route::post('/Payerfacture', [FacturationController::class, 'payerfacture'])->name('Facturation.payer');
-
-    
+    Route::post('/Payerfacture', [FacturationController::class, 'payerfacture'])->name('Facturation.payer');    
 });
 

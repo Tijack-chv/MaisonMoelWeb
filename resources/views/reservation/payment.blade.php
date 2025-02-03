@@ -101,24 +101,8 @@
                                 <script type="text/javascript">
                                     $('#paymentForm').submit(function(e) {
                                         e.preventDefault();
-                                        reservation();
                                         payment();
                                     });
-
-                                    function reservation() {
-                                        var data = $('#paymentForm').serialize();
-                                        $.ajax({
-                                            type: 'POST',
-                                            url: '/reservation/register',
-                                            data: data,
-                                            success: function(response) {
-                                                console.log(response);
-                                            },
-                                            error: function(error) {
-                                                console.log(error);
-                                            }
-                                        });
-                                    }
 
                                     function payment() {
                                         $('#paybtn').hide();
@@ -127,6 +111,7 @@
                                             $('#toast-success').show('hidden');
                                             $('#paybtn').show();
                                             $('#loadingGIF').hide();
+                                           location.href = '/reservation/register';
                                         }, 2000);
                                     }
                                 </script>

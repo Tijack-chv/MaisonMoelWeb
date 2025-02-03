@@ -10,13 +10,15 @@
                         <p class="text-left text-gray-500 text-lg text-[#FFEB99]">Vous n'avez pas de réservation passée.</p>
                     @else
                         @foreach($reservationsPasse as $reservation)
-                            <div class="rounded border w-full border-zinc-700 text-zinc-200 px-6 py-4 gap-2">
+                            <div class="rounded border w-full border-zinc-700 text-zinc-200 px-6 py-4 gap-2 mb-4">
                                 <div class="grid grid-cols-2">
                                     <div>
                                         <h1 class="text-xl"><span class="font-bold">Numéro de réservation : </span>{{$reservation->idReservation}}</h1>
                                         <p><span class="font-bold">Date de réservation : </span>{{$reservation->dateReservation}}</p>
                                         <p><span class="font-bold">Nombre de personnes : </span>{{$reservation->nbPersonnes}}</p>
-                                        <p><span class="font-bold">Montant total (accompte) : </span>{{$reservation->nbPersonnes * 10}}.00 €</p>
+                                        @if ($reservation->accompte != 0)
+                                            <p><span class="font-bold">Montant total (accompte) : </span>{{$reservation->nbPersonnes * 10}}.00 €</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

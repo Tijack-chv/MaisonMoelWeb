@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TypeTable;
 use App\Models\Reservation;
+use Illuminate\Support\Str;
+use App\Models\Table;
 
 
 
@@ -75,19 +77,38 @@ class ReservationController extends Controller
             'type_table' => $request->type_table,
             'nb_personnes' => $request->nb_personnes
         ));
+        $tables = Table::where('idTypeTable', $request->type_table)->where('capacite', '>=', $request->nb_personnes)->get();
+        if ($tables) {
+            foreach ($tables as $table) {
+                $reservation = Reservation::where('idTable', $table->idTable)->whereBetween('dateReservation', [
+                    date('Y-m-d H:i:s', strtotime($request->datetime_reservation . ' -2 hours')),
+                    date('Y-m-d H:i:s', strtotime($request->datetime_reservation . ' +2 hours'))
+                ])->first();
+                if (!$reservation) {
+                    return redirect()->route('reservation.cgr');
+                }
+            }
+        }
 
-        return redirect()->route('reservation.cgr');
+        $request->session()->forget('reservation');
+        return redirect()->route('reservation.index');
     }
 
-    public function register(Request $request) {
+    public function register() {
+        if (!session()->has('reservation')) {
+            return redirect()->route('reservation.index');
+        }
         $reservation = new Reservation();
-        $reservation->idTable = 1; //A CHANGER
+        $reservation->idTable = 1;
         $reservation->idPersonne = session('client')['idPersonne'];
         $reservation->dateMoment = date('Y-m-d H:i:s');
         $reservation->dateReservation = session('reservation')['datetime_reservation'];
-        $reservation->nbPersonnes = session('reservation')['nb_personnes'];
+        $reservation->nbPersonnes = (int) session('reservation')['nb_personnes'];
+        $reservation->uuid = Str::uuid();
+        $reservation->accompte = (int) session('reservation')['nb_personnes'] * 10;
         $reservation->save();
         session()->forget('reservation');
+        return redirect()->route('reservation.index_s');
     }
 
     public function remove($id)
