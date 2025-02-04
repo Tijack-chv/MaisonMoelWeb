@@ -247,7 +247,9 @@ class ApiController extends Controller
                         $commande['serveur'] = $serveur;
                         $plats = [];
                         foreach ($commande->comporters as $comporter) {
-                            array_push($plats, Plat::where('idPlat', $comporter->idPlat)->first());
+                            $plat = Plat::where('idPlat', $comporter->idPlat)->first();
+                            $plat['nb_commande'] = $comporter->nbCommander;
+                            array_push($plats, $plat);
                         }
                         $commande['plats'] = $plats;
                         $commande['reservation'] = $commande->reservation;

@@ -83,7 +83,7 @@
 
         <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10">
 
-        <div class="pt-2 pb-6 px-3 lg:px-48" id="contactd">
+        <div class="pt-2 pb-6 px-3 lg:px-48" id="contact">
             <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font pb-6">
                 Contactez-nous
             </h1>
@@ -169,49 +169,49 @@
                         @endfor
 
                         @for($i = (int)$avgAvis;$i<5;$i++)
-                            <svg class="w-4 h-4 text-gray-300 me-1 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                            <svg class="w-4 h-4 text-gray-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                                 <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
                             </svg>
                         @endfor
-                        <p class="ms-1 text-sm font-medium text-gray-500 dark:text-gray-400">{{ fmod($avgAvis, 1) == 0 ? (int)$avgAvis : number_format($avgAvis,2) }}/5</p>
+                        <p class="ms-1 text-sm font-medium text-gray-500">{{ fmod($avgAvis, 1) == 0 ? (int)$avgAvis : number_format($avgAvis,2) }}/5</p>
                     </div>
                 </div>
-                <p class="text-sm font-medium text-gray-500 dark:text-gray-400 text-center">{{$notes[5]}} notes</p>
+                <p class="text-sm font-medium text-gray-500 text-center">{{$notes[5]}} notes</p>
                 <div class="grid grid-cols-1">
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">5 étoiles</p>
-                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                        <div class="w-2/4 h-5 mx-4 rounded bg-zinc-700">
                             <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[4]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[4]*100/$notes[5]) }}%</span>
+                        <span class="text-sm font-medium text-gray-400">{{ (int)($notes[4]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">4 étoiles</p>
-                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                        <div class="w-2/4 h-5 mx-4 rounded bg-zinc-700">
                             <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[3]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[3]*100/$notes[5]) }}%</span>
+                        <span class="text-sm font-medium text-gray-400">{{ (int)($notes[3]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">3 étoiles</p>
-                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                        <div class="w-2/4 h-5 mx-4 rounded bg-zinc-700">
                             <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[2]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[2]*100/$notes[5]) }}%</span>
+                        <span class="text-sm font-medium text-gray-400">{{ (int)($notes[2]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">2 étoiles</p>
-                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                        <div class="w-2/4 h-5 mx-4 rounded bg-zinc-700">
                             <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[1]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[1]*100/$notes[5]) }}%</span>
+                        <span class="text-sm font-medium text-gray-400">{{ (int)($notes[1]*100/$notes[5]) }}%</span>
                     </div>
                     <div class="flex justify-center mt-4">
                         <p class="text-sm font-medium text-white">1 étoile</p>
-                        <div class="w-2/4 h-5 mx-4 bg-gray-200 rounded dark:bg-gray-700">
+                        <div class="w-2/4 h-5 mx-4 rounded bg-zinc-700">
                             <div class="h-5 bg-yellow-300 rounded" style="width: {{ (int)($notes[0]*100/$notes[5]) }}%"></div>
                         </div>
-                        <span class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ (int)($notes[0]*100/$notes[5]) }}%</span>
+                        <span class="text-sm font-medium text-gray-400">{{ (int)($notes[0]*100/$notes[5]) }}%</span>
                     </div>
                 </div>
             </x-card-contact>
