@@ -12,7 +12,7 @@ use App\Models\Personne;
 use App\Models\Comporter;
 use App\Models\Reservation;
 use App\Models\Evenement;
-use App\Utils\EmailHelpers;
+use App\utils\EmailHelpers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
