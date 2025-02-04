@@ -12,9 +12,9 @@ use App\Models\Personne;
 use App\Models\Comporter;
 use App\Models\Reservation;
 use App\Models\Evenement;
-use App\Models\TypePlat;
 use App\Models\CategoriePlat;
 use App\utils\EmailHelpers;
+use App\Models\TokenApi;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -164,5 +164,15 @@ class PublicController extends Controller
 
         // Retourner une réponse ou rediriger vers une autre page
         return redirect()->route('Commande.ReservationCommande')->with('success', 'Votre commande a été envoyée avec succès !');
+    }
+
+    public function sendMailCron(Request $request) {
+        if ($request->has('token') && TokenApi::where('token', $request->token)->first()) {
+            $reservations = Reservation::whereDate('dateReservation', Carbon::tomorrow())->get();
+            foreach($reservations as $reservation) {
+                $personne = Personne::find($reservation->idPersonne);
+                EmailHelpers::sendEmail($personne->email, "Rappel de réservation", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne]);
+            }
+        }
     }
 }
