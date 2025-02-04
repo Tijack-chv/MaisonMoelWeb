@@ -103,7 +103,7 @@ class PublicController extends Controller
 
         
         $request->session()->put('reservationServeur', $reservation->idReservation);
-        EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne,]);
+        EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne]);
 
         return redirect()->route('Commande.PriseCommande');
     }

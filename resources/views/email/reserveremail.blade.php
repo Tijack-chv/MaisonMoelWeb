@@ -26,7 +26,7 @@
         </ul>
         
         <div class="mb-3">
-        {!! QrCode::size(200)->generate(strval($reservation->uuid)) !!}
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ $reservation->uuid }}" width="200"/>
         </div>
 
         <p>Nous avons hâte de vous recevoir et de vous offrir une expérience inoubliable à MaisonMoël.</p>
