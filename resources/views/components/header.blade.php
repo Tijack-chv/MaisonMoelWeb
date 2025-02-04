@@ -37,6 +37,21 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @else
             <style>
+                body, html {
+                    margin: 0;
+                    padding: 0;
+                    min-height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                .main-content {
+                    flex: 1; /* Prend toute la place restante */
+                }
+
+                footer {
+                    margin-top: auto; /* Le footer reste en bas même si le contenu est court */
+                }
                 input[type="date"]::-webkit-inner-spin-button,
                 input[type="date"]::-webkit-calendar-picker-indicator {
                     display: none;
@@ -66,8 +81,12 @@
         @endif
     </head>
     <body class="{{ $title }}" style="overflow-x:hidden;">
-        {{ $slot }}
-        <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-        <x-footer></x-footer>
+        <div class="flex flex-col min-h-screen">
+            <div class="main-content flex-1">
+                {{ $slot }}
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+            <x-footer></x-footer>
+        </div>
     </body>
 </html>
