@@ -53,8 +53,8 @@
                                 <h3 class="text-xl font-medium mb-2">2.1. Réservation en ligne ou par téléphone</h3>
                                 <p class="text-white">Les réservations peuvent être effectuées via :</p>
                                 <ul class="list-disc list-inside text-white">
-                                    <li>Notre site internet : <a href="#" class="text-blue-500 hover:underline">[lien du site]</a></li>
-                                    <li>Par téléphone au <span class="font-medium">[numéro de téléphone]</span>.</li>
+                                    <li>Notre site internet : <a href="http://maisonmoel-192-168-143-12.traefik.me/" class="text-blue-500 hover:underline">maisonmoel.fr</a></li>
+                                    <li>Par téléphone au <span class="font-medium">+33 2 99 90 90 90</span>.</li>
                                 </ul>
                                 <p class="text-white mt-2">Lors de la réservation, nous demandons les informations suivantes :</p>
                                 <ul class="list-disc list-inside text-white">
@@ -66,11 +66,11 @@
                             </div>
                             <div>
                                 <h3 class="text-xl font-medium mb-2">2.2. Réservations pour groupes</h3>
-                                <p class="text-white">Pour les groupes de <span class="font-medium">6 personnes ou plus</span>, des conditions particulières peuvent s’appliquer, comme un menu préétabli ou un acompte.</p>
+                                <p class="text-white">Pour les groupes de <span class="font-medium">6 personnes ou plus</span>, des conditions particulières peuvent s’appliquer, comme un menu préétabli.</p>
                             </div>
                             <div>
                                 <h3 class="text-xl font-medium mb-2">2.3. Confirmation de réservation</h3>
-                                <p class="text-white">Une réservation n’est confirmée qu’après réception d’un e-mail ou d’un SMS de confirmation envoyé par <span class="font-semibold">Maison Moël</span>.</p>
+                                <p class="text-white">Une réservation n’est confirmée qu’après réception d’un e-mail de confirmation envoyé par <span class="font-semibold">Maison Moël</span>.</p>
                             </div>
                         </div>
                     </section>
@@ -81,8 +81,7 @@
                         <div class="space-y-4">
                             <div>
                                 <h3 class="text-xl font-medium  mb-2">3.1. Par le client</h3>
-                                <p class="text-white">Toute modification ou annulation doit être communiquée au minimum <span class="font-medium">24/48 heures</span> avant la date et l’heure de la réservation, par téléphone ou via l’e-mail fourni lors de la réservation.</p>
-                                <p class="text-white mt-2">En cas de non-présentation sans préavis ("no-show"), <span class="font-semibold">Maison Moël</span> se réserve le droit de facturer des frais d’annulation de <span class="font-medium">[montant]</span>.</p>
+                                <p class="text-white">En cas d'annulation', <span class="font-semibold">Maison Moël</span> se réserve le droit de facturer des frais d’annulation de <span class="font-medium">10€ par personne</span>.</p>
                             </div>
                             <div>
                                 <h3 class="text-xl font-medium mb-2">3.2. Par le restaurant</h3>
@@ -94,7 +93,7 @@
                     <!-- Section 4 -->
                     <section class="mb-8">
                         <h2 class="text-2xl font-semibold mb-4">4. Politique de dépôt et frais d’annulation</h2>
-                        <p class="text-white">Pour certaines réservations (groupes ou événements spéciaux), un acompte peut être demandé. Ce montant sera déduit de la facture finale lors de votre visite. En cas d’annulation tardive ou de non-présentation, l’acompte ne sera pas remboursé.</p>
+                        <p class="text-white">Pour les réservations à distance, un acompte peut être demandé. Ce montant sera déduit de la facture finale lors de votre visite. En cas d’annulation ou de non-présentation, l’acompte ne sera pas remboursé.</p>
                     </section>
 
                     <!-- Section 5 -->
@@ -104,7 +103,7 @@
                     </section>
 
                     <!-- Conclusion -->
-                    <p class="text-white">Merci de votre compréhension. Pour toute question ou demande particulière, veuillez nous contacter au <span class="font-medium">[numéro de téléphone]</span> ou à l’adresse e-mail suivante : <a href="mailto:[adresse email]" class="text-blue-500 hover:underline">[adresse email]</a>.</p>
+                    <p class="text-white">Merci de votre compréhension. Pour toute question ou demande particulière, veuillez nous contacter au <span class="font-medium">+33 2 99 90 90 90</span> ou à l’adresse e-mail suivante : <a href="mailto:hello@maisonmoel.com" class="text-blue-500 hover:underline">hello@maisonmoel.com</a>.</p>
                     <p class=" font-medium mt-6">L’équipe de Maison Moël</p>
                     <form action="/reservation/payment" method="post">
                         @csrf

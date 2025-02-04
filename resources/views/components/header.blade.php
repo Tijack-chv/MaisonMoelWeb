@@ -68,5 +68,6 @@
     <body class="{{ $title }}" style="overflow-x:hidden;">
         {{ $slot }}
         <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+        <x-footer></x-footer>
     </body>
 </html>

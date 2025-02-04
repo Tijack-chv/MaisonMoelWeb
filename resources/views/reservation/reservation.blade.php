@@ -18,6 +18,11 @@
                 <div class="flex flex-col items-center justify-center">
                     <form method="post" id="form_test" action="/reservation" class="rounded border border-zinc-700 md:w-9/12 text-zinc-200 mt-2 px-2 py-4 gap-2 flex flex-wrap justify-center">
                         @csrf
+                        @if (session('error'))
+                            <x-alert-danger>
+                                <span class="font-medium">Erreur !</span> {{ session('error') }}
+                            </x-alert-danger>
+                        @endif
                         <h1 class="text-xl text-left font-semibold mt-1 w-full mx-2">La date :</h1>
                         <div class="relative w-full mx-2 mb-4">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -35,6 +40,9 @@
                         <h1 class="text-lg text-center font-medium mt-2" id="date_resume">Date : xx/xx/xxxx à xx:xx</h1>
                         <input type="hidden" id="datetime_reservation" name="datetime_reservation" value="">
                         <script type="text/javascript">
+                            udpateAjax();
+                            updateDate();
+
                             function updateDate() {
                                 var date = document.getElementById('default-datepicker').value ? document.getElementById('default-datepicker').value : 'xx/xx/xxxx';
                                 var time = document.querySelector('input[name="hosting"]:checked')?.value ? document.querySelector('input[name="hosting"]:checked').value : 'xx:xx';
@@ -48,13 +56,17 @@
                             });
 
                             $('#default-datepicker').change(function() {
+                                udpateAjax();
+                                updateDate();
+                            });
+
+                            function udpateAjax() {
                                 fetch('/reservation/hours?date=' + document.getElementById('default-datepicker').value)
                                     .then(response => response.text())
                                     .then(html => {
                                         document.getElementById('hours').innerHTML = html;
                                 });
-                                updateDate();
-                            });
+                            }
                         </script>
 
                         <h1 class="text-xl text-left font-semibold mt-4 w-full mx-2">La table :</h1>

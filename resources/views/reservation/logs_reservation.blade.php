@@ -31,7 +31,7 @@
                         <p class="text-left text-gray-500 text-lg text-[#FFEB99]">Vous n'avez pas de réservation dans le futur.</p>
                     @else
                         @foreach($reservationsFutur as $reservation)
-                            <div class="rounded border w-full border-zinc-700 text-zinc-200 px-6 py-4 gap-2">
+                            <div class="rounded border w-full border-zinc-700 text-zinc-200 px-6 py-4 gap-2 mb-4">
                                 <div class="grid grid-cols-2">
                                     <div>
                                         <h1 class="text-xl"><span class="font-bold">Numéro de réservation : </span>{{$reservation->idReservation}}</h1>
@@ -40,7 +40,7 @@
                                         <p><span class="font-bold">Montant total (accompte) : </span>{{$reservation->nbPersonnes * 10}}.00 €</p>
                                     </div>
                                     <div class="flex justify-end">
-                                        <button data-modal-target="popup-modal-{{$reservation->idReservation}}" data-modal-toggle="popup-modal-{{$reservation->idReservation}}" type="button" class="inline-flex items-center justify-center focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2">
+                                        <button data-modal-target="popup-modal-{{$reservation->idReservation}}" data-modal-toggle="popup-modal-{{$reservation->idReservation}}" type="button" class="inline-flex items-center justify-center focus:outline-none text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 h-fit">
                                             <svg class="w-6 h-6 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/>
                                             </svg>
@@ -60,7 +60,7 @@
                                                     <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                                                     </svg>
-                                                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Êtes-vous sûr d'annuler la réservation ? <span class="text-sm">L'acompte versé ultérieurement ne sera pas remboursé.</span></h3>
+                                                    <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Êtes-vous sûr d'annuler la réservation ? <span class="text-sm">L'acompte versé ne sera pas remboursé.</span></h3>
                                                     <a href="/reservation/remove/{{$reservation->idReservation}}">
                                                         <button data-modal-hide="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
                                                             Supprimer la réservation

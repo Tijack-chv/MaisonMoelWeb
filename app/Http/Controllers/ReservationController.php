@@ -79,7 +79,14 @@ class ReservationController extends Controller
             'type_table' => $request->type_table,
             'nb_personnes' => $request->nb_personnes
         ));
+        
+        if (date('Y-m-d', strtotime(session('reservation')['datetime_reservation'])) <= date('Y-m-d')) {
+            return redirect()->route('reservation.index')->with('error', 'Vous ne pouvez pas réserver pour aujourd\'hui ou plus tôt.');
+        }
+
         $tables = Table::where('idTypeTable', $request->type_table)->where('capacite', '>=', $request->nb_personnes)->get();
+
+
         if ($tables) {
             foreach ($tables as $table) {
                 $reservation = Reservation::where('idTable', $table->idTable)->whereBetween('dateReservation', [
@@ -94,7 +101,7 @@ class ReservationController extends Controller
         }
 
         $request->session()->forget('reservation');
-        return redirect()->route('reservation.index');
+        return redirect()->route('reservation.index')->with('error', 'Aucune table disponible pour cette date et ce nombre de personnes.');
     }
 
     public function register() {
@@ -144,18 +151,6 @@ class ReservationController extends Controller
         $hours = array();
         for($time = strtotime('12:30'); $time <= strtotime('22:00'); $time = strtotime('+30 minutes', $time)) {
             array_push($hours, date('H:i', $time));
-        }
-        foreach ($reservations as $reservation) {
-            $key = array_search(date('H:i', strtotime($this->getHoursMinutes($reservation->dateReservation))), $hours);
-            if ($key !== false) {
-                unset($hours[$key]);
-                if (isset($hours[$key + 1])) {
-                    unset($hours[$key + 1]);
-                }
-                if (isset($hours[$key + 2])) {
-                    unset($hours[$key + 2]);
-                }
-            }
         }
         return view('reservation.ajax.hoursReservation', ['hours' => $hours]);
     }

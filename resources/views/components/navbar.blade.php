@@ -1,6 +1,6 @@
 <nav class="bg-[#292929] border-solid border-[0.1rem] border-b-[#FFEB99] border-x-transparent border-t-transparent">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a class="flex items-center space-x-3 rtl:space-x-reverse">
+    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img src="http://192.168.143.9:8080/images/LOGO_TRANS.png" class="h-[4rem]" alt="Maison Moël Logo" />
         <span class="self-center text-[#FFEB99] text-2xl font-semibold whitespace-nowrap titre-font">Maison Moël</span>
     </a>
@@ -30,7 +30,7 @@
       @endif
       @if(session('serveur'))
         <li>
-          <a href="/ReservationCommande" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Reservation</a>
+          <a href="/ReservationCommande" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Réservation</a>
         </li>
         <li>
           <a href="/Facturation" class="block py-2 px-3 text-[#FFEB99] rounded hover:bg-zinc-700 md:hover:bg-transparent md:border-0 md:hover:text-[#bfaf6e] md:p-0">Facturation</a>
