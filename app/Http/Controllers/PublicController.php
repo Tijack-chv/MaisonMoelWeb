@@ -149,7 +149,6 @@ class PublicController extends Controller
     public function test() {
         $personne = Personne::find(3);
         $reservation = Reservation::find(3);
-        dd($reservation, $personne);
         EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne]);
     }
 }
