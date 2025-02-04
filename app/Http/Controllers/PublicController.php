@@ -9,14 +9,15 @@ use App\Models\Table;
 use App\Models\Client;
 use App\Models\Commande;
 use App\Models\Personne;
-use App\Models\Comporter;
-use App\Models\Reservation;
-use App\Models\Evenement;
 use App\Models\TypePlat;
-use App\Models\CategoriePlat;
+use App\Models\Comporter;
+use App\Models\Evenement;
+use App\Models\Reservation;
+use App\Models\Restreindre;
 use App\utils\EmailHelpers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\CategoriePlat;
 
 
 class PublicController extends Controller
@@ -55,7 +56,15 @@ class PublicController extends Controller
 
     public function priseCommande()
     {        
+        
         $plats = Plat::all();
+        
+
+
+        
+        
+
+        
         
         $plats = $plats->map(function($plat) {
             $plat->nomPlat = addslashes($plat->nomPlat);  // Échappe les apostrophes

@@ -8,6 +8,7 @@
 
         <!-- Section des catégories -->
         <div id="categories">
+            
             <!-- Entrées -->
             <div class="mb-6">
                 <button class="w-full text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
@@ -15,33 +16,47 @@
                     Entrées
                 </button>
                 <div id="entree-list" class="hidden space-y-4">
-                @foreach ($entrees as $entree)
-                    <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
-                        <div class="flex items-center space-x-4">
-                            <img src="http://192.168.143.9:8080/{{$entree->imagePlat}}" alt="{{ $entree->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
-                            <div>
-                                <h3 class="text-lg text-[#FFEB99]">{{ $entree->nomPlat }}</h3>
-                                <p class="text-sm text-gray-300">{{ $entree->descriptionPlat }}</p>
-                                <p class="text-sm text-gray-300 font-bold">Prix : {{ $entree->prixHT }} €</p>
-                                <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $entree->idPlat }}">{{ $entree->quantite }}</span></p>
+                    @foreach ($entrees as $entree)
+                        <div class="flex justify-between items-center p-3 bg-[#444] rounded-md shadow-md">
+                            <div class="flex items-center space-x-4">
+                                <img src="http://192.168.143.9:8080/{{$entree->imagePlat}}" alt="{{ $entree->nomPlat }}" class="w-16 h-16 object-cover rounded-lg">
+                                <div>
+                                    <h3 class="text-lg text-[#FFEB99]">{{ $entree->nomPlat }}</h3>
+                                    <p class="text-sm text-gray-300">{{ $entree->descriptionPlat }}</p>
+                                    <p class="text-sm text-gray-300 font-bold">Prix : {{ $entree->prixHT }} €</p>
+                                    <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $entree->idPlat }}">{{ $entree->quantite }}</span></p>
+
+                                    <!-- Affichage des allergènes -->
+                                    @if($entree->restreindres->isNotEmpty())
+                                        <div class="mt-2">
+                                            <h4 class="text-sm font-bold text-[#FFEB99]">Allergènes :</h4>
+                                            <ul class="text-gray-300 text-sm">
+                                                @foreach($entree->restreindres as $restreindre)
+                                                    @if($restreindre->alergene)
+                                                        <li>{{ $restreindre->alergene->descriptionAlergenes }}</li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
+                                        onclick="updateQuantity('item-{{ $entree->idPlat }}', -1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees', '{{ $entree->idPlat }}', '{{ $entree->quantite }}')">
+                                    -
+                                </button>
+                                <span id="item-{{ $entree->idPlat }}" class="text-3xl text-white font-bold">0</span>
+                                <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
+                                        onclick="updateQuantity('item-{{ $entree->idPlat }}', 1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees', '{{ $entree->idPlat }}', '{{ $entree->quantite }}')">
+                                    +
+                                </button>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-4">
-                            <button class="w-12 h-12 bg-red-600 text-white text-2xl flex items-center justify-center"
-                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', -1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees', '{{ $entree->idPlat }}', '{{ $entree->quantite }}')">
-                                -
-                            </button>
-                            <span id="item-{{ $entree->idPlat }}" class="text-3xl text-white font-bold">0</span>
-                            <button class="w-12 h-12 bg-green-600 text-white text-2xl flex items-center justify-center"
-                                    onclick="updateQuantity('item-{{ $entree->idPlat }}', 1, '{{ $entree->prixHT }}', '{{ $entree->nomPlat }}', 'entrees', '{{ $entree->idPlat }}', '{{ $entree->quantite }}')">
-                                +
-                            </button>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
                 </div>
-
             </div>
+
 
            
             <div class="mb-6">
@@ -59,6 +74,20 @@
                                 <p class="text-sm text-gray-300">{{ $plat->descriptionPlat }}</p>
                                 <p class="text-sm text-gray-300 font-bold">Prix : {{ $plat->prixHT }} €</p>
                                 <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $plat->idPlat }}">{{ $plat->quantite }}</span></p>
+                                
+                                <!-- Affichage des allergènes -->
+                                @if($plat->restreindres->isNotEmpty())
+                                    <div class="mt-2">
+                                        <h4 class="text-sm font-bold text-[#FFEB99]">Allergènes :</h4>
+                                        <ul class="text-gray-300 text-sm">
+                                            @foreach($plat->restreindres as $restreindre)
+                                                @if($restreindre->alergene)
+                                                    <li>{{ $restreindre->alergene->descriptionAlergenes }}</li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -74,6 +103,7 @@
                         </div>
                     </div>
                 @endforeach
+
 
                 </div>
 
@@ -95,6 +125,20 @@
                                     <p class="text-sm text-gray-300">{{ $dessert->descriptionPlat }}</p>
                                     <p class="text-sm text-gray-300 font-bold">Prix : {{ $dessert->prixHT }} €</p>
                                     <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $dessert->idPlat }}">{{ $dessert->quantite }}</span></p>
+
+                                    <!-- Affichage des allergènes -->
+                                    @if($dessert->restreindres->isNotEmpty())
+                                        <div class="mt-2">
+                                            <h4 class="text-sm font-bold text-[#FFEB99]">Allergènes :</h4>
+                                            <ul class="text-gray-300 text-sm">
+                                                @foreach($dessert->restreindres as $restreindre)
+                                                    @if($restreindre->alergene)
+                                                        <li>{{ $restreindre->alergene->descriptionAlergenes }}</li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
@@ -111,8 +155,9 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
+
+            <!-- Boissons -->
             <div class="mb-6">
                 <button class="w-full text-center text-2xl py-3 bg-gradient-to-r from-[#FFEB99] to-[#FFD700] rounded-lg mb-2" 
                         onclick="toggleList('boisson-list')">
@@ -128,6 +173,20 @@
                                     <p class="text-sm text-gray-300">{{ $boisson->descriptionPlat }}</p>
                                     <p class="text-sm text-gray-300 font-bold">Prix : {{ $boisson->prixHT }} €</p>
                                     <p class="text-sm text-gray-300 font-bold">Stock : <span id="stock-{{ $boisson->idPlat }}">{{ $boisson->quantite }}</span></p>
+
+                                    <!-- Affichage des allergènes -->
+                                    @if($boisson->restreindres->isNotEmpty())
+                                        <div class="mt-2">
+                                            <h4 class="text-sm font-bold text-[#FFEB99]">Allergènes :</h4>
+                                            <ul class="text-gray-300 text-sm">
+                                                @foreach($boisson->restreindres as $restreindre)
+                                                    @if($restreindre->alergene)
+                                                        <li>{{ $restreindre->alergene->descriptionAlergenes }}</li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                             <div class="flex items-center space-x-4">
@@ -144,9 +203,7 @@
                         </div>
                     @endforeach
                 </div>
-
             </div>
-        </div>
 
         <div class="items-start p-6 bg-[#444] rounded-md shadow-md">
             

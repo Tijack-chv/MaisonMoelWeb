@@ -7,7 +7,7 @@
 
         <!-- Formulaire de réservation -->
         <form action="{{ route('Commande.ReservationCommandePost') }}" method="POST">
-            @csrf <!-- Protection contre les attaques CSRF -->
+            @csrf
             
             <div class="bg-[#444] rounded-lg p-6 shadow-md space-y-6">
                 <!-- Sélection du client -->
@@ -62,3 +62,13 @@
 
     </div>
 </x-header>
+
+<script>
+    document.getElementById("table").addEventListener("change", function () {
+        let maxCapacite = this.options[this.selectedIndex].text.match(/\d+/g);
+        if (maxCapacite) {
+            document.getElementById("nombre_personnes").max = maxCapacite[maxCapacite.length - 1]; // Prend le dernier nombre
+            document.getElementById("nombre_personnes").value = 1;
+        }
+    });
+</script>
