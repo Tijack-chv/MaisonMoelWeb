@@ -6,7 +6,7 @@
         </h1>
 
         <!-- Formulaire de réservation -->
-        <form action="{{ route('Commande.ReservationCommande') }}" method="POST">
+        <form action="{{ route('Commande.ReservationCommandePost') }}" method="POST">
             @csrf <!-- Protection contre les attaques CSRF -->
             
             <div class="bg-[#444] rounded-lg p-6 shadow-md space-y-6">

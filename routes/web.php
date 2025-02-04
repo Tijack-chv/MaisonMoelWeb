@@ -41,7 +41,7 @@ Route::middleware(AuthVerification::class)->group(function () {
     Route::get('/PriseCommande', [PublicController::class, 'PriseCommande'])->name('Commande.PriseCommande');
     Route::post('/commander', [PublicController::class, 'commander'])->name('Commande.commander');
     Route::get('/ReservationCommande', [PublicController::class, 'reserver'])->name('Commande.ReservationCommande');
-    Route::post('/ReservationCommande', [PublicController::class, 'ajoutReserverParServeur'])->name('Commande.ReservationCommande');
+    Route::post('/ReservationCommande', [PublicController::class, 'ajoutReserverParServeur'])->name('Commande.ReservationCommandePost');
 
     Route::get('/Facturation', [FacturationController::class, 'facturer'])->name('Facturation.Facturer');
     Route::post('/Payerfacture', [FacturationController::class, 'payerfacture'])->name('Facturation.payer');    
