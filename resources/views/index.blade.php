@@ -42,7 +42,7 @@
         <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font">
             Nos sélections
         </h1>
-        <div class="pt-6 pb-2 md:px-[6rem] lg:px-[12rem]">
+        <div class="pt-6 pb-2 px-[1rem] md:px-[6rem] lg:px-[12rem]">
             <swiper-container class="mySwiper" slides-per-view="4"
             space-between="30" free-mode="true" autoplay-delay="2500" autoplay-disable-on-interaction="true" mousewheel="true">
                 @foreach($plats as $plat)
