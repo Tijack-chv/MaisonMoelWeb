@@ -145,10 +145,4 @@ class PublicController extends Controller
         // Retourner une réponse ou rediriger vers une autre page
         return redirect()->route('Commande.ReservationCommande')->with('success', 'Votre commande a été envoyée avec succès !');
     }
-
-    public function test() {
-        $personne = Personne::find(3);
-        $reservation = Reservation::find(3);
-        EmailHelpers::sendEmail($personne->email, "Réservation MaisonMoël", "email.reserveremail", ['reservation' => $reservation, 'personne' => $personne]);
-    }
 }
