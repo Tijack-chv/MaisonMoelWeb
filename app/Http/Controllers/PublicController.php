@@ -12,6 +12,8 @@ use App\Models\Personne;
 use App\Models\Comporter;
 use App\Models\Reservation;
 use App\Models\Evenement;
+use App\Models\TypePlat;
+use App\Models\CategoriePlat;
 use App\utils\EmailHelpers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -31,6 +33,24 @@ class PublicController extends Controller
             array_push($plats, Plat::find($comporter->idPlat));
         }
         return view('index', ['avis' => $avis, 'avgAvis' => $avgAvis, 'notes' => $notes, 'plats' => $plats, 'evenements' => $evenements]);
+    }
+
+    public function carte_plats($id)
+    {
+        $plats = Plat::where('idCategoriePlat', $id)->get();
+        $categorie = CategoriePlat::find($id);
+        return view('carte_plats', ['plats' => $plats, 'categorie' => $categorie]);
+    }
+
+    public function carte() {
+        $categories_plat = CategoriePlat::all();
+        $images = [];
+        foreach ($categories_plat as $categorie) {
+            $plat = Plat::where('idCategoriePlat', $categorie->idCategoriePlat)->get();
+            $plat = $plat[rand(0, count($plat) - 1)];
+            $images[$categorie->idCategoriePlat] = $plat->imagePlat;
+        }
+        return view('carte', ['categories_plat' => $categories_plat, 'images' => $images]);
     }
 
     public function priseCommande()

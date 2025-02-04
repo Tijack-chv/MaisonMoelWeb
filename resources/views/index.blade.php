@@ -40,7 +40,7 @@
     
     <div class="grid grid-cols-1 pt-2 pb-6" id="selection">
         <h1 class="place-self-center text-center text-4xl md:text-5xl text-[#FFEB99] titre-font">
-            Nos sélections
+            Notre sélection
         </h1>
         <div class="pt-6 pb-2 px-[1rem] md:px-[6rem] lg:px-[12rem]">
             <swiper-container class="mySwiper" slides-per-view="4"
@@ -70,6 +70,15 @@
                     </swiper-slide>
                 @endforeach
             </swiper-container>
+        </div>
+
+        <div class="flex justify-center">
+            <button class="bg-[#FFEB99] text-[#292929] rounded-full px-4 py-2 mt-4 inline-flex items-center" onclick="window.location.href='/carte'">
+                Voir la carte
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                </svg>
+            </button>
         </div>
 
         <hr class="w-96 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10">
