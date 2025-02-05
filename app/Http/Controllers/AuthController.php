@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Personne;
 use App\Models\Serveur;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -99,12 +100,17 @@ class AuthController extends Controller
             ]
         );
 
+        if (Personne::where('email', $validated['email'])->first()) {
+            return redirect()->route('register')->with('error', 'Email déjà utilisé.');
+        }
+
         $personne = new Personne();
         $personne->nom = $validated['name'];
         $personne->prenom = $validated['prenom'];
         $personne->email = $validated['email'];
         $personne->dateNaiss = $validated['date_naissance'];
         $personne->password = Hash::make($validated['password']);
+        $personne->token = Str::uuid();
         $personne->save();
 
         $client = new Client();

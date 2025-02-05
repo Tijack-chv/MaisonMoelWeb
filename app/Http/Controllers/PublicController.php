@@ -26,7 +26,7 @@ class PublicController extends Controller
     public function index()
     {
         $evenements = Evenement::orderBy('dateEvenement', 'asc')->limit(3)->get();
-        $avis = Avi::limit(5)->orderBy('note', 'desc')->get();
+        $avis = Avi::limit(5)->orderBy('note', 'desc')->orderBy('date', 'desc')->get();
         $avgAvis = Avi::avg('note');
         $notes = array(Avi::where('note', 1)->count(), Avi::where('note', 2)->count(), Avi::where('note', 3)->count(), Avi::where('note', 4)->count(), Avi::where('note', 5)->count(), Avi::count());
         $comporters = Comporter::groupBy('idPlat')->selectRaw('idPlat, sum(nbCommander) as total')->orderBy('total', 'desc')->limit(8)->get();
