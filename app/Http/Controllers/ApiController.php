@@ -153,7 +153,7 @@ class ApiController extends Controller
                         $commande->idPersonne = $idServeur;
                         $commande->idEtat = 1;
                         $commande->idReservation = $table->idReservation;
-                        $commande->dateCommande = date('Y-m-d H:i:s');
+                        $commande->dateCommande = date('Y-m-d H:i:s', strtotime('+1 hour'));
                         $commande->save();
                         return response()->json(['success' => $commande->idCommande]);
                     } else {
