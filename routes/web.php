@@ -13,6 +13,9 @@ Route::get('/', [PublicController::class, 'index'])->name('index');
 Route::get('/carte', [PublicController::class, 'carte'])->name('carte');
 Route::get('/carte/{id}', [PublicController::class, 'carte_plats'])->name('carte.plats');
 
+Route::get('/cgu', [PublicController::class, 'cgu'])->name('cgu');
+Route::get('/politique-confidentialite', [PublicController::class, 'politique_confidentialite'])->name('politique_confidentialite');
+
 Route::get('/sendMailCron', [PublicController::class, 'sendMailCron'])->name('sendMailCron');
 
 Route::get('/login', [AuthController::class, 'login_view'])->name('login');

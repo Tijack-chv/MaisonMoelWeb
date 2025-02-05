@@ -23,6 +23,14 @@ use App\Models\CategoriePlat;
 
 class PublicController extends Controller
 {
+    public function cgu() {
+        return view('cgu');
+    }
+
+    public function politique_confidentialite() {
+        return view('politique_confidentialite');
+    }
+
     public function index()
     {
         $evenements = Evenement::orderBy('dateEvenement', 'asc')->limit(3)->get();
