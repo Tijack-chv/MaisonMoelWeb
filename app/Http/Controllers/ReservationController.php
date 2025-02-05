@@ -8,7 +8,7 @@ use App\Models\TypeTable;
 use App\Models\Reservation;
 use Illuminate\Support\Str;
 use App\Models\Table;
-use App\Utils\EmailHelpers;
+use App\utils\EmailHelpers;
 
 
 
