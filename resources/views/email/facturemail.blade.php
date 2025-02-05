@@ -10,7 +10,8 @@
 </head>
 <body>
     @php
-        $total = 0;
+        $total = 0; 
+        $totaleTVA = 0;
     @endphp
     <div class="container my-5">
         <div class="card">
@@ -53,11 +54,19 @@
                         <td></td>
                         <td> - {{ $reservation->accompte }} €</td>
                         </tr>
+                        <tr>
+                            @php
+                                $totaleTVA += $total * 1.2 - $total;
+                            @endphp
+                            <td>TVA ( 20 % )</td>
+                            <td></td>
+                            <td> {{$totaleTVA }} €</td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <div class="d-flex justify-content-end">
-                    <h4><strong>Total à Payer : {{$total - $reservation->accompte }}  €</strong></h4>
+                    <h4><strong>Total à Payer : {{$total - $reservation->accompte + $totaleTVA }}  €</strong></h4>
                 </div>
             </div>
             <div class="card-footer text-center">

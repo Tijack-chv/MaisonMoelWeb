@@ -20,7 +20,7 @@
                         <option value="">Choisir une commande...</option>
                         @foreach($commandeAPayer as $commande)
                             @php 
-                                $totalMontant = $commande->comporters->sum('prix') - $commande->reservation->accompte;
+                                $totalMontant = $commande->comporters->sum('prix') * 1.2 - $commande->reservation->accompte;
                             @endphp
                             <option value="{{ $commande->idCommande }}" 
                                 data-id-commande = "{{ $commande->idCommande }}"  
@@ -47,8 +47,8 @@
                     <h5 class="text-2xl font-bold">Détails de la commande</h5>
                     <p><strong>Client :</strong> <span id="clientNom"></span> <span id="clientPrenom"></span></p>
                     <p><strong>Table :</strong> <span id="tableId"></span></p>
-                    <p><strong>Montant total avec l'acompte  :</strong> <span id="commandeMontant"></span> €</p>
                     <p><strong>Acompte versé à rembourser :</strong> <span id="acompteStatut"></span></p>
+                    <p><strong>Montant totale avec TVA :</strong> <span id="TVAmontant"></span></p>
 
                     <!-- Liste des plats commandés -->
                     <h5 class="text-xl font-bold mt-4">Contenu de la commande :</h5>
@@ -126,6 +126,8 @@
         document.getElementById("commandeSelect").addEventListener("change", function() {
             var selectedOption = this.options[this.selectedIndex];
             var montant = selectedOption.getAttribute("data-montant");
+            var montantTVA = montant * 1.20;
+            console.log(montantTVA);
             var clientNom = selectedOption.getAttribute("data-client");
             var clientPrenom = selectedOption.getAttribute("data-prenom");
             var table = selectedOption.getAttribute("data-table");
@@ -138,9 +140,11 @@
                 document.getElementById("clientNom").innerText = clientNom;
                 document.getElementById("clientPrenom").innerText = clientPrenom;
                 document.getElementById("tableId").innerText = table;
-                document.getElementById("commandeMontant").innerText = montant;
+                // document.getElementById("commandeMontant").innerText = montant;
                 document.getElementById("acompteStatut").innerText = acompte;
                 document.getElementById('commande_id').value = id_commande;
+                document.getElementById('TVAmontant').innerText = montant + " €";
+
                 
                 var contenuList = document.getElementById("commandeContenu");
                 contenuList.innerHTML = ""; // Vider la liste avant d'ajouter du contenu
