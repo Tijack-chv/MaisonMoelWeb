@@ -106,7 +106,7 @@ class ApiController extends Controller
                     $message = new Message();
                     $message->idPersonne = $personne->idPersonne;
                     $message->message = $message_str;
-                    $message->date = date('Y-m-d H:i:s');
+                    $message->date = date('Y-m-d H:i:s', strtotime('+1 hour'));
                     $message->save();
                     return response()->json(['success' => 'Message envoyé.']);
                 } else {
